@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Programs & Courses - LEGO Robotics & Coding | RoboBricks</title>
+  <meta name="description" content="Explore our full catalog of LEGO Robotics, Coding, and STEM courses for ages 5-16. Filter by age group, format, or skill level. Grid and list views available.">
+  
+  <link rel="icon" type="image/png" href="assets/logo.png">
+
+  <!-- TailwindCSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: { 50: '#eff6ff', 100: '#dbeafe', 500: '#3b82f6', 600: '#2563eb', 700: '#1d4ed8' },
+            brick: { yellow: '#FBBF24', red: '#EF4444', blue: '#2563EB', green: '#10B981', purple: '#8B5CF6', orange: '#F97316' }
+          },
+          fontFamily: {
+            heading: ['Fredoka', 'cursive', 'sans-serif'],
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            tech: ['"Space Grotesk"', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons & Alpine.js -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <link rel="stylesheet" href="assets/css/custom.css">
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 min-h-screen flex flex-col font-sans transition-colors duration-200">
+
+      <!-- Main Navigation Bar -->
+  <header class="sticky top-0 z-40 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 shadow-sm transition-colors">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20 gap-2 xl:gap-4">
+        
+        <!-- Logo -->
+        <a href="index.html" class="flex items-center gap-3 group flex-shrink-0">
+          <img src="assets/logo.png" alt="RoboBricks Logo" class="w-11 h-11 rounded-2xl object-contain shadow-lg shadow-blue-500/25 group-hover:scale-105 transition-transform duration-200 flex-shrink-0">
+          <div>
+            <span class="font-heading text-xl font-bold tracking-tight text-slate-900 dark:text-white flex items-center gap-1 leading-none">
+              Robo<span class="text-blue-600 dark:text-blue-400">Bricks</span>
+              <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+            </span>
+            <span class="block text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mt-1 leading-none">Kids Robotics & LEGO Club</span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="hidden xl:flex items-center gap-0.5 xl:gap-1.5 font-semibold text-xs xl:text-sm whitespace-nowrap">
+          <!-- Home with Home 2 Dropdown -->
+          <div class="relative flex-shrink-0" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false" @keydown.escape.window="open = false">
+            <button @click="open = !open" type="button" class="h-10 px-2.5 xl:px-3 rounded-xl inline-flex items-center gap-1 text-slate-700 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition whitespace-nowrap flex-shrink-0" :class="{ 'bg-blue-50/90 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 shadow-sm': open }">
+              <span>Home</span>
+              <i data-lucide="chevron-down" class="w-3.5 h-3.5 transition-transform duration-200" :class="{ 'rotate-180': open }"></i>
+            </button>
+            <div x-show="open" 
+                 x-cloak
+                 @click.outside="open = false"
+                 x-transition:enter="transition ease-out duration-150"
+                 x-transition:enter-start="opacity-0 translate-y-1"
+                 x-transition:enter-end="opacity-100 translate-y-0"
+                 x-transition:leave="transition ease-in duration-100"
+                 x-transition:leave-start="opacity-100 translate-y-0"
+                 x-transition:leave-end="opacity-0 translate-y-1"
+                 class="absolute left-0 top-full pt-2 w-56 z-50">
+              <div class="rounded-2xl bg-white dark:bg-slate-800 shadow-2xl border border-slate-200/90 dark:border-slate-700 p-2">
+                <a href="index.html" class="flex items-center gap-2.5 px-3 py-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 text-sm transition">
+                  <i data-lucide="bot" class="w-4 h-4 text-blue-500"></i>
+                  <div>
+                    <span class="block leading-tight ">Home 1</span>
+                    <span class="text-[11px] font-normal text-slate-500 dark:text-slate-400">Kids Robotics Club</span>
+                  </div>
+                </a>
+                <a href="index-2.html" class="flex items-center gap-2.5 px-3 py-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 text-sm transition">
+                  <i data-lucide="graduation-cap" class="w-4 h-4 text-blue-500"></i>
+                  <div>
+                    <span class="block leading-tight ">Home 2</span>
+                    <span class="text-[11px] text-slate-500 dark:text-slate-400">STEM Academy Variant</span>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <a href="about.html" class="h-10 px-2.5 xl:px-3 rounded-xl inline-flex items-center text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-blue-600 dark:hover:text-blue-400 transition whitespace-nowrap flex-shrink-0">About Us</a>
+
+          <a href="programs.html" class="h-10 px-2.5 xl:px-3 rounded-xl inline-flex items-center text-blue-600 dark:text-blue-400 bg-blue-50/80 dark:bg-blue-950/40 font-bold whitespace-nowrap flex-shrink-0">Programs</a>
+
+          <a href="instructors.html" class="h-10 px-2.5 xl:px-3 rounded-xl inline-flex items-center text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-blue-600 dark:hover:text-blue-400 transition whitespace-nowrap flex-shrink-0">Instructors</a>
+          <a href="pricing.html" class="h-10 px-2.5 xl:px-3 rounded-xl inline-flex items-center text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-blue-600 dark:hover:text-blue-400 transition whitespace-nowrap flex-shrink-0">Pricing</a>
+          <a href="gallery.html" class="h-10 px-2.5 xl:px-3 rounded-xl inline-flex items-center text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-blue-600 dark:hover:text-blue-400 transition whitespace-nowrap flex-shrink-0">Gallery</a>
+          <a href="blog.html" class="h-10 px-2.5 xl:px-3 rounded-xl inline-flex items-center text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-blue-600 dark:hover:text-blue-400 transition whitespace-nowrap flex-shrink-0">Blog</a>
+          <a href="contact.html" class="h-10 px-2.5 xl:px-3 rounded-xl inline-flex items-center text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-blue-600 dark:hover:text-blue-400 transition whitespace-nowrap flex-shrink-0">Contact</a>
+        </nav>
+
+        <!-- Right Action Buttons: Theme, RTL, Dashboard, and Sign Up -->
+        <div class="hidden xl:flex items-center gap-1.5 xl:gap-2 flex-shrink-0">
+          <!-- RTL Toggle Button -->
+          <button onclick="toggleRTL()" title="Toggle RTL / LTR Direction" class="h-10 px-2.5 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 transition text-xs font-bold inline-flex items-center gap-1.5 whitespace-nowrap flex-shrink-0">
+            <i data-lucide="arrow-left-right" class="w-4 h-4 text-blue-600 dark:text-blue-400"></i>
+            <span class="dir-badge-text">RTL</span>
+          </button>
+
+          <!-- Theme Toggle Button -->
+          <button onclick="toggleTheme()" title="Toggle Dark / Light Theme" class="h-10 w-10 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 transition inline-flex items-center justify-center flex-shrink-0">
+            <i data-lucide="sun" class="w-4 h-4 text-amber-500 theme-sun-icon hidden"></i>
+            <i data-lucide="moon" class="w-4 h-4 text-blue-600 dark:text-blue-400 theme-moon-icon"></i>
+          </button>
+
+          <a href="dashboard/index.html" class="h-10 px-3 xl:px-3.5 rounded-xl font-bold text-xs xl:text-sm text-slate-700 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition inline-flex items-center gap-1.5 xl:gap-2 whitespace-nowrap flex-shrink-0">
+            <i data-lucide="layout-dashboard" class="w-4 h-4 text-blue-600 dark:text-blue-400"></i>
+            <span>Dashboard</span>
+          </a>
+
+          <a href="login.html" class="h-10 px-3.5 xl:px-4 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs xl:text-sm font-heading tracking-wide inline-flex items-center justify-center gap-1.5 xl:gap-2 shadow-sm transition whitespace-nowrap flex-shrink-0">
+            <i data-lucide="log-in" class="w-4 h-4"></i>
+            <span>Login</span>
+          </a>
+        </div>
+
+        <!-- Mobile Menu Toggle Button -->
+        <div class="flex items-center gap-2 xl:hidden flex-shrink-0">
+          <button onclick="toggleTheme()" class="h-10 w-10 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 inline-flex items-center justify-center">
+            <i data-lucide="sun" class="w-4 h-4 text-amber-500 theme-sun-icon hidden"></i>
+            <i data-lucide="moon" class="w-4 h-4 text-blue-500 theme-moon-icon"></i>
+          </button>
+          <button onclick="toggleMobileMenu()" class="h-10 w-10 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 inline-flex items-center justify-center">
+            <i data-lucide="menu" class="w-6 h-6"></i>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div id="mobile-menu" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden flex flex-col justify-end">
+    <div class="bg-white dark:bg-slate-900 rounded-t-3xl p-6 max-h-[85vh] overflow-y-auto space-y-4 shadow-2xl">
+      <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-4">
+        <span class="font-heading text-xl font-bold">Menu Navigation</span>
+        <button onclick="toggleMobileMenu()" class="p-2 rounded-xl bg-slate-100 dark:bg-slate-800">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <div class="space-y-1 font-semibold text-slate-800 dark:text-slate-100">
+        <a href="index.html" class="block px-4 py-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800">Home 1 (Main Club)</a>
+        <a href="index-2.html" class="block px-4 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 pl-8 text-xs text-slate-500">&bull; Home 2 (STEM Academy)</a>
+        <a href="about.html" class="block px-4 py-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800">About Us</a>
+        
+        <a href="programs.html" class="block px-4 py-2.5 rounded-xl bg-blue-50 dark:bg-blue-900/40 text-blue-600 dark:text-blue-300 font-bold">Programs</a>
+
+        <a href="instructors.html" class="block px-4 py-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800">Instructors & Mentors</a>
+        <a href="pricing.html" class="block px-4 py-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800">Pricing</a>
+        <a href="gallery.html" class="block px-4 py-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800">Gallery</a>
+        <a href="blog.html" class="block px-4 py-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800">Blog</a>
+        <a href="contact.html" class="block px-4 py-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800">Contact</a>
+        <a href="dashboard/index.html" class="block px-4 py-2.5 rounded-xl bg-blue-50 dark:bg-blue-950/40 text-blue-600 dark:text-blue-400 font-bold">Parent & Admin Dashboard &rarr;</a>
+      </div>
+
+      <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex flex-col gap-2.5">
+        <button onclick="toggleRTL()" class="w-full py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 flex items-center justify-center gap-2 text-sm font-bold">
+          <i data-lucide="arrow-left-right" class="w-4 h-4"></i> Switch Layout (LTR / RTL)
+        </button>
+        <a href="login.html" class="btn-brick bg-blue-600 hover:bg-blue-700 text-white w-full py-3 rounded-2xl font-heading text-base flex items-center justify-center gap-2 transition">
+          <i data-lucide="log-in" class="w-5 h-5"></i>
+          <span>Parent Login</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Page Header -->
+  <section class="py-14 sm:py-20 bg-[#0B1120] text-slate-100 border-b border-slate-800/80 relative overflow-hidden">
+    <!-- Solid dark navy background with subtle stud pattern -->
+    <div class="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+      <div class="absolute inset-0 bg-gradient-to-b from-[#0B1120]/90 via-[#0B1120]/75 to-[#0B1120]/95"></div>
+      <div class="absolute inset-0 bg-studs opacity-40"></div>
+    </div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+      <div class="flex items-center justify-center gap-2 text-xs font-semibold text-slate-400 mb-3">
+        <a href="index.html" class="hover:text-white transition">Home</a>
+        <span>/</span>
+        <span class="text-blue-400 font-bold">Programs Catalog</span>
+      </div>
+      <h1 class="text-4xl sm:text-5xl font-heading font-extrabold text-white tracking-tight">
+        Robotics & LEGO® Courses
+      </h1>
+      <p class="mt-3 text-base text-slate-300 max-w-2xl mx-auto">
+        Structured engineering curriculum designed for every developmental stage, from beginner gear assemblies to Python microcontrollers.
+      </p>
+    </div>
+  </section>
+
+  <!-- Programs Catalog Application with Alpine.js Reactive Filters & Grid/List Switcher -->
+  <section class="py-16 bg-slate-50 dark:bg-slate-900" x-data="{
+    viewMode: 'grid',
+    selectedAge: 'all',
+    searchQuery: '',
+    courses: [
+      {
+        id: 1,
+        title: 'Little Inventors: WeDo Mechanics & Story Bots',
+        age: '5-7',
+        ageLabel: 'Ages 5 - 7',
+        tag: 'Junior Track',
+        kit: 'LEGO® WeDo 2.0',
+        duration: '60 Mins / Wk',
+        price: '$149',
+        priceSuffix: '/mo',
+        rating: '4.9',
+        image: 'assets/little-inventors-wedo.png',
+        desc: 'Introductory mechanics where children construct motorized animals, pulleys, and simple cams using large LEGO elements and visual icon coding.',
+        skills: ['Pulleys & Levers', 'Tilt Sensors', 'Visual Logic', 'Motor Speeds'],
+        featured: false
+      },
+      {
+        id: 2,
+        title: 'RoboExplorers: SPIKE™ Prime Core & Sensors',
+        age: '8-11',
+        ageLabel: 'Ages 8 - 11',
+        tag: 'Most Popular',
+        kit: 'LEGO® SPIKE Prime',
+        duration: '90 Mins / Wk',
+        price: '$189',
+        priceSuffix: '/mo',
+        rating: '5.0',
+        image: 'https://assets.education.lego.com/v3/assets/blt293eea581807678a/blt249aae6006a2e7fe/60d580714b10c259bbae44b2/LE_SPIKE_Prime_Lifestyle_1HY19_45678_09.jpg?auto=webp&fit=bounds&format=jpg&locale=es-mx&quality=90&width=1200',
+        desc: 'Our flagship engineering program. Students design autonomous rovers, walking robots, and robotic arms with ultrasonic distance and gyro sensors.',
+        skills: ['Scratch 3.0', 'Ultrasonic Ping', 'Gyro Balancing', 'Gear Ratios'],
+        featured: true
+      },
+      {
+        id: 3,
+        title: 'Future Engineers: Python Text Coding & Autonomous AI',
+        age: '12-16',
+        ageLabel: 'Ages 12 - 16',
+        tag: 'Advanced High-School',
+        kit: 'SPIKE Prime + MicroPython',
+        duration: '120 Mins / Wk',
+        price: '$229',
+        priceSuffix: '/mo',
+        rating: '4.9',
+        image: 'assets/future-engineers-autonomous-ai-student.png',
+        desc: 'Advanced text-based robotics using MicroPython. Build obstacle avoidance algorithms, PID line-tracking, and wireless telemetry.',
+        skills: ['Python 3', 'PID Controllers', 'Algorithmic Logic', 'Serial Debugging'],
+        featured: false
+      },
+      {
+        id: 4,
+        title: 'BattleBot Arenas: High-Torque Combat Mechanics',
+        age: '8-11',
+        ageLabel: 'Ages 8 - 11',
+        tag: 'Tournament Focus',
+        kit: 'Heavy-Duty Technic Gears',
+        duration: '90 Mins / Wk',
+        price: '$199',
+        priceSuffix: '/mo',
+        rating: '5.0',
+        image: 'assets/battlebot-arenas-high-torque.png',
+        desc: 'Students construct heavily armored, wireless-controlled combat bots to compete in strategic sumo rings and destruction obstacle arenas.',
+        skills: ['Torque Multiplication', 'Chassis Armor', 'Radio Control', 'Tactical Physics'],
+        featured: false
+      },
+      {
+        id: 5,
+        title: 'FIRST LEGO® League (FLL) Competitive Team Cohort',
+        age: '12-16',
+        ageLabel: 'Ages 12 - 16',
+        tag: 'Official League Prep',
+        kit: 'FLL Challenge Field Kit',
+        duration: '180 Mins / Wk',
+        price: '$259',
+        priceSuffix: '/mo',
+        rating: '5.0',
+        image: 'assets/fll-competitive-team-cohort.png',
+        desc: 'Official team training for national FLL competitions. Involves real mission runs on official competition tables and engineering research presentation.',
+        skills: ['Competition Strategy', 'Precision Odometry', 'Team Leadership', 'Innovation Project'],
+        featured: true
+      },
+      {
+        id: 6,
+        title: 'Young Animators: LEGO Stop-Motion & Sound Design',
+        age: '5-7',
+        ageLabel: 'Ages 5 - 7',
+        tag: 'Creative STEM',
+        kit: 'LEGO Brickfilm & iPads',
+        duration: '60 Mins / Wk',
+        price: '$139',
+        priceSuffix: '/mo',
+        rating: '4.8',
+        image: 'assets/young-animators-stop-motion.png',
+        desc: 'Blend storytelling with digital technology. Kids write storyboards, film brick-by-brick animations, and record funny sound effects and music.',
+        skills: ['Frame Rates', 'Digital Storyboarding', 'Voice Acting', 'Audio Sync'],
+        featured: false
+      },
+      {
+        id: 7,
+        title: 'Mini Machine Makers: Gears & Motion',
+        age: '5-7',
+        ageLabel: 'Ages 5 - 7',
+        tag: 'Hands-On Discovery',
+        kit: 'LEGO® WeDo 2.0',
+        duration: '60 Mins / Wk',
+        price: '$149',
+        priceSuffix: '/mo',
+        rating: '4.9',
+        image: 'assets/mini-machine-makers-gears-motion.png',
+        desc: 'Young builders explore how gears, wheels, and simple motors help a machine move, then test their own playful designs.',
+        skills: ['Gears & Motion', 'Early Sequencing', 'Creative Building', 'Cause & Effect'],
+        featured: false
+      },
+      {
+        id: 8,
+        title: 'Rover Quest: Sensors & Navigation',
+        age: '8-11',
+        ageLabel: 'Ages 8 - 11',
+        tag: 'Mission Challenge',
+        kit: 'LEGO® SPIKE Prime',
+        duration: '90 Mins / Wk',
+        price: '$189',
+        priceSuffix: '/mo',
+        rating: '4.9',
+        image: 'assets/rover-quest-sensors-navigation.png',
+        desc: 'Teams build and program a rover to navigate a changing course, using sensor readings to make smarter decisions.',
+        skills: ['Distance Sensors', 'Navigation', 'Debugging', 'Team Design'],
+        featured: false
+      },
+      {
+        id: 9,
+        title: 'Robotics Studio: Python & Smart Systems',
+        age: '12-16',
+        ageLabel: 'Ages 12 - 16',
+        tag: 'Advanced Studio',
+        kit: 'SPIKE Prime + MicroPython',
+        duration: '120 Mins / Wk',
+        price: '$229',
+        priceSuffix: '/mo',
+        rating: '5.0',
+        image: 'assets/robotics-studio-python-smart-systems.png',
+        desc: 'Create a smart robotic system in Python, combining sensor input, reusable functions, and real-world testing.',
+        skills: ['MicroPython', 'Sensor Logic', 'Reusable Functions', 'System Testing'],
+        featured: false
+      }
+    ],
+    init() {
+      const applyAgeFilter = () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const ageParam = urlParams.get('age');
+        const hashParam = window.location.hash.replace('#', '');
+        if (ageParam && ['5-7', '8-11', '12-16'].includes(ageParam)) {
+          this.selectedAge = ageParam;
+        } else if (hashParam && ['5-7', '8-11', '12-16'].includes(hashParam)) {
+          this.selectedAge = hashParam;
+        } else if (hashParam === 'all') {
+          this.selectedAge = 'all';
+        }
+      };
+      applyAgeFilter();
+      window.addEventListener('hashchange', applyAgeFilter);
+    },
+    get filteredCourses() {
+      return this.courses.filter(c => {
+        const matchesAge = this.selectedAge === 'all' || c.age === this.selectedAge;
+        const matchesSearch = this.searchQuery === '' || 
+          c.title.toLowerCase().includes(this.searchQuery.toLowerCase()) || 
+          c.kit.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+          c.desc.toLowerCase().includes(this.searchQuery.toLowerCase());
+        return matchesAge && matchesSearch;
+      });
+    }
+  }">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Filter Bar & View Toggle -->
+      <div class="bg-white dark:bg-slate-800 p-4 sm:p-6 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-md mb-10">
+        <div class="flex flex-col lg:flex-row items-center justify-between gap-4">
+          
+          <!-- Search Bar -->
+          <div class="relative w-full lg:w-72">
+            <i data-lucide="search" class="w-4 h-4 absolute left-3.5 top-3.5 text-slate-400"></i>
+            <input type="text" x-model="searchQuery" placeholder="Search Python, Spike, WeDo..." class="w-full text-xs sm:text-sm pl-10 pr-4 py-2.5 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+          </div>
+
+          <!-- Age Filter Tabs -->
+          <div class="flex items-center gap-2 overflow-x-auto w-full lg:w-auto p-1 bg-slate-50 dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-700">
+            <button @click="selectedAge = 'all'" :class="selectedAge === 'all' ? 'bg-blue-600 text-white shadow' : 'text-slate-600 dark:text-slate-300'" class="px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold transition whitespace-nowrap">
+              All Ages
+            </button>
+            <button @click="selectedAge = '5-7'" :class="selectedAge === '5-7' ? 'bg-amber-400 text-slate-950 shadow' : 'text-slate-600 dark:text-slate-300'" class="px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold transition whitespace-nowrap">
+              Ages 5 - 7
+            </button>
+            <button @click="selectedAge = '8-11'" :class="selectedAge === '8-11' ? 'bg-blue-600 text-white shadow' : 'text-slate-600 dark:text-slate-300'" class="px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold transition whitespace-nowrap">
+              Ages 8 - 11
+            </button>
+            <button @click="selectedAge = '12-16'" :class="selectedAge === '12-16' ? 'bg-rose-500 text-white shadow' : 'text-slate-600 dark:text-slate-300'" class="px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold transition whitespace-nowrap">
+              Ages 12 - 16
+            </button>
+          </div>
+
+          <!-- View Switcher (Grid vs List) -->
+          <div class="flex items-center gap-2 self-end lg:self-auto">
+            <span class="text-xs text-slate-500 font-semibold hidden sm:inline">View Mode:</span>
+            <div class="flex items-center bg-slate-100 dark:bg-slate-700 p-1 rounded-xl">
+              <button @click="viewMode = 'grid'" :class="viewMode === 'grid' ? 'bg-white dark:bg-slate-800 text-blue-600 shadow' : 'text-slate-500 dark:text-slate-400'" class="p-2 rounded-lg transition" title="Grid View">
+                <i data-lucide="grid" class="w-4 h-4"></i>
+              </button>
+              <button @click="viewMode = 'list'" :class="viewMode === 'list' ? 'bg-white dark:bg-slate-800 text-blue-600 shadow' : 'text-slate-500 dark:text-slate-400'" class="p-2 rounded-lg transition" title="List View">
+                <i data-lucide="list" class="w-4 h-4"></i>
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- No Results State -->
+      <div x-show="filteredCourses.length === 0" class="text-center py-20 bg-white dark:bg-slate-800 rounded-3xl border border-slate-200 dark:border-slate-700">
+        <i data-lucide="search-x" class="w-12 h-12 mx-auto text-slate-400 mb-4"></i>
+        <h3 class="font-heading text-xl font-bold">No Courses Matched Your Query</h3>
+        <p class="text-xs text-slate-500 mt-1">Try clearing your search keyword or switching the age filter.</p>
+        <button @click="selectedAge = 'all'; searchQuery = ''" class="btn-brick btn-brick-blue mt-4 px-4 py-2 rounded-xl text-xs font-bold">
+          Reset All Filters
+        </button>
+      </div>
+
+      <!-- GRID VIEW -->
+      <div x-show="viewMode === 'grid' && filteredCourses.length > 0" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <template x-for="course in filteredCourses" :key="course.id">
+          <div class="rounded-3xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 overflow-hidden shadow-lg hover:shadow-2xl transition duration-300 flex flex-col group">
+            
+            <!-- Image & Badges -->
+            <div class="relative aspect-video overflow-hidden bg-slate-900">
+              <img :src="course.image" :alt="course.title" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+              
+              <span class="absolute top-4 left-4 bg-slate-900/80 backdrop-blur text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider" x-text="course.ageLabel"></span>
+              
+              <span x-show="course.featured" class="absolute top-4 right-4 bg-amber-400 text-slate-950 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow">
+                ★ Top Choice
+              </span>
+
+              <span class="absolute bottom-4 right-4 bg-slate-900/80 backdrop-blur text-white text-[11px] font-semibold px-2.5 py-1 rounded-lg" x-text="course.duration"></span>
+            </div>
+
+            <!-- Content -->
+            <div class="p-6 flex-1 flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between text-xs font-bold mb-2">
+                  <span class="text-blue-600 dark:text-blue-400" x-text="course.kit"></span>
+                  <span class="flex items-center gap-1 text-amber-500">
+                    <i data-lucide="star" class="w-3.5 h-3.5 fill-amber-400"></i>
+                    <span x-text="course.rating"></span>
+                  </span>
+                </div>
+
+                <h3 class="font-heading text-xl font-bold text-slate-900 dark:text-white mb-2 leading-tight" x-text="course.title"></h3>
+                <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-4" x-text="course.desc"></p>
+
+                <!-- Skill Tags -->
+                <div class="flex flex-wrap gap-1.5 mb-6">
+                  <template x-for="skill in course.skills" :key="skill">
+                    <span class="text-[11px] font-semibold px-2 py-0.5 rounded-md bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300" x-text="skill"></span>
+                  </template>
+                </div>
+              </div>
+
+              <!-- Price & CTA -->
+              <div class="pt-4 border-t border-slate-100 dark:border-slate-700 flex items-center justify-between">
+                <div>
+                  <span class="text-[11px] text-slate-400 block font-semibold">Monthly Tuition</span>
+                  <span class="text-2xl font-heading font-bold text-slate-900 dark:text-white" x-text="course.price"></span>
+                  <span class="text-xs text-slate-400 font-normal" x-text="course.priceSuffix"></span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <a href="program-detail.html" class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition" title="Curriculum Details">
+                    <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                  </a>
+                  <button @click="openEnrollModal(course.title)" class="btn-brick btn-brick-yellow px-4 py-2 rounded-xl text-xs font-heading font-bold">
+                    Enroll Now
+                  </button>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </template>
+      </div>
+
+      <!-- LIST VIEW -->
+      <div x-show="viewMode === 'list' && filteredCourses.length > 0" class="space-y-6">
+        <template x-for="course in filteredCourses" :key="course.id">
+          <div class="rounded-3xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 overflow-hidden shadow-lg hover:shadow-xl transition duration-300 p-6 flex flex-col md:flex-row gap-6 items-center">
+            
+            <div class="w-full md:w-64 aspect-video rounded-2xl overflow-hidden bg-slate-900 flex-shrink-0 relative">
+              <img :src="course.image" :alt="course.title" class="w-full h-full object-cover">
+              <span class="absolute top-2 left-2 bg-slate-900/80 backdrop-blur text-white text-[10px] font-bold px-2 py-0.5 rounded-full" x-text="course.ageLabel"></span>
+            </div>
+
+            <div class="flex-1 space-y-2 text-left w-full">
+              <div class="flex items-center gap-3 text-xs">
+                <span class="font-bold text-blue-600 dark:text-blue-400" x-text="course.kit"></span>
+                <span class="text-slate-400">&bull;</span>
+                <span class="text-slate-500" x-text="course.duration"></span>
+                <span class="text-slate-400">&bull;</span>
+                <span class="text-amber-500 font-bold" x-text="'★ ' + course.rating"></span>
+              </div>
+              <h3 class="font-heading text-xl font-bold text-slate-900 dark:text-white" x-text="course.title"></h3>
+              <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400" x-text="course.desc"></p>
+              
+              <div class="flex flex-wrap gap-1.5 pt-1">
+                <template x-for="skill in course.skills" :key="skill">
+                  <span class="text-[11px] font-semibold px-2 py-0.5 rounded-md bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300" x-text="skill"></span>
+                </template>
+              </div>
+            </div>
+
+            <div class="w-full md:w-48 text-right flex-shrink-0 border-t md:border-t-0 md:border-l border-slate-100 dark:border-slate-700 pt-4 md:pt-0 md:pl-6 flex md:flex-col justify-between items-center md:items-end">
+              <div>
+                <span class="text-2xl font-heading font-bold text-slate-900 dark:text-white" x-text="course.price"></span>
+                <span class="text-xs text-slate-400" x-text="course.priceSuffix"></span>
+              </div>
+              <div class="flex items-center gap-2 mt-2">
+                <a href="program-detail.html" class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 text-xs font-bold hover:bg-slate-100">Details</a>
+                <button @click="openEnrollModal(course.title)" class="btn-brick btn-brick-blue px-4 py-2 rounded-xl text-xs font-heading font-bold">Enroll</button>
+              </div>
+            </div>
+
+          </div>
+        </template>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Learning Pathways -->
+  <section class="relative overflow-hidden py-16 sm:py-20 bg-gradient-to-br from-slate-50 via-white to-blue-50/70 dark:from-slate-950 dark:via-slate-950 dark:to-blue-950/30 border-y border-slate-200 dark:border-slate-800">
+    <div aria-hidden="true" class="absolute inset-0 bg-studs opacity-30 pointer-events-none"></div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10">
+        <div class="max-w-2xl">
+          <span class="inline-flex items-center gap-2 rounded-full bg-blue-100 dark:bg-blue-950/70 px-3 py-1.5 text-xs font-bold uppercase tracking-widest text-blue-700 dark:text-blue-300"><i data-lucide="route" class="w-4 h-4"></i> A clear next step</span>
+          <h2 class="mt-4 text-3xl sm:text-4xl lg:text-5xl font-heading font-bold tracking-tight text-slate-900 dark:text-white">Learning pathways <span class="text-blue-600 dark:text-blue-400">for every age.</span></h2>
+          <p class="mt-4 max-w-xl text-sm sm:text-base leading-relaxed text-slate-600 dark:text-slate-400">Children move from hands-on discovery to independent engineering at a pace that suits them.</p>
+        </div>
+        <div class="inline-flex items-center gap-3 self-start lg:self-auto rounded-2xl border border-slate-200 dark:border-slate-700 bg-white/90 dark:bg-slate-900/90 px-4 py-3 shadow-sm">
+          <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300"><i data-lucide="trending-up" class="w-5 h-5"></i></span>
+          <span><strong class="block text-sm text-slate-900 dark:text-white">One growing skill set</strong><span class="text-xs text-slate-500 dark:text-slate-400">Explore → create → engineer</span></span>
+        </div>
+      </div>
+
+      <div class="grid gap-5 lg:grid-cols-3 items-stretch">
+        <article class="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-amber-200 dark:border-amber-900/60 bg-white dark:bg-slate-900 shadow-sm hover:-translate-y-1 hover:shadow-xl transition duration-300">
+          <div class="h-1.5 bg-amber-400"></div>
+          <div class="flex flex-1 flex-col p-6 sm:p-7">
+            <div class="flex items-center justify-between gap-3">
+              <span class="rounded-full bg-amber-100 dark:bg-amber-950/60 px-3 py-1 text-xs font-extrabold uppercase tracking-wider text-amber-800 dark:text-amber-300">Ages 5–7</span>
+              <span class="flex h-12 w-12 items-center justify-center rounded-2xl bg-amber-100 dark:bg-amber-950/60 text-amber-700 dark:text-amber-300 group-hover:rotate-6 transition-transform"><i data-lucide="blocks" class="w-6 h-6"></i></span>
+            </div>
+            <p class="mt-5 text-xs font-bold uppercase tracking-widest text-amber-700 dark:text-amber-300">01 · Discover</p>
+            <h3 class="mt-1 text-2xl font-heading font-bold text-slate-900 dark:text-white">Little Inventors</h3>
+            <p class="mt-3 flex-1 text-sm leading-relaxed text-slate-600 dark:text-slate-400">Build simple machines, explore cause and effect, and bring story characters to life.</p>
+            <div class="mt-5 flex flex-wrap gap-2">
+              <span class="rounded-lg bg-amber-50 dark:bg-amber-950/40 px-2.5 py-1.5 text-xs font-semibold text-amber-800 dark:text-amber-200">LEGO® WeDo</span>
+              <span class="rounded-lg bg-amber-50 dark:bg-amber-950/40 px-2.5 py-1.5 text-xs font-semibold text-amber-800 dark:text-amber-200">Story bots</span>
+            </div>
+            <button type="button" onclick="openEnrollModal('Little Inventors: WeDo Mechanics & Story Bots')" class="mt-6 inline-flex items-center justify-between gap-3 border-t border-amber-100 dark:border-amber-900/50 pt-4 text-left text-sm font-bold text-amber-800 dark:text-amber-300 hover:text-amber-600 dark:hover:text-amber-200 transition">
+              <span>Start exploring</span><i data-lucide="arrow-right" class="w-4 h-4 transition-transform group-hover:translate-x-1"></i>
+            </button>
+          </div>
+        </article>
+
+        <article class="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-blue-300 dark:border-blue-800 bg-blue-50/80 dark:bg-blue-950/30 shadow-lg shadow-blue-900/5 hover:-translate-y-1 hover:shadow-xl transition duration-300">
+          <div class="h-1.5 bg-blue-600"></div>
+          <div class="flex flex-1 flex-col p-6 sm:p-7">
+            <div class="flex items-center justify-between gap-3">
+              <div class="flex flex-wrap items-center gap-2">
+                <span class="rounded-full bg-blue-100 dark:bg-blue-900/60 px-3 py-1 text-xs font-extrabold uppercase tracking-wider text-blue-800 dark:text-blue-200">Ages 8–11</span>
+                <span class="rounded-full bg-blue-600 px-2.5 py-1 text-[10px] font-extrabold uppercase tracking-wider text-white">Popular</span>
+              </div>
+              <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-blue-600 text-white shadow-md shadow-blue-600/20 group-hover:-rotate-6 transition-transform"><i data-lucide="bot" class="w-6 h-6"></i></span>
+            </div>
+            <p class="mt-5 text-xs font-bold uppercase tracking-widest text-blue-700 dark:text-blue-300">02 · Create</p>
+            <h3 class="mt-1 text-2xl font-heading font-bold text-slate-900 dark:text-white">RoboExplorers</h3>
+            <p class="mt-3 flex-1 text-sm leading-relaxed text-slate-600 dark:text-slate-300">Combine motors, sensors, and block code to solve practical robotics challenges.</p>
+            <div class="mt-5 flex flex-wrap gap-2">
+              <span class="rounded-lg bg-white/80 dark:bg-slate-900/70 px-2.5 py-1.5 text-xs font-semibold text-blue-800 dark:text-blue-200">SPIKE™ Prime</span>
+              <span class="rounded-lg bg-white/80 dark:bg-slate-900/70 px-2.5 py-1.5 text-xs font-semibold text-blue-800 dark:text-blue-200">Sensors & code</span>
+            </div>
+            <button type="button" onclick="openEnrollModal('RoboExplorers: SPIKE™ Prime Core & Sensors')" class="mt-6 inline-flex items-center justify-between gap-3 border-t border-blue-200 dark:border-blue-800 pt-4 text-left text-sm font-bold text-blue-800 dark:text-blue-200 hover:text-blue-600 dark:hover:text-white transition">
+              <span>Start creating</span><i data-lucide="arrow-right" class="w-4 h-4 transition-transform group-hover:translate-x-1"></i>
+            </button>
+          </div>
+        </article>
+
+        <article class="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-violet-200 dark:border-violet-900/60 bg-white dark:bg-slate-900 shadow-sm hover:-translate-y-1 hover:shadow-xl transition duration-300">
+          <div class="h-1.5 bg-violet-500"></div>
+          <div class="flex flex-1 flex-col p-6 sm:p-7">
+            <div class="flex items-center justify-between gap-3">
+              <span class="rounded-full bg-violet-100 dark:bg-violet-950/60 px-3 py-1 text-xs font-extrabold uppercase tracking-wider text-violet-800 dark:text-violet-300">Ages 12–16</span>
+              <span class="flex h-12 w-12 items-center justify-center rounded-2xl bg-violet-100 dark:bg-violet-950/60 text-violet-700 dark:text-violet-300 group-hover:rotate-6 transition-transform"><i data-lucide="code-2" class="w-6 h-6"></i></span>
+            </div>
+            <p class="mt-5 text-xs font-bold uppercase tracking-widest text-violet-700 dark:text-violet-300">03 · Engineer</p>
+            <h3 class="mt-1 text-2xl font-heading font-bold text-slate-900 dark:text-white">Future Engineers</h3>
+            <p class="mt-3 flex-1 text-sm leading-relaxed text-slate-600 dark:text-slate-400">Use Python, algorithms, and testing to build more advanced autonomous projects.</p>
+            <div class="mt-5 flex flex-wrap gap-2">
+              <span class="rounded-lg bg-violet-50 dark:bg-violet-950/40 px-2.5 py-1.5 text-xs font-semibold text-violet-800 dark:text-violet-200">Python</span>
+              <span class="rounded-lg bg-violet-50 dark:bg-violet-950/40 px-2.5 py-1.5 text-xs font-semibold text-violet-800 dark:text-violet-200">Autonomous AI</span>
+            </div>
+            <button type="button" onclick="openEnrollModal('Future Engineers: Python Text Coding & Autonomous AI')" class="mt-6 inline-flex items-center justify-between gap-3 border-t border-violet-100 dark:border-violet-900/50 pt-4 text-left text-sm font-bold text-violet-800 dark:text-violet-300 hover:text-violet-600 dark:hover:text-violet-200 transition">
+              <span>Start engineering</span><i data-lucide="arrow-right" class="w-4 h-4 transition-transform group-hover:translate-x-1"></i>
+            </button>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Students Practice -->
+  <section class="relative overflow-hidden py-16 sm:py-20 bg-gradient-to-br from-slate-50 via-white to-amber-50/60 dark:from-slate-950 dark:via-slate-950 dark:to-blue-950/30">
+    <div aria-hidden="true" class="absolute -top-24 -left-20 h-72 w-72 rounded-full bg-amber-200/30 dark:bg-amber-500/5 blur-3xl pointer-events-none"></div>
+    <div class="relative mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-10 px-4 sm:px-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-16 lg:px-8">
+      <div class="mx-auto w-full min-w-0 max-w-xl">
+        <span class="inline-flex items-center gap-2 rounded-full bg-amber-100 dark:bg-amber-950/60 px-3 py-1.5 text-xs font-bold uppercase tracking-widest text-amber-800 dark:text-amber-300"><i data-lucide="wrench" class="w-4 h-4"></i> More than building</span>
+        <h2 class="mt-5 text-3xl sm:text-4xl lg:text-5xl font-heading font-bold leading-tight text-slate-900 dark:text-white">Skills kids use in <span class="text-blue-600 dark:text-blue-400">every project.</span></h2>
+        <p class="mt-5 text-sm sm:text-base leading-relaxed text-slate-600 dark:text-slate-400">Each course pairs engineering practice with teamwork, patience, and the confidence to try a new solution.</p>
+        <div class="mt-7 rounded-2xl border-l-4 border-amber-400 bg-white/80 dark:bg-slate-900/70 px-5 py-4 shadow-sm">
+          <p class="text-sm font-semibold leading-relaxed text-slate-800 dark:text-slate-200">A robot is the project. <span class="text-blue-700 dark:text-blue-300">Curiosity, resilience, and teamwork are the skills that last.</span></p>
+        </div>
+        <div class="mt-6 flex flex-wrap gap-2 text-xs font-bold uppercase tracking-wider">
+          <span class="rounded-lg bg-blue-100 dark:bg-blue-950/60 px-2.5 py-1.5 text-blue-800 dark:text-blue-300">Think</span>
+          <i data-lucide="arrow-right" class="w-4 h-4 text-slate-400 self-center"></i>
+          <span class="rounded-lg bg-amber-100 dark:bg-amber-950/60 px-2.5 py-1.5 text-amber-800 dark:text-amber-300">Make</span>
+          <i data-lucide="arrow-right" class="w-4 h-4 text-slate-400 self-center"></i>
+          <span class="rounded-lg bg-emerald-100 dark:bg-emerald-950/60 px-2.5 py-1.5 text-emerald-800 dark:text-emerald-300">Improve</span>
+        </div>
+      </div>
+
+      <div class="relative mx-auto w-full min-w-0 max-w-xl">
+        <div aria-hidden="true" class="absolute -inset-3 rounded-[2rem] border border-blue-200 dark:border-blue-900/50 rotate-2"></div>
+        <div class="relative min-w-0 overflow-hidden rounded-3xl bg-slate-950 p-5 sm:p-7 text-white shadow-2xl shadow-blue-950/20 ring-1 ring-slate-900">
+          <div aria-hidden="true" class="absolute inset-0 bg-grid-tech opacity-60 pointer-events-none"></div>
+          <div class="relative">
+            <div class="flex items-center justify-between gap-3 border-b border-white/10 pb-4">
+              <div class="flex items-center gap-2.5">
+                <span class="flex h-9 w-9 items-center justify-center rounded-xl bg-blue-500/20 text-blue-300"><i data-lucide="cpu" class="w-5 h-5"></i></span>
+                <div><span class="block text-[10px] font-bold uppercase tracking-[0.18em] text-blue-300">RoboBricks</span><h3 class="text-sm font-bold">The Maker’s Toolkit</h3></div>
+              </div>
+              <span class="rounded-lg border border-emerald-400/20 bg-emerald-400/10 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-emerald-300">4 core skills</span>
+            </div>
+
+            <div class="relative mx-auto mt-5 flex h-28 w-28 items-center justify-center" aria-hidden="true">
+              <span class="absolute inset-1 rounded-full border border-blue-400/30"></span>
+              <span class="absolute inset-3 rounded-full border border-dashed border-amber-300/30 animate-spin-slow"></span>
+              <span class="absolute left-1 top-1/2 h-2.5 w-2.5 -translate-y-1/2 rounded-full bg-amber-400 shadow-[0_0_14px_rgba(251,191,36,0.8)]"></span>
+              <span class="absolute right-1 top-1/2 h-2.5 w-2.5 -translate-y-1/2 rounded-full bg-emerald-400 shadow-[0_0_14px_rgba(52,211,153,0.8)]"></span>
+              <span class="relative flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 shadow-lg shadow-blue-500/30"><i data-lucide="bot" class="w-8 h-8 text-white"></i></span>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div class="rounded-2xl border border-amber-300/15 bg-white/[0.06] p-4">
+                <div class="flex items-center justify-between"><span class="flex h-9 w-9 items-center justify-center rounded-xl bg-amber-400/15 text-amber-300"><i data-lucide="settings-2" class="w-5 h-5"></i></span><span class="font-tech text-[10px] font-bold text-slate-500">01</span></div>
+                <h4 class="mt-3 text-sm font-bold">Mechanical design</h4><p class="mt-1 text-xs leading-relaxed text-slate-400">Gears, structure, and motion.</p>
+              </div>
+              <div class="rounded-2xl border border-blue-300/15 bg-white/[0.06] p-4">
+                <div class="flex items-center justify-between"><span class="flex h-9 w-9 items-center justify-center rounded-xl bg-blue-400/15 text-blue-300"><i data-lucide="code-2" class="w-5 h-5"></i></span><span class="font-tech text-[10px] font-bold text-slate-500">02</span></div>
+                <h4 class="mt-3 text-sm font-bold">Coding and logic</h4><p class="mt-1 text-xs leading-relaxed text-slate-400">Plan actions, debug, repeat.</p>
+              </div>
+              <div class="rounded-2xl border border-emerald-300/15 bg-white/[0.06] p-4">
+                <div class="flex items-center justify-between"><span class="flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-400/15 text-emerald-300"><i data-lucide="radar" class="w-5 h-5"></i></span><span class="font-tech text-[10px] font-bold text-slate-500">03</span></div>
+                <h4 class="mt-3 text-sm font-bold">Sensors and data</h4><p class="mt-1 text-xs leading-relaxed text-slate-400">Read distance, color, and motion.</p>
+              </div>
+              <div class="rounded-2xl border border-violet-300/15 bg-white/[0.06] p-4">
+                <div class="flex items-center justify-between"><span class="flex h-9 w-9 items-center justify-center rounded-xl bg-violet-400/15 text-violet-300"><i data-lucide="users-round" class="w-5 h-5"></i></span><span class="font-tech text-[10px] font-bold text-slate-500">04</span></div>
+                <h4 class="mt-3 text-sm font-bold">Team problem-solving</h4><p class="mt-1 text-xs leading-relaxed text-slate-400">Share ideas and test together.</p>
+              </div>
+            </div>
+
+            <div class="mt-4 flex items-center justify-between border-t border-white/10 pt-4 font-tech text-[10px] font-bold uppercase tracking-widest text-slate-500">
+              <span>Idea</span><i data-lucide="chevron-right" class="w-3.5 h-3.5 text-blue-400"></i><span>Prototype</span><i data-lucide="chevron-right" class="w-3.5 h-3.5 text-blue-400"></i><span>Improve</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Class Experience -->
+  <section class="relative overflow-hidden py-16 sm:py-20 bg-gradient-to-b from-white via-slate-50 to-blue-50/60 dark:from-slate-950 dark:via-slate-950 dark:to-slate-900">
+    <div aria-hidden="true" class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-blue-300/70 to-transparent dark:via-blue-800"></div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-5 mb-10 sm:mb-14">
+        <div class="max-w-2xl">
+          <span class="inline-flex items-center gap-2 rounded-full bg-blue-100 dark:bg-blue-950/60 px-3 py-1.5 text-xs font-bold uppercase tracking-widest text-blue-700 dark:text-blue-300"><i data-lucide="workflow" class="w-4 h-4"></i> A hands-on workshop rhythm</span>
+          <h2 class="mt-4 text-3xl sm:text-4xl font-heading font-bold text-slate-900 dark:text-white">What happens in a class?</h2>
+          <p class="mt-3 max-w-xl text-sm leading-relaxed text-slate-600 dark:text-slate-400">Every session moves from a first idea to a better next version. Kids learn by making, testing, and figuring things out together.</p>
+        </div>
+        <div class="inline-flex items-center gap-2 self-start md:self-auto rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 px-4 py-3 text-xs font-bold text-slate-600 dark:text-slate-300 shadow-sm"><i data-lucide="repeat-2" class="w-4 h-4 text-blue-600 dark:text-blue-400"></i> Try it. Learn from it. Try again.</div>
+      </div>
+
+      <div class="relative">
+        <div aria-hidden="true" class="hidden lg:block absolute left-[12.5%] right-[12.5%] top-7 border-t-2 border-dashed border-slate-300 dark:border-slate-700"></div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-6">
+          <article class="relative z-10 group flex flex-col">
+            <div class="relative z-10 mx-auto flex h-14 w-14 items-center justify-center rounded-2xl border-4 border-white bg-amber-400 text-amber-950 shadow-lg shadow-amber-500/20 dark:border-slate-950 group-hover:-rotate-6 transition-transform"><i data-lucide="lightbulb" class="w-6 h-6"></i></div>
+            <div class="mt-3 flex-1 rounded-3xl border border-amber-200 dark:border-amber-900/60 bg-white dark:bg-slate-900 p-5 sm:p-6 shadow-sm group-hover:shadow-lg transition-shadow">
+              <span class="text-xs font-tech font-bold tracking-widest text-amber-700 dark:text-amber-300">01 / IMAGINE</span>
+              <h3 class="mt-2 text-xl font-heading font-bold text-slate-900 dark:text-white">Explore</h3>
+              <p class="mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-400">Meet a challenge, ask questions, and sketch a first idea.</p>
+              <div class="mt-5 inline-flex items-center gap-2 rounded-lg bg-amber-50 dark:bg-amber-950/40 px-2.5 py-1.5 text-[10px] font-bold uppercase tracking-wider text-amber-800 dark:text-amber-300"><span class="h-1.5 w-1.5 rounded-full bg-amber-500"></span> Start with a question</div>
+            </div>
+          </article>
+
+          <article class="relative z-10 group flex flex-col">
+            <div class="relative z-10 mx-auto flex h-14 w-14 items-center justify-center rounded-2xl border-4 border-white bg-blue-600 text-white shadow-lg shadow-blue-500/20 dark:border-slate-950 group-hover:rotate-6 transition-transform"><i data-lucide="blocks" class="w-6 h-6"></i></div>
+            <div class="mt-3 flex-1 rounded-3xl border border-blue-200 dark:border-blue-900/60 bg-white dark:bg-slate-900 p-5 sm:p-6 shadow-sm group-hover:shadow-lg transition-shadow">
+              <span class="text-xs font-tech font-bold tracking-widest text-blue-700 dark:text-blue-300">02 / MAKE</span>
+              <h3 class="mt-2 text-xl font-heading font-bold text-slate-900 dark:text-white">Build</h3>
+              <p class="mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-400">Choose the right parts and turn the sketch into a working model.</p>
+              <div class="mt-5 inline-flex items-center gap-2 rounded-lg bg-blue-50 dark:bg-blue-950/40 px-2.5 py-1.5 text-[10px] font-bold uppercase tracking-wider text-blue-800 dark:text-blue-300"><span class="h-1.5 w-1.5 rounded-full bg-blue-500"></span> Make an idea real</div>
+            </div>
+          </article>
+
+          <article class="relative z-10 group flex flex-col">
+            <div class="relative z-10 mx-auto flex h-14 w-14 items-center justify-center rounded-2xl border-4 border-white bg-violet-500 text-white shadow-lg shadow-violet-500/20 dark:border-slate-950 group-hover:-rotate-6 transition-transform"><i data-lucide="code-2" class="w-6 h-6"></i></div>
+            <div class="mt-3 flex-1 rounded-3xl border border-violet-200 dark:border-violet-900/60 bg-white dark:bg-slate-900 p-5 sm:p-6 shadow-sm group-hover:shadow-lg transition-shadow">
+              <span class="text-xs font-tech font-bold tracking-widest text-violet-700 dark:text-violet-300">03 / PROGRAM</span>
+              <h3 class="mt-2 text-xl font-heading font-bold text-slate-900 dark:text-white">Code</h3>
+              <p class="mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-400">Give the robot instructions and see how it responds to its world.</p>
+              <div class="mt-5 inline-flex items-center gap-2 rounded-lg bg-violet-50 dark:bg-violet-950/40 px-2.5 py-1.5 text-[10px] font-bold uppercase tracking-wider text-violet-800 dark:text-violet-300"><span class="h-1.5 w-1.5 rounded-full bg-violet-500"></span> Make the robot think</div>
+            </div>
+          </article>
+
+          <article class="relative z-10 group flex flex-col">
+            <div class="relative z-10 mx-auto flex h-14 w-14 items-center justify-center rounded-2xl border-4 border-white bg-emerald-500 text-white shadow-lg shadow-emerald-500/20 dark:border-slate-950 group-hover:rotate-6 transition-transform"><i data-lucide="rotate-cw" class="w-6 h-6"></i></div>
+            <div class="mt-3 flex-1 rounded-3xl border border-emerald-200 dark:border-emerald-900/60 bg-white dark:bg-slate-900 p-5 sm:p-6 shadow-sm group-hover:shadow-lg transition-shadow">
+              <span class="text-xs font-tech font-bold tracking-widest text-emerald-700 dark:text-emerald-300">04 / ITERATE</span>
+              <h3 class="mt-2 text-xl font-heading font-bold text-slate-900 dark:text-white">Improve</h3>
+              <p class="mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-400">Test, share what happened, and make the next version better.</p>
+              <div class="mt-5 inline-flex items-center gap-2 rounded-lg bg-emerald-50 dark:bg-emerald-950/40 px-2.5 py-1.5 text-[10px] font-bold uppercase tracking-wider text-emerald-800 dark:text-emerald-300"><span class="h-1.5 w-1.5 rounded-full bg-emerald-500"></span> Learn from every test</div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Programs Call to Action -->
+  <section class="py-14 bg-blue-700 text-white text-center">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
+      <h2 class="text-3xl font-heading font-bold">Try a Robotics Class Together</h2>
+      <p class="text-sm text-blue-100">Visit the lab, meet a coach, and let your child build a first robot in a free trial session.</p>
+      <button onclick="openEnrollModal('Programs Catalog Free Trial')" class="btn-brick btn-brick-yellow px-7 py-3 rounded-2xl font-heading font-bold">Book a Free Trial</button>
+    </div>
+  </section>
+
+    <!-- Footer -->
+  <footer class="bg-[#0B1120] text-slate-300 pt-16 pb-8 border-t border-slate-800/80 transition-colors">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-8 pb-12">
+        
+        <!-- Col 1: Brand & Socials -->
+        <div class="lg:col-span-3 space-y-4">
+          <a href="index.html" class="flex items-center gap-3 group flex-shrink-0">
+            <img src="assets/logo.png" alt="RoboBricks Logo" class="w-11 h-11 rounded-2xl object-contain shadow-lg shadow-blue-500/25 group-hover:scale-105 transition-transform duration-200 flex-shrink-0">
+            <div>
+              <span class="font-heading text-xl font-bold tracking-tight text-white flex items-center gap-1 leading-none">
+                Robo<span class="text-blue-400">Bricks</span>
+                <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+              </span>
+              <span class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mt-1 leading-none">Kids Robotics & LEGO Club</span>
+            </div>
+          </a>
+          
+          <p class="text-xs sm:text-sm text-slate-400 leading-relaxed max-w-sm">
+            Helping young minds build confidence through creative LEGO engineering, coding, and hands-on robotics.
+          </p>
+
+          <div class="flex items-center gap-2.5 pt-2">
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="w-9 h-9 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-slate-700 hover:bg-slate-800 transition">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd"/>
+              </svg>
+            </a>
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="w-9 h-9 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-slate-700 hover:bg-slate-800 transition">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd"/>
+              </svg>
+            </a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="w-9 h-9 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-slate-700 hover:bg-slate-800 transition">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+              </svg>
+            </a>
+            <a href="https://x.com" target="_blank" rel="noopener noreferrer" aria-label="X / Twitter" class="w-9 h-9 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-slate-700 hover:bg-slate-800 transition">
+              <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Col 2: Navigation -->
+        <div class="lg:col-span-2 space-y-3">
+          <h4 class="font-bold text-xs uppercase tracking-widest text-white mb-4">NAVIGATION</h4>
+          <ul class="space-y-2 text-xs sm:text-sm text-slate-400">
+            <li><a href="index.html" class="hover:text-blue-400 transition">Home</a></li>
+            <li><a href="about.html" class="hover:text-blue-400 transition">About Us</a></li>
+            <li><a href="programs.html" class="hover:text-blue-400 transition">Programs</a></li>
+            <li><a href="instructors.html" class="hover:text-blue-400 transition">Instructors</a></li>
+            <li><a href="pricing.html" class="hover:text-blue-400 transition">Pricing Tiers</a></li>
+            <li><a href="gallery.html" class="hover:text-blue-400 transition">Gallery & Builds</a></li>
+            <li><a href="blog.html" class="hover:text-blue-400 transition">Blog & Journal</a></li>
+            <li><a href="contact.html" class="hover:text-blue-400 transition">Contact Club</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Club Standards -->
+        <div class="lg:col-span-4 space-y-3">
+          <h4 class="font-bold text-xs uppercase tracking-widest text-white mb-4">CAMP STANDARDS</h4>
+          <div class="grid grid-cols-2 gap-x-4 gap-y-3 text-xs sm:text-sm">
+            <div class="font-bold text-white">1:6 Coach Ratio</div>
+            <div class="text-slate-400">Certified STEM Mentors</div>
+
+            <div class="font-bold text-white">Daily Build Time</div>
+            <div class="text-slate-400">Live Hands-On Practice</div>
+
+            <div class="font-bold text-white">FLL League Prep</div>
+            <div class="text-slate-400">Gala Showcase Challenges</div>
+
+            <div class="font-bold text-white">Ages 5–16</div>
+            <div class="text-slate-400">Junior, Teen & Exec Tracks</div>
+
+            <div class="font-bold text-white">5 Regional Hubs</div>
+            <div class="text-slate-400">Robotics & Coding Campuses</div>
+          </div>
+        </div>
+
+        <!-- Col 4: Admissions & Contact -->
+        <div class="lg:col-span-3 space-y-3">
+          <h4 class="font-bold text-xs uppercase tracking-widest text-white mb-4">CAMP ADMISSIONS</h4>
+          <div class="space-y-2.5 text-xs sm:text-sm text-slate-400">
+            <div class="flex items-center gap-2.5">
+              <i data-lucide="mail" class="w-4 h-4 text-blue-400 flex-shrink-0"></i>
+              <a href="mailto:admissions@robobricks.club" class="hover:text-white transition">admissions@robobricks.club</a>
+            </div>
+            <div class="flex items-center gap-2.5">
+              <i data-lucide="phone" class="w-4 h-4 text-blue-400 flex-shrink-0"></i>
+              <a href="tel:+18005557626" class="hover:text-white transition">+1 (800) 555-ROBO</a>
+            </div>
+            <div class="flex items-start gap-2.5">
+              <i data-lucide="map-pin" class="w-4 h-4 text-blue-400 flex-shrink-0 mt-0.5"></i>
+              <span>100 Innovation Way, Suite 400, Austin, TX 78701</span>
+            </div>
+          </div>
+
+          <div class="pt-2">
+            <button onclick="openEnrollModal('Connect Admissions Team')" class="w-full py-3 px-6 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold text-sm shadow-lg shadow-blue-600/30 transition-all hover:scale-[1.02] flex items-center justify-center gap-2">
+              <span>Connect Admissions Team</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Copyright Bar -->
+      <div class="mt-8 pt-8 border-t border-slate-800/80 text-center text-xs text-slate-500">
+        <p>&copy; 2026 RoboBricks Youth Robotics Academy Ltd. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Universal Enrollment Modal -->
+  <div id="enroll-modal" class="fixed inset-0 z-50 bg-slate-900/70 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-white dark:bg-slate-800 rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-slate-100 dark:border-slate-700 relative max-h-[92vh] overflow-y-auto">
+      <button onclick="closeEnrollModal()" class="absolute top-5 right-5 p-2 rounded-xl bg-slate-100 dark:bg-slate-700 text-slate-500">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+      <h3 id="enroll-modal-program-name" class="font-heading text-xl font-bold text-slate-900 dark:text-white mb-4">Book a Free Trial Session</h3>
+      <form id="enroll-form" class="space-y-4">
+        <input type="text" required placeholder="Child's Name" class="w-full text-sm px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900">
+        <input type="email" required placeholder="Parent Email" class="w-full text-sm px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900">
+        <input type="tel" required placeholder="Phone Number" class="w-full text-sm px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900">
+        <button type="submit" class="btn-brick btn-brick-yellow w-full py-3 rounded-2xl font-heading text-base font-bold">
+          Confirm Free Spot
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <div id="toast-container"></div>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

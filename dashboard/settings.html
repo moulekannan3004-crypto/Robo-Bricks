@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Settings & Billing History - Parent Portal | RoboBricks</title>
+  <meta name="description" content="Manage parent account, update child preferences, configure notifications, and view billing invoices.">
+  
+  <link rel="icon" type="image/png" href="../assets/logo.png">
+
+  <!-- TailwindCSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: { 50: '#eff6ff', 100: '#dbeafe', 500: '#3b82f6', 600: '#2563eb', 700: '#1d4ed8' },
+            brick: { yellow: '#FBBF24', red: '#EF4444', blue: '#2563EB', green: '#10B981', purple: '#8B5CF6' }
+          },
+          fontFamily: {
+            heading: ['Fredoka', 'cursive', 'sans-serif'],
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            tech: ['"Space Grotesk"', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons & Alpine.js -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <link rel="stylesheet" href="../assets/css/custom.css">
+</head>
+<body class="bg-slate-100 dark:bg-slate-950 text-slate-800 dark:text-slate-100 min-h-screen flex font-sans transition-colors duration-200" x-data="{ sidebarOpen: false, currentTab: 'profile' }">
+
+  <!-- Sidebar Overlay -->
+  <div x-show="sidebarOpen" @click="sidebarOpen = false" class="fixed inset-0 z-40 bg-slate-900/60 backdrop-blur-sm lg:hidden" x-transition.opacity></div>
+
+  <!-- Sidebar -->
+  <aside :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'" class="fixed lg:sticky top-0 left-0 z-50 h-screen w-72 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 flex flex-col justify-between transition-transform duration-300 shadow-xl lg:shadow-none">
+    <div>
+      <div class="p-6 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between">
+        <a href="../index.html" class="flex items-center gap-3 group flex-shrink-0">
+          <img src="../assets/logo.png" alt="RoboBricks Logo" class="w-11 h-11 rounded-2xl object-contain shadow-lg shadow-blue-500/25 group-hover:scale-105 transition-transform duration-200 flex-shrink-0">
+          <div>
+            <span class="font-heading text-xl font-bold tracking-tight text-slate-900 dark:text-white flex items-center gap-1 leading-none">
+              Robo<span class="text-blue-600 dark:text-blue-400">Portal</span>
+              <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+            </span>
+            <span class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mt-1 leading-none">Parent & Coach Hub</span>
+          </div>
+        </a>
+        <button @click="sidebarOpen = false" class="lg:hidden p-1.5 rounded-lg bg-slate-100 dark:bg-slate-800">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <nav class="p-4 space-y-1 font-semibold text-sm mt-4">
+        <a href="index.html" class="flex items-center gap-3 px-4 py-3 rounded-2xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <i data-lucide="layout-dashboard" class="w-5 h-5 text-slate-400"></i>
+          <span>Overview</span>
+        </a>
+        <a href="sessions.html" class="flex items-center gap-3 px-4 py-3 rounded-2xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <i data-lucide="calendar" class="w-5 h-5 text-slate-400"></i>
+          <span>Sessions & Booking</span>
+        </a>
+        <a href="progress.html" class="flex items-center gap-3 px-4 py-3 rounded-2xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <i data-lucide="award" class="w-5 h-5 text-slate-400"></i>
+          <span>Progress & Badges</span>
+        </a>
+        <a href="settings.html" class="flex items-center gap-3 px-4 py-3 rounded-2xl bg-blue-600 text-white shadow-md shadow-blue-500/25">
+          <i data-lucide="settings" class="w-5 h-5"></i>
+          <span>Account & Invoices</span>
+        </a>
+      </nav>
+    </div>
+
+    <div class="p-4 border-t border-slate-100 dark:border-slate-800 space-y-3">
+      <div class="flex items-center justify-between text-xs">
+        <button onclick="toggleTheme()" class="flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-slate-100 dark:bg-slate-800 font-bold">
+          <i data-lucide="moon" class="w-3.5 h-3.5 theme-moon-icon"></i>
+          <i data-lucide="sun" class="w-3.5 h-3.5 text-amber-500 theme-sun-icon hidden"></i>
+          <span>Mode</span>
+        </button>
+        <button onclick="toggleRTL()" class="flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-slate-100 dark:bg-slate-800 font-bold">
+          <i data-lucide="arrow-left-right" class="w-3.5 h-3.5 text-blue-500"></i>
+          <span class="dir-badge-text">RTL</span>
+        </button>
+      </div>
+      <button onclick="window.location.href='../index.html'" class="flex items-center justify-center gap-2 py-2.5 rounded-xl border border-red-200 dark:border-red-800 text-xs font-bold text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 transition">
+        <i data-lucide="log-out" class="w-4 h-4"></i> Logout
+      </button>
+    </div>
+  </aside>
+
+  <!-- Main Content Area -->
+  <div class="flex-1 flex flex-col min-w-0">
+    <header class="bg-white dark:bg-slate-900 border-b border-slate-200/80 dark:border-slate-800 py-4 px-6 sm:px-8 flex items-center justify-between sticky top-0 z-30">
+      <div class="flex items-center gap-4">
+        <button @click="sidebarOpen = true" class="lg:hidden p-2 rounded-xl bg-slate-100 dark:bg-slate-800">
+          <i data-lucide="menu" class="w-5 h-5"></i>
+        </button>
+        <div>
+          <h1 class="text-xl sm:text-2xl font-heading font-bold text-slate-900 dark:text-white">Account Settings & Billing</h1>
+          <p class="text-xs text-slate-500">Manage parent profile, student preferences, and tuition invoices</p>
+        </div>
+      </div>
+      <img src="../assets/user-sarah-chen.jpg" alt="Sarah Chen" class="w-10 h-10 rounded-2xl border-2 border-blue-500 object-cover shadow-sm">
+    </header>
+
+    <main class="p-6 sm:p-8 space-y-8 max-w-5xl w-full mx-auto flex-1 overflow-y-auto">
+      
+      <!-- Horizontal Navigation Tabs -->
+      <div class="flex items-center gap-2 p-1.5 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-x-auto">
+        <button @click="currentTab = 'profile'" :class="currentTab === 'profile' ? 'bg-blue-600 text-white' : 'text-slate-600 dark:text-slate-300'" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition whitespace-nowrap">
+          Profile & Children
+        </button>
+        <button @click="currentTab = 'notifications'" :class="currentTab === 'notifications' ? 'bg-blue-600 text-white' : 'text-slate-600 dark:text-slate-300'" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition whitespace-nowrap">
+          Notification Alerts
+        </button>
+        <button @click="currentTab = 'billing'" :class="currentTab === 'billing' ? 'bg-blue-600 text-white' : 'text-slate-600 dark:text-slate-300'" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition whitespace-nowrap">
+          Billing & Invoices
+        </button>
+        <button @click="currentTab = 'security'" :class="currentTab === 'security' ? 'bg-blue-600 text-white' : 'text-slate-600 dark:text-slate-300'" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition whitespace-nowrap">
+          Password & Security
+        </button>
+      </div>
+
+      <!-- TAB 1: PROFILE & CHILDREN -->
+      <div x-show="currentTab === 'profile'" x-transition class="space-y-6">
+        
+        <!-- Parent Info Form Card -->
+        <div class="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-sm space-y-6">
+          <div class="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-slate-800">
+            <div>
+              <h3 class="font-heading font-bold text-lg text-slate-900 dark:text-white">Parent / Guardian Information</h3>
+              <p class="text-xs text-slate-400">Primary contact for lab emergency notifications and booking confirmations.</p>
+            </div>
+            <span class="text-xs font-bold text-emerald-500 bg-emerald-50 dark:bg-emerald-950/40 px-3 py-1 rounded-lg">Verified Account</span>
+          </div>
+
+          <div class="flex items-center gap-4 py-1">
+            <div class="relative">
+              <img src="../assets/user-sarah-chen.jpg" alt="Sarah Chen" class="w-16 h-16 rounded-2xl border-2 border-blue-500 object-cover shadow-md">
+              <span class="absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-emerald-500 border-2 border-white dark:border-slate-900" title="Active"></span>
+            </div>
+            <div>
+              <h4 class="font-bold text-sm text-slate-900 dark:text-white">Sarah Chen</h4>
+              <p class="text-xs text-slate-400">Parent Member &bull; Primary Account Holder</p>
+            </div>
+          </div>
+
+          <form id="parent-profile-form" class="space-y-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Full Legal Name</label>
+                <input type="text" name="name" value="Sarah Chen" required class="w-full text-xs sm:text-sm px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500">
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Email Address</label>
+                <input type="email" name="email" value="sarah.chen@example.com" required class="w-full text-xs sm:text-sm px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Primary Phone Number</label>
+                <input type="tel" name="phone" value="(555) 234-8921" class="w-full text-xs sm:text-sm px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500">
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Emergency Secondary Contact</label>
+                <input type="text" name="emergencyContact" value="David Chen (Spouse) - (555) 234-8922" class="w-full text-xs sm:text-sm px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500">
+              </div>
+            </div>
+
+            <button type="submit" class="btn-brick btn-brick-blue px-6 py-2.5 rounded-xl text-xs font-bold">
+              Save Parent Details
+            </button>
+          </form>
+        </div>
+
+        <!-- Enrolled Children Profiles Card -->
+        <div class="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-sm space-y-6">
+          <div class="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-slate-800">
+            <div>
+              <h3 class="font-heading font-bold text-lg text-slate-900 dark:text-white">Enrolled Children Profiles</h3>
+              <p class="text-xs text-slate-400">Manage t-shirt sizing for competitions, allergy notices, and lab notes.</p>
+            </div>
+            <button type="button" onclick="openChildRegistration()" class="text-xs font-bold text-blue-600 dark:text-blue-400 hover:underline">
+              + Add Another Child
+            </button>
+          </div>
+
+          <!-- Child 1: Leo -->
+          <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 space-y-3">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div role="img" aria-label="Leo Chen" class="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-200 grid place-items-center text-xs font-extrabold">LC</div>
+                <div>
+                  <h4 class="font-heading font-bold text-sm text-slate-900 dark:text-white">Leo Chen (Age 8)</h4>
+                  <span class="text-xs text-blue-600 dark:text-blue-400 font-semibold">RoboExplorers Spike Prime (Level 2)</span>
+                </div>
+              </div>
+              <span class="text-xs font-bold text-slate-500">Austin Hub &bull; Station #4</span>
+            </div>
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 text-xs pt-1">
+              <div><strong class="text-slate-400 block font-normal">Club Jersey:</strong> Youth Medium (YM)</div>
+              <div><strong class="text-slate-400 block font-normal">Allergies/Diet:</strong> None reported</div>
+              <div><strong class="text-slate-400 block font-normal">Current Coach:</strong> Coach Sarah Miller</div>
+            </div>
+          </div>
+
+          <!-- Child 2: Maya -->
+          <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 space-y-3">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div role="img" aria-label="Maya Chen" class="w-10 h-10 rounded-xl bg-purple-100 dark:bg-purple-900 text-purple-700 dark:text-purple-200 grid place-items-center text-xs font-extrabold">MC</div>
+                <div>
+                  <h4 class="font-heading font-bold text-sm text-slate-900 dark:text-white">Maya Chen (Age 12)</h4>
+                  <span class="text-xs text-purple-600 dark:text-purple-400 font-semibold">Future Engineers Python (Level 4)</span>
+                </div>
+              </div>
+              <span class="text-xs font-bold text-slate-500">Austin Hub &bull; Station #1</span>
+            </div>
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 text-xs pt-1">
+              <div><strong class="text-slate-400 block font-normal">Club Jersey:</strong> Adult Small (AS)</div>
+              <div><strong class="text-slate-400 block font-normal">Allergies/Diet:</strong> Peanut Sensitivity</div>
+              <div><strong class="text-slate-400 block font-normal">Current Coach:</strong> Coach Alex Rivera</div>
+            </div>
+          </div>
+
+          <div id="additional-child-profiles" class="space-y-3"></div>
+
+        </div>
+
+      </div>
+
+      <!-- TAB 2: NOTIFICATIONS -->
+      <div x-show="currentTab === 'notifications'" x-transition class="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-sm space-y-6">
+        <div class="pb-4 border-b border-slate-100 dark:border-slate-800">
+          <h3 class="font-heading font-bold text-lg text-slate-900 dark:text-white">Notification & Alert Channels</h3>
+          <p class="text-xs text-slate-400">Choose how you prefer to receive session reminders and badge milestones.</p>
+        </div>
+
+        <div class="space-y-4">
+          <label class="flex items-center justify-between p-4 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 cursor-pointer">
+            <div>
+              <span class="block text-sm font-bold text-slate-900 dark:text-white">SMS 24-Hour Session Reminders</span>
+              <span class="text-xs text-slate-500">Text message sent the day before class with parking and lab station info.</span>
+            </div>
+            <input type="checkbox" checked data-notification-setting="sessionReminders" class="rounded text-blue-600 focus:ring-blue-500 h-5 w-5">
+          </label>
+
+          <label class="flex items-center justify-between p-4 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 cursor-pointer">
+            <div>
+              <span class="block text-sm font-bold text-slate-900 dark:text-white">Badge & Achievement Alerts</span>
+              <span class="text-xs text-slate-500">Immediate email and push alert whenever your child unlocks a skill badge.</span>
+            </div>
+            <input type="checkbox" checked data-notification-setting="badgeAlerts" class="rounded text-blue-600 focus:ring-blue-500 h-5 w-5">
+          </label>
+
+          <label class="flex items-center justify-between p-4 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 cursor-pointer">
+            <div>
+              <span class="block text-sm font-bold text-slate-900 dark:text-white">Coach Weekly Audio/Video Note</span>
+              <span class="text-xs text-slate-500">Weekly feedback summary from Coach Sarah regarding Leo's build milestones.</span>
+            </div>
+            <input type="checkbox" checked data-notification-setting="coachNotes" class="rounded text-blue-600 focus:ring-blue-500 h-5 w-5">
+          </label>
+
+          <label class="flex items-center justify-between p-4 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 cursor-pointer">
+            <div>
+              <span class="block text-sm font-bold text-slate-900 dark:text-white">BattleBot & Tournament Invitations</span>
+              <span class="text-xs text-slate-500">VIP alerts for Friday night tournaments and FIRST LEGO League qualifiers.</span>
+            </div>
+            <input type="checkbox" checked data-notification-setting="tournamentInvites" class="rounded text-blue-600 focus:ring-blue-500 h-5 w-5">
+          </label>
+        </div>
+
+        <button onclick="saveNotificationPreferences()" class="btn-brick btn-brick-blue px-6 py-2.5 rounded-xl text-xs font-bold">
+          Save Notification Settings
+        </button>
+      </div>
+
+      <!-- TAB 3: BILLING & INVOICES -->
+      <div x-show="currentTab === 'billing'" x-transition class="space-y-6">
+        
+        <!-- Active Subscription Summary Card -->
+        <div class="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-sm space-y-6">
+          <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-4 border-b border-slate-100 dark:border-slate-800">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">Current Membership</span>
+              <h3 class="font-heading font-bold text-2xl text-slate-900 dark:text-white mt-1">Innovator Pro (Term Plan)</h3>
+              <p class="text-xs text-slate-400">Includes 2 classes/week, Spike Prime kit provisioning, and BattleBot arena access.</p>
+            </div>
+            <div class="text-right">
+              <span class="text-3xl font-heading font-extrabold text-slate-900 dark:text-white">$189</span>
+              <span class="text-xs text-slate-400 block">/ month (Auto-renews Nov 15)</span>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between text-xs p-4 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-700">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-6 bg-slate-900 text-white rounded flex items-center justify-center font-bold text-[10px]">
+                VISA
+              </div>
+              <span class="font-semibold text-slate-800 dark:text-slate-200">Visa ending in &bull;&bull;&bull;&bull; 4829</span>
+            </div>
+            <span class="text-slate-400">Expires 08/28</span>
+          </div>
+        </div>
+
+        <!-- Invoice History Table -->
+        <div class="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
+          <div class="flex items-center justify-between">
+            <h4 class="font-heading font-bold text-base text-slate-900 dark:text-white">Past Tuition Invoices</h4>
+            <span class="text-xs text-slate-400">All invoices include tax receipts</span>
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs sm:text-sm">
+              <thead>
+                <tr class="border-b border-slate-200 dark:border-slate-700 text-slate-400 font-semibold">
+                  <th class="pb-3">Invoice #</th>
+                  <th class="pb-3">Billing Period</th>
+                  <th class="pb-3">Amount</th>
+                  <th class="pb-3">Status</th>
+                  <th class="pb-3 text-right">Invoice File</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100 dark:divide-slate-800 font-medium">
+                <tr>
+                  <td class="py-3 font-bold text-slate-900 dark:text-white">INV-2026-098</td>
+                  <td class="py-3 text-slate-500">Oct 15 - Nov 15, 2026</td>
+                  <td class="py-3 font-bold">$189.00</td>
+                  <td class="py-3"><span class="text-emerald-500 bg-emerald-50 dark:bg-emerald-950/40 px-2 py-0.5 rounded-md font-bold">Paid</span></td>
+                  <td class="py-3 text-right">
+                    <button onclick="downloadTextFile('invoice-INV-2026-098.txt', 'RoboBricks Tuition Invoice\nInvoice: INV-2026-098\nBilling period: Oct 15 - Nov 15, 2026\nPlan: Innovator Pro\nAmount paid: $189.00', 'Invoice downloaded.')" class="text-blue-600 dark:text-blue-400 font-bold hover:underline">Download Invoice</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="py-3 font-bold text-slate-900 dark:text-white">INV-2026-064</td>
+                  <td class="py-3 text-slate-500">Sep 15 - Oct 15, 2026</td>
+                  <td class="py-3 font-bold">$189.00</td>
+                  <td class="py-3"><span class="text-emerald-500 bg-emerald-50 dark:bg-emerald-950/40 px-2 py-0.5 rounded-md font-bold">Paid</span></td>
+                  <td class="py-3 text-right">
+                    <button onclick="downloadTextFile('invoice-INV-2026-064.txt', 'RoboBricks Tuition Invoice\nInvoice: INV-2026-064\nBilling period: Sep 15 - Oct 15, 2026\nPlan: Innovator Pro\nAmount paid: $189.00', 'Invoice downloaded.')" class="text-blue-600 dark:text-blue-400 font-bold hover:underline">Download Invoice</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="py-3 font-bold text-slate-900 dark:text-white">INV-2026-029</td>
+                  <td class="py-3 text-slate-500">Aug 15 - Sep 15, 2026</td>
+                  <td class="py-3 font-bold">$189.00</td>
+                  <td class="py-3"><span class="text-emerald-500 bg-emerald-50 dark:bg-emerald-950/40 px-2 py-0.5 rounded-md font-bold">Paid</span></td>
+                  <td class="py-3 text-right">
+                    <button onclick="downloadTextFile('invoice-INV-2026-029.txt', 'RoboBricks Tuition Invoice\nInvoice: INV-2026-029\nBilling period: Aug 15 - Sep 15, 2026\nPlan: Innovator Pro\nAmount paid: $189.00', 'Invoice downloaded.')" class="text-blue-600 dark:text-blue-400 font-bold hover:underline">Download Invoice</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- TAB 4: SECURITY -->
+      <div x-show="currentTab === 'security'" x-transition class="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-sm space-y-6">
+        <div class="pb-4 border-b border-slate-100 dark:border-slate-800">
+          <h3 class="font-heading font-bold text-lg text-slate-900 dark:text-white">Change Account Password</h3>
+          <p class="text-xs text-slate-400">Ensure your account is protected with a secure password.</p>
+        </div>
+
+        <form onsubmit="event.preventDefault(); showToast('Password checks passed in this demo, but account security is not connected to a server.', 'warning'); this.reset();" class="space-y-4 max-w-md">
+          <div>
+            <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Current Password</label>
+            <input type="password" required class="w-full text-xs sm:text-sm px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500">
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">New Password</label>
+            <input type="password" required minlength="8" class="w-full text-xs sm:text-sm px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500">
+          </div>
+          <button type="submit" class="btn-brick btn-brick-blue px-6 py-2.5 rounded-xl text-xs font-bold">
+            Update Password
+          </button>
+        </form>
+      </div>
+
+    </main>
+  </div>
+
+  <div id="child-modal" class="fixed inset-0 z-50 bg-slate-900/70 backdrop-blur-sm hidden items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="child-modal-title">
+    <div class="bg-white dark:bg-slate-800 rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl border border-slate-100 dark:border-slate-700 relative">
+      <button type="button" onclick="closeChildRegistration()" aria-label="Close child registration" class="absolute top-4 right-4 p-2 rounded-xl bg-slate-100 dark:bg-slate-700 text-slate-500">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+      <h2 id="child-modal-title" class="font-heading text-2xl font-bold text-slate-900 dark:text-white">Add a Child Profile</h2>
+      <p class="mt-1 text-sm text-slate-500">Add a profile to this demo dashboard session.</p>
+      <form id="child-registration-form" class="mt-5 space-y-4">
+        <div>
+          <label for="new-child-name" class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Child's name</label>
+          <input id="new-child-name" name="name" type="text" required maxlength="60" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500">
+        </div>
+        <div>
+          <label for="new-child-age" class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Age</label>
+          <input id="new-child-age" name="age" type="number" min="5" max="16" required class="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500">
+        </div>
+        <div>
+          <label for="new-child-program" class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Program</label>
+          <select id="new-child-program" name="program" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <option>Little Inventors</option>
+            <option>RoboExplorers</option>
+            <option>Future Engineers</option>
+          </select>
+        </div>
+        <button type="submit" class="btn-brick btn-brick-blue w-full py-3 rounded-xl font-bold">Add Child Profile</button>
+      </form>
+    </div>
+  </div>
+
+  <div id="toast-container"></div>
+  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/dashboard.js"></script>
+</body>
+</html>

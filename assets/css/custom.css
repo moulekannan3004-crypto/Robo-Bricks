@@ -1,0 +1,363 @@
+/* ==========================================================================
+   RoboBricks - Kids Robotics & LEGO Building Club Custom Stylesheet
+   ThemeForest / TemplateMonster Production Ready
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap');
+
+:root {
+  --font-heading: 'Fredoka', cursive, sans-serif;
+  --font-body: 'Plus Jakarta Sans', sans-serif;
+  --font-tech: 'Space Grotesk', monospace;
+  
+  --lego-red: #EF4444;
+  --lego-red-dark: #B91C1C;
+  --lego-yellow: #FBBF24;
+  --lego-yellow-dark: #D97706;
+  --lego-blue: #2563EB;
+  --lego-blue-dark: #1D4ED8;
+  --lego-green: #10B981;
+  --lego-green-dark: #047857;
+  --lego-purple: #8B5CF6;
+  --lego-purple-dark: #6D28D9;
+  --lego-orange: #F97316;
+  --lego-orange-dark: #C2410C;
+}
+
+body {
+  font-family: var(--font-body);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  overflow-x: hidden;
+  min-width: 320px;
+}
+
+html {
+  scroll-padding-top: 5rem;
+}
+
+main,
+section,
+header,
+footer,
+.grid > * {
+  min-width: 0;
+}
+
+input,
+select,
+textarea {
+  max-width: 100%;
+  min-width: 0;
+}
+
+h1, h2, h3, h4, .font-heading {
+  font-family: var(--font-heading);
+}
+
+.feature-alignment-card > h3 {
+  min-height: 3.5rem;
+}
+
+.feature-alignment-card > p {
+  flex: 1 1 auto;
+}
+
+.font-tech {
+  font-family: var(--font-tech);
+}
+
+/* --------------------------------------------------------------------------
+   LEGO Stud Pattern Backgrounds
+   -------------------------------------------------------------------------- */
+.bg-studs {
+  background-color: transparent;
+  background-image: radial-gradient(rgba(37, 99, 235, 0.08) 3px, transparent 3px);
+  background-size: 24px 24px;
+}
+
+.dark .bg-studs {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.06) 3px, transparent 3px);
+}
+
+/* Unified Dark Hero Section Background matching deep navy #0B1120 */
+.hero-plain-bg, .hero-dark-bg {
+  background-color: #0B1120 !important;
+  color: #F8FAFC;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-plain-bg h1, .hero-dark-bg h1 {
+  color: #FFFFFF;
+}
+
+.hero-plain-bg p, .hero-dark-bg p {
+  color: #CBD5E1;
+}
+
+.bg-studs-primary {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.25) 3px, transparent 3px);
+  background-size: 20px 20px;
+}
+
+.bg-grid-tech {
+  background-size: 32px 32px;
+  background-image: 
+    linear-gradient(to right, rgba(37, 99, 235, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(37, 99, 235, 0.05) 1px, transparent 1px);
+}
+
+.dark .bg-grid-tech {
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+}
+
+/* --------------------------------------------------------------------------
+   3D Tactile "Brick" Buttons (Kid-friendly & Satisfying tactile press)
+   -------------------------------------------------------------------------- */
+.btn-brick {
+  position: relative;
+  transition: all 0.15s ease-in-out;
+  cursor: pointer;
+  user-select: none;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+}
+
+@media (max-width: 639px) {
+  .btn-brick {
+    white-space: normal;
+    line-height: 1.25;
+    text-align: center;
+  }
+}
+
+.btn-brick:hover {
+  transform: translateY(-2px);
+}
+
+.btn-brick:active {
+  transform: translateY(2px);
+  box-shadow: none !important;
+}
+
+.btn-brick-yellow {
+  background-color: #FBBF24;
+  color: #78350F;
+  border-bottom: 4px solid #D97706;
+  box-shadow: 0 4px 6px -1px rgba(217, 119, 6, 0.25);
+}
+.btn-brick-yellow:hover {
+  background-color: #FCD34D;
+  box-shadow: 0 6px 10px -2px rgba(217, 119, 6, 0.35);
+}
+.btn-brick-yellow:active {
+  border-bottom-width: 0px;
+}
+
+.btn-brick-blue {
+  background-color: #2563EB;
+  color: #FFFFFF;
+  border-bottom: 4px solid #1D4ED8;
+  box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.35);
+}
+.btn-brick-blue:hover {
+  background-color: #3B82F6;
+  box-shadow: 0 6px 12px -2px rgba(37, 99, 235, 0.45);
+}
+.btn-brick-blue:active {
+  border-bottom-width: 0px;
+}
+
+.btn-brick-red {
+  background-color: #EF4444;
+  color: #FFFFFF;
+  border-bottom: 4px solid #B91C1C;
+  box-shadow: 0 4px 6px -1px rgba(239, 68, 68, 0.35);
+}
+.btn-brick-red:hover {
+  background-color: #F87171;
+  box-shadow: 0 6px 12px -2px rgba(239, 68, 68, 0.45);
+}
+.btn-brick-red:active {
+  border-bottom-width: 0px;
+}
+
+.btn-brick-green {
+  background-color: #10B981;
+  color: #FFFFFF;
+  border-bottom: 4px solid #047857;
+  box-shadow: 0 4px 6px -1px rgba(16, 185, 129, 0.35);
+}
+.btn-brick-green:hover {
+  background-color: #34D399;
+}
+.btn-brick-green:active {
+  border-bottom-width: 0px;
+}
+
+.btn-brick-purple {
+  background-color: #8B5CF6;
+  color: #FFFFFF;
+  border-bottom: 4px solid #6D28D9;
+  box-shadow: 0 4px 6px -1px rgba(139, 92, 246, 0.35);
+}
+.btn-brick-purple:hover {
+  background-color: #A78BFA;
+}
+.btn-brick-purple:active {
+  border-bottom-width: 0px;
+}
+
+/* --------------------------------------------------------------------------
+   Lego Brick Decorative Tops (Studs on cards)
+   -------------------------------------------------------------------------- */
+.lego-studs-bar {
+  display: flex;
+  gap: 8px;
+  padding: 6px 12px;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 9999px;
+  width: fit-content;
+}
+
+.lego-stud-pill {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  box-shadow: inset 0 -2px 0 rgba(0,0,0,0.2), inset 0 2px 0 rgba(255,255,255,0.4);
+}
+
+/* --------------------------------------------------------------------------
+   Animations (Floating Robot & LEGO bricks)
+   -------------------------------------------------------------------------- */
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-12px) rotate(2deg); }
+}
+
+@keyframes float-reverse {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(12px) rotate(-2deg); }
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pulse-gentle {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.05); opacity: 0.9; }
+}
+
+.animate-float {
+  animation: float-slow 4s ease-in-out infinite;
+}
+
+.animate-float-reverse {
+  animation: float-reverse 5s ease-in-out infinite;
+}
+
+.animate-spin-slow {
+  animation: spin-slow 20s linear infinite;
+}
+
+.animate-pulse-gentle {
+  animation: pulse-gentle 3s ease-in-out infinite;
+}
+
+/* --------------------------------------------------------------------------
+   Badge & Level Cards
+   -------------------------------------------------------------------------- */
+.badge-hexagon {
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+
+/* --------------------------------------------------------------------------
+   RTL Layout Adjustments
+   -------------------------------------------------------------------------- */
+[dir="rtl"] {
+  text-align: right;
+}
+
+[dir="rtl"] .rtl-mirror {
+  transform: scaleX(-1);
+}
+
+[dir="rtl"] .space-x-reverse > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 1;
+}
+
+/* --------------------------------------------------------------------------
+   Custom Scrollbar
+   -------------------------------------------------------------------------- */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F1F5F9;
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: #0F172A;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 9999px;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #334155;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}
+
+/* --------------------------------------------------------------------------
+   Toast Notifications
+   -------------------------------------------------------------------------- */
+#toast-container {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  pointer-events: none;
+}
+
+[dir="rtl"] #toast-container {
+  right: auto;
+  left: 24px;
+}
+
+.toast {
+  pointer-events: auto;
+  animation: toast-in 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  transition: all 0.3s ease;
+}
+
+@keyframes toast-in {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.toast.toast-out {
+  transform: translateY(20px);
+  opacity: 0;
+}
+
+[x-cloak] {
+  display: none !important;
+}

@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pricing Plans & Memberships | RoboBricks</title>
+  <meta name="description" content="Affordable and transparent tuition plans for kids robotics, coding, and LEGO building clubs. Monthly, per-term, and sibling discount options.">
+  
+  <link rel="icon" type="image/png" href="assets/logo.png">
+
+  <!-- TailwindCSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: { 50: '#eff6ff', 100: '#dbeafe', 500: '#3b82f6', 600: '#2563eb', 700: '#1d4ed8' },
+            brick: { yellow: '#FBBF24', red: '#EF4444', blue: '#2563EB', green: '#10B981', purple: '#8B5CF6' }
+          },
+          fontFamily: {
+            heading: ['Fredoka', 'cursive', 'sans-serif'],
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            tech: ['"Space Grotesk"', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons & Alpine.js -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <link rel="stylesheet" href="assets/css/custom.css">
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 min-h-screen flex flex-col font-sans transition-colors duration-200">
+
+      <!-- Main Navigation Bar -->
+  <header class="sticky top-0 z-40 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 shadow-sm transition-colors">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20 gap-2 xl:gap-4">
+        
+        <!-- Logo -->
+        <a href="index.html" class="flex items-center gap-3 group flex-shrink-0">
+          <img src="assets/logo.png" alt="RoboBricks Logo" class="w-11 h-11 rounded-2xl object-contain shadow-lg shadow-blue-500/25 group-hover:scale-105 transition-transform duration-200 flex-shrink-0">
+          <div>
+            <span class="font-heading text-xl font-bold tracking-tight text-slate-900 dark:text-white flex items-center gap-1 leading-none">
+              Robo<span class="text-blue-600 dark:text-blue-400">Bricks</span>
+              <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+            </span>
+            <span class="block text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mt-1 leading-none">Kids Robotics & LEGO Club</span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="hidden xl:flex items-center gap-0.5 xl:gap-1.5 font-semibold text-xs xl:text-sm whitespace-nowrap">
+          <!-- Home with Home 2 Dropdown -->
+          <div class="relative flex-shrink-0" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false" @keydown.escape.window="open = false">
+            <button @click="open = !open" type="button" class="h-10 px-2.5 xl:px-3 rounded-xl inline-flex items-center gap-1 text-slate-700 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition whitespace-nowrap flex-shrink-0" :class="{ 'bg-blue-50/90 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 shadow-sm': open }">
+              <span>Home</span>
+              <i data-lucide="chevron-down" class="w-3.5 h-3.5 transition-transform duration-200" :class="{ 'rotate-180': open }"></i>
+            </button>
+            <div x-show="open" 
+                 x-cloak
+                 @click.outside="open = false"
+                 x-transition:enter="transition ease-out duration-150"
+                 x-transition:enter-start="opacity-0 translate-y-1"
+                 x-transition:enter-end="opacity-100 translate-y-0"
+                 x-transition:leave="transition ease-in duration-100"
+                 x-transition:leave-start="opacity-100 translate-y-0"
+                 x-transition:leave-end="opacity-0 translate-y-1"
+                 class="absolute left-0 top-full pt-2 w-56 z-50">
+              <div class="rounded-2xl bg-white dark:bg-slate-800 shadow-2xl border border-slate-200/90 dark:border-slate-700 p-2">
+                <a href="index.html" class="flex items-center gap-2.5 px-3 py-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 text-sm transition">
+                  <i data-lucide="bot" class="w-4 h-4 text-blue-500"></i>
+                  <div>
+                    <span class="block leading-tight ">Home 1</span>
+                    <span class="text-[11px] font-normal text-slate-500 dark:text-slate-400">Kids Robotics Club</span>
+                  </div>
+                </a>
+                <a href="index-2.html" class="flex items-center gap-2.5 px-3 py-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 text-sm transition">
+                  <i data-lucide="graduation-cap" class="w-4 h-4 text-blue-500"></i>
+                  <div>
+                    <span class="block leading-tight ">Home 2</span>
+                    <span class="text-[11px] text-slate-500 dark:text-slate-400">STEM Academy Variant</span>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <a href="about.html" class="h-10 px-2.5 xl:px-3 rounded-xl inline-flex items-center text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-blue-600 dark:hover:text-blue-400 transition whitespace-nowrap flex-shrink-0">About Us</a>
+
+          <a href="programs.html" class="h-10 px-2.5 xl:px-3 rounded-xl inline-flex items-center text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-blue-600 dark:hover:text-blue-400 transition whitespace-nowrap flex-shrink-0">Programs</a>
+
+          <a href="instructors.html" class="h-10 px-2.5 xl:px-3 rounded-xl inline-flex items-center text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-blue-600 dark:hover:text-blue-400 transition whitespace-nowrap flex-shrink-0">Instructors</a>
+          <a href="pricing.html" class="h-10 px-2.5 xl:px-3 rounded-xl inline-flex items-center text-blue-600 dark:text-blue-400 bg-blue-50/80 dark:bg-blue-950/40 font-bold whitespace-nowrap flex-shrink-0">Pricing</a>
+          <a href="gallery.html" class="h-10 px-2.5 xl:px-3 rounded-xl inline-flex items-center text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-blue-600 dark:hover:text-blue-400 transition whitespace-nowrap flex-shrink-0">Gallery</a>
+          <a href="blog.html" class="h-10 px-2.5 xl:px-3 rounded-xl inline-flex items-center text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-blue-600 dark:hover:text-blue-400 transition whitespace-nowrap flex-shrink-0">Blog</a>
+          <a href="contact.html" class="h-10 px-2.5 xl:px-3 rounded-xl inline-flex items-center text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-blue-600 dark:hover:text-blue-400 transition whitespace-nowrap flex-shrink-0">Contact</a>
+        </nav>
+
+        <!-- Right Action Buttons: Theme, RTL, Dashboard, and Sign Up -->
+        <div class="hidden xl:flex items-center gap-1.5 xl:gap-2 flex-shrink-0">
+          <!-- RTL Toggle Button -->
+          <button onclick="toggleRTL()" title="Toggle RTL / LTR Direction" class="h-10 px-2.5 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 transition text-xs font-bold inline-flex items-center gap-1.5 whitespace-nowrap flex-shrink-0">
+            <i data-lucide="arrow-left-right" class="w-4 h-4 text-blue-600 dark:text-blue-400"></i>
+            <span class="dir-badge-text">RTL</span>
+          </button>
+
+          <!-- Theme Toggle Button -->
+          <button onclick="toggleTheme()" title="Toggle Dark / Light Theme" class="h-10 w-10 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 transition inline-flex items-center justify-center flex-shrink-0">
+            <i data-lucide="sun" class="w-4 h-4 text-amber-500 theme-sun-icon hidden"></i>
+            <i data-lucide="moon" class="w-4 h-4 text-blue-600 dark:text-blue-400 theme-moon-icon"></i>
+          </button>
+
+          <a href="dashboard/index.html" class="h-10 px-3 xl:px-3.5 rounded-xl font-bold text-xs xl:text-sm text-slate-700 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition inline-flex items-center gap-1.5 xl:gap-2 whitespace-nowrap flex-shrink-0">
+            <i data-lucide="layout-dashboard" class="w-4 h-4 text-blue-600 dark:text-blue-400"></i>
+            <span>Dashboard</span>
+          </a>
+
+          <a href="login.html" class="h-10 px-3.5 xl:px-4 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs xl:text-sm font-heading tracking-wide inline-flex items-center justify-center gap-1.5 xl:gap-2 shadow-sm transition whitespace-nowrap flex-shrink-0">
+            <i data-lucide="log-in" class="w-4 h-4"></i>
+            <span>Login</span>
+          </a>
+        </div>
+
+        <!-- Mobile Menu Toggle Button -->
+        <div class="flex items-center gap-2 xl:hidden flex-shrink-0">
+          <button onclick="toggleTheme()" class="h-10 w-10 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 inline-flex items-center justify-center">
+            <i data-lucide="sun" class="w-4 h-4 text-amber-500 theme-sun-icon hidden"></i>
+            <i data-lucide="moon" class="w-4 h-4 text-blue-500 theme-moon-icon"></i>
+          </button>
+          <button onclick="toggleMobileMenu()" class="h-10 w-10 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 inline-flex items-center justify-center">
+            <i data-lucide="menu" class="w-6 h-6"></i>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div id="mobile-menu" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden flex flex-col justify-end">
+    <div class="bg-white dark:bg-slate-900 rounded-t-3xl p-6 max-h-[85vh] overflow-y-auto space-y-4 shadow-2xl">
+      <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-4">
+        <span class="font-heading text-xl font-bold">Menu Navigation</span>
+        <button onclick="toggleMobileMenu()" class="p-2 rounded-xl bg-slate-100 dark:bg-slate-800">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <div class="space-y-1 font-semibold text-slate-800 dark:text-slate-100">
+        <a href="index.html" class="block px-4 py-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800">Home 1 (Main Club)</a>
+        <a href="index-2.html" class="block px-4 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 pl-8 text-xs text-slate-500">&bull; Home 2 (STEM Academy)</a>
+        <a href="about.html" class="block px-4 py-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800">About Us</a>
+        
+        <a href="programs.html" class="block px-4 py-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800">Programs</a>
+
+        <a href="instructors.html" class="block px-4 py-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800">Instructors & Mentors</a>
+        <a href="pricing.html" class="block px-4 py-2.5 rounded-xl bg-blue-50 dark:bg-blue-900/40 text-blue-600 dark:text-blue-300 font-bold">Pricing</a>
+        <a href="gallery.html" class="block px-4 py-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800">Gallery</a>
+        <a href="blog.html" class="block px-4 py-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800">Blog</a>
+        <a href="contact.html" class="block px-4 py-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800">Contact</a>
+        <a href="dashboard/index.html" class="block px-4 py-2.5 rounded-xl bg-blue-50 dark:bg-blue-950/40 text-blue-600 dark:text-blue-400 font-bold">Parent & Admin Dashboard &rarr;</a>
+      </div>
+
+      <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex flex-col gap-2.5">
+        <button onclick="toggleRTL()" class="w-full py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 flex items-center justify-center gap-2 text-sm font-bold">
+          <i data-lucide="arrow-left-right" class="w-4 h-4"></i> Switch Layout (LTR / RTL)
+        </button>
+        <a href="login.html" class="btn-brick bg-blue-600 hover:bg-blue-700 text-white w-full py-3 rounded-2xl font-heading text-base flex items-center justify-center gap-2 transition">
+          <i data-lucide="log-in" class="w-5 h-5"></i>
+          <span>Parent Login</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header & Billing Switcher -->
+  <section class="py-16 bg-[#0B1120] text-slate-100 border-b border-slate-800/80 relative overflow-hidden" x-data="{ billing: 'monthly' }">
+    <!-- Solid dark navy background with subtle stud pattern -->
+    <div class="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+      <div class="absolute inset-0 bg-gradient-to-b from-[#0B1120]/90 via-[#0B1120]/75 to-[#0B1120]/95"></div>
+      <div class="absolute inset-0 bg-studs opacity-40"></div>
+    </div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+      <div class="flex items-center justify-center gap-2 text-xs font-semibold text-slate-400 mb-3">
+        <a href="index.html" class="hover:text-white transition">Home</a>
+        <span>/</span>
+        <span class="text-blue-400 font-bold">Pricing Plans</span>
+      </div>
+      <h1 class="text-4xl sm:text-5xl font-heading font-extrabold text-white tracking-tight">
+        Simple, Transparent Memberships
+      </h1>
+      <p class="mt-3 text-base text-slate-300 max-w-2xl mx-auto">
+        All hardware, LEGO Spike kits, software licenses, and materials are 100% included. No surprise lab fees.
+      </p>
+
+      <!-- Toggle Switcher -->
+      <div class="mt-8 inline-flex items-center gap-3" role="group" aria-label="Choose a billing option">
+        <button @click="billing = 'monthly'" :class="billing === 'monthly' ? 'bg-white dark:bg-slate-700 text-blue-600 dark:text-white shadow' : 'text-slate-500'" class="px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition">
+          Monthly Membership
+        </button>
+        <button @click="billing = 'term'" :class="billing === 'term' ? 'bg-blue-600 text-white shadow' : 'text-slate-500'" class="px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition flex items-center gap-2">
+          <span>8-Week Term Pass</span>
+          <span class="bg-amber-400 text-slate-950 text-[10px] px-2 py-0.5 rounded-full font-extrabold uppercase">Save 20%</span>
+        </button>
+      </div>
+
+      <!-- Pricing Cards Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12 text-left">
+        
+        <!-- Tier 1: Explorer -->
+        <div class="rounded-3xl bg-slate-900/90 border border-slate-800 p-8 flex flex-col justify-between hover:border-slate-700 hover:shadow-2xl transition">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-blue-950/80 text-blue-400 border border-blue-800/60 flex items-center justify-center font-bold mb-4">
+              <i data-lucide="compass" class="w-6 h-6"></i>
+            </div>
+            <h3 class="font-heading text-2xl font-bold text-white">Explorer Pass</h3>
+            <p class="text-xs text-slate-400 mt-1 mb-6">Great for beginners starting their robotics journey.</p>
+            
+            <div class="mb-6">
+              <span class="text-4xl font-heading font-extrabold text-white" x-text="billing === 'monthly' ? '$149' : '$119'">$149</span>
+              <span class="text-xs text-slate-400 font-medium">/ month</span>
+            </div>
+
+            <ul class="space-y-3 text-xs sm:text-sm text-slate-300">
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> 1 session per week (60-90 mins)</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> LEGO WeDo & Spike Prime kit use</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> 1:6 coach ratio</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Parent progress dashboard</li>
+              <li class="flex items-center gap-2 text-slate-500"><i data-lucide="x" class="w-4 h-4"></i> BattleBot arena Friday pass</li>
+            </ul>
+          </div>
+
+          <button onclick="openEnrollModal('Explorer Pass Membership')" class="btn-brick btn-brick-blue w-full py-3.5 rounded-2xl font-heading text-sm font-bold mt-8">
+            Choose Explorer
+          </button>
+        </div>
+
+        <!-- Tier 2: Innovator Pro (Highlighted) -->
+        <div class="rounded-3xl bg-slate-800/95 border-2 border-blue-500 p-8 flex flex-col justify-between shadow-2xl relative hover:-translate-y-1 transition duration-300">
+          <div class="absolute -top-7 left-1/2 z-10 -translate-x-1/2 bg-blue-600 text-white text-[11px] font-bold uppercase tracking-wider px-4 py-1 rounded-full shadow">
+            Most Popular Choice
+          </div>
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-amber-400 text-slate-950 flex items-center justify-center font-bold mb-4 shadow">
+              <i data-lucide="sparkles" class="w-6 h-6"></i>
+            </div>
+            <h3 class="font-heading text-2xl font-bold text-white">Innovator Pro</h3>
+            <p class="text-xs text-slate-400 mt-1 mb-6">Full robotics mastery with Friday tournament arena access.</p>
+            
+            <div class="mb-6">
+              <span class="text-4xl font-heading font-extrabold text-white" x-text="billing === 'monthly' ? '$229' : '$189'">$229</span>
+              <span class="text-xs text-slate-400 font-medium">/ month</span>
+            </div>
+
+            <ul class="space-y-3 text-xs sm:text-sm text-slate-300">
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> <strong>2 sessions per week</strong> (Build + Code)</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Friday Night BattleBot Arena Access</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Scratch + Python programming</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Free 3D printed robot parts</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Unlimited makeup class rescheduling</li>
+            </ul>
+          </div>
+
+          <button onclick="openEnrollModal('Innovator Pro Membership')" class="btn-brick btn-brick-yellow w-full py-3.5 rounded-2xl font-heading text-sm font-bold mt-8 shadow-lg">
+            Choose Innovator Pro
+          </button>
+        </div>
+
+        <!-- Tier 3: Champion League -->
+        <div class="rounded-3xl bg-slate-900/90 border border-slate-800 p-8 flex flex-col justify-between hover:border-slate-700 hover:shadow-2xl transition">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-purple-100 dark:bg-purple-900/50 text-purple-600 dark:text-purple-400 flex items-center justify-center font-bold mb-4">
+              <i data-lucide="trophy" class="w-6 h-6"></i>
+            </div>
+            <h3 class="font-heading text-2xl font-bold text-white">Champion League</h3>
+            <p class="text-xs text-slate-400 mt-1 mb-6">Designed for FLL tournament and high-school competitive coders.</p>
+            
+            <div class="mb-6">
+              <span class="text-4xl font-heading font-extrabold text-white" x-text="billing === 'monthly' ? '$329' : '$269'">$329</span>
+              <span class="text-xs text-slate-400 font-medium">/ month</span>
+            </div>
+
+            <ul class="space-y-3 text-xs sm:text-sm text-slate-300">
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> <strong>3 sessions per week</strong> (Intensive)</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> Official FIRST LEGO League Team Seat</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> 1-on-1 monthly engineering coaching</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> Custom engraved team jersey & kit</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> VIP tournament entry fees included</li>
+            </ul>
+          </div>
+
+          <button onclick="openEnrollModal('Champion League Membership')" class="btn-brick bg-purple-600 text-white hover:bg-purple-700 border-b-4 border-purple-800 w-full py-3.5 rounded-2xl font-heading text-sm font-bold mt-8">
+            Choose Champion
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Feature Comparison Table -->
+  <section class="py-20 bg-slate-50 dark:bg-slate-900">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-heading font-bold text-slate-900 dark:text-white">Detailed Plan Comparison</h2>
+        <p class="text-xs sm:text-sm text-slate-500 mt-1">Review exactly what features are included with each membership tier.</p>
+      </div>
+
+      <div class="bg-white dark:bg-slate-800 rounded-3xl border border-slate-200 dark:border-slate-700 overflow-hidden shadow-lg">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs sm:text-sm">
+            <thead>
+              <tr class="bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 font-heading">
+                <th class="p-4 sm:p-5">Feature Overview</th>
+                <th class="p-4 sm:p-5 text-center">Explorer</th>
+                <th class="p-4 sm:p-5 text-center bg-blue-50 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400">Innovator Pro</th>
+                <th class="p-4 sm:p-5 text-center">Champion</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100 dark:divide-slate-700">
+              <tr>
+                <td class="p-4 font-semibold text-slate-900 dark:text-white">Classes per Week</td>
+                <td class="p-4 text-center text-slate-500">1 Class (90 min)</td>
+                <td class="p-4 text-center font-bold text-blue-600 bg-blue-50/50 dark:bg-blue-950/20">2 Classes (180 min)</td>
+                <td class="p-4 text-center font-bold text-purple-600">3 Classes (270 min)</td>
+              </tr>
+              <tr>
+                <td class="p-4 font-semibold text-slate-900 dark:text-white">Hardware Provided</td>
+                <td class="p-4 text-center">Spike / WeDo Hub</td>
+                <td class="p-4 text-center font-bold bg-blue-50/50 dark:bg-blue-950/20">Full Sensor Suite</td>
+                <td class="p-4 text-center font-bold">FLL Field Kits + Python</td>
+              </tr>
+              <tr>
+                <td class="p-4 font-semibold text-slate-900 dark:text-white">Friday BattleBot Arena</td>
+                <td class="p-4 text-center text-slate-400">&mdash;</td>
+                <td class="p-4 text-center text-emerald-500 font-bold bg-blue-50/50 dark:bg-blue-950/20">Included</td>
+                <td class="p-4 text-center text-emerald-500 font-bold">Included VIP</td>
+              </tr>
+              <tr>
+                <td class="p-4 font-semibold text-slate-900 dark:text-white">Sibling Discount</td>
+                <td class="p-4 text-center text-slate-500">10% Off</td>
+                <td class="p-4 text-center font-bold text-blue-600 bg-blue-50/50 dark:bg-blue-950/20">15% Off</td>
+                <td class="p-4 text-center font-bold text-purple-600">20% Off</td>
+              </tr>
+              <tr>
+                <td class="p-4 font-semibold text-slate-900 dark:text-white">Make-up Rescheduling</td>
+                <td class="p-4 text-center text-slate-500">2 per term</td>
+                <td class="p-4 text-center font-bold text-emerald-500 bg-blue-50/50 dark:bg-blue-950/20">Unlimited</td>
+                <td class="p-4 text-center font-bold text-emerald-500">Unlimited Priority</td>
+              </tr>
+              <tr>
+                <td class="p-4 font-semibold text-slate-900 dark:text-white">Parent App & Badge Tracker</td>
+                <td class="p-4 text-center text-emerald-500 font-bold">✓</td>
+                <td class="p-4 text-center text-emerald-500 font-bold bg-blue-50/50 dark:bg-blue-950/20">✓</td>
+                <td class="p-4 text-center text-emerald-500 font-bold">✓</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- What Membership Covers -->
+  <section class="relative isolate overflow-hidden bg-[#f3f7fc] py-20 dark:bg-slate-900 sm:py-24">
+    <div aria-hidden="true" class="absolute -left-24 top-0 h-72 w-72 rounded-full bg-blue-200/40 blur-3xl dark:bg-blue-500/10"></div>
+    <div aria-hidden="true" class="absolute -bottom-28 right-0 h-80 w-80 rounded-full bg-amber-200/35 blur-3xl dark:bg-amber-500/10"></div>
+    <div class="relative mx-auto grid max-w-7xl items-center gap-10 px-4 sm:px-6 lg:grid-cols-[0.8fr_1.2fr] lg:gap-14 lg:px-8">
+      <div>
+        <span class="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-white/80 px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-[0.16em] text-blue-700 shadow-sm dark:border-blue-400/20 dark:bg-blue-400/10 dark:text-blue-300">
+          <i data-lucide="package-check" class="h-4 w-4"></i>
+          Included with every plan
+        </span>
+        <h2 class="mt-5 max-w-lg font-heading text-4xl font-bold leading-tight text-slate-950 dark:text-white sm:text-5xl">Everything Ready for a Great Build</h2>
+        <p class="mt-4 max-w-md text-sm leading-7 text-slate-600 dark:text-slate-300 sm:text-base">Membership covers the tools and support children need to learn by making.</p>
+
+        <div class="mt-8 flex max-w-md items-center gap-4 rounded-[1.5rem] bg-[#0b1120] p-5 text-white shadow-xl shadow-slate-900/10">
+          <div class="grid h-14 w-14 shrink-0 grid-cols-2 gap-1.5 rounded-2xl bg-white/10 p-2.5">
+            <span class="rounded-md bg-amber-400"></span>
+            <span class="rounded-md bg-blue-400"></span>
+            <span class="rounded-md bg-emerald-400"></span>
+            <span class="rounded-md bg-rose-400"></span>
+          </div>
+          <div>
+            <span class="block text-[10px] font-bold uppercase tracking-[0.18em] text-blue-200">Four essentials</span>
+            <strong class="mt-1 block font-heading text-base">Ready in every plan</strong>
+          </div>
+          <span class="ml-auto font-heading text-3xl font-bold text-white/20">04</span>
+        </div>
+      </div>
+
+      <div class="rounded-[2rem] border border-slate-200/80 bg-white/90 p-5 shadow-[0_24px_70px_-32px_rgba(15,23,42,0.28)] backdrop-blur dark:border-slate-700 dark:bg-slate-800/90 sm:p-7">
+        <div class="mb-3 flex items-center justify-between gap-4 border-b border-slate-100 pb-5 dark:border-slate-700">
+          <div>
+            <p class="text-[10px] font-bold uppercase tracking-[0.18em] text-slate-400">Your membership loadout</p>
+            <h3 class="mt-1 font-heading text-xl font-bold text-slate-900 dark:text-white">Everything for the next build</h3>
+          </div>
+          <span class="shrink-0 rounded-full bg-emerald-50 px-3 py-1.5 text-[10px] font-extrabold uppercase tracking-wider text-emerald-700 dark:bg-emerald-400/10 dark:text-emerald-300">4 / 4 included</span>
+        </div>
+
+        <div class="grid sm:grid-cols-2">
+          <article class="flex gap-3 border-b border-slate-100 py-5 sm:pr-5 dark:border-slate-700">
+            <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-blue-50 text-blue-600 dark:bg-blue-400/10 dark:text-blue-300"><i data-lucide="box" class="h-5 w-5"></i></span>
+            <div><span class="text-[10px] font-bold uppercase tracking-wider text-blue-600 dark:text-blue-300">01 / Equipment</span><h4 class="mt-1 font-heading font-bold text-slate-900 dark:text-white">Robotics kits</h4><p class="mt-1 text-xs leading-5 text-slate-500 dark:text-slate-400">Use club LEGO® Education and sensor kits in class.</p></div>
+          </article>
+
+          <article class="flex gap-3 border-b border-slate-100 py-5 sm:border-l sm:border-slate-100 sm:pl-5 dark:border-slate-700">
+            <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-600 dark:bg-emerald-400/10 dark:text-emerald-300"><i data-lucide="users-round" class="h-5 w-5"></i></span>
+            <div><span class="text-[10px] font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-300">02 / Coaching</span><h4 class="mt-1 font-heading font-bold text-slate-900 dark:text-white">Small groups</h4><p class="mt-1 text-xs leading-5 text-slate-500 dark:text-slate-400">Get hands-on help from a coach in a 1:6 setting.</p></div>
+          </article>
+
+          <article class="flex gap-3 border-b border-slate-100 py-5 sm:border-b-0 sm:pr-5 dark:border-slate-700">
+            <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-amber-50 text-amber-600 dark:bg-amber-400/10 dark:text-amber-300"><i data-lucide="chart-no-axes-column-increasing" class="h-5 w-5"></i></span>
+            <div><span class="text-[10px] font-bold uppercase tracking-wider text-amber-600 dark:text-amber-300">03 / Progress</span><h4 class="mt-1 font-heading font-bold text-slate-900 dark:text-white">Progress updates</h4><p class="mt-1 text-xs leading-5 text-slate-500 dark:text-slate-400">Follow projects, attendance, and earned badges.</p></div>
+          </article>
+
+          <article class="flex gap-3 py-5 sm:border-l sm:border-slate-100 sm:pl-5 sm:dark:border-slate-700">
+            <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-rose-50 text-rose-600 dark:bg-rose-400/10 dark:text-rose-300"><i data-lucide="calendar-check" class="h-5 w-5"></i></span>
+            <div><span class="text-[10px] font-bold uppercase tracking-wider text-rose-600 dark:text-rose-300">04 / Flexibility</span><h4 class="mt-1 font-heading font-bold text-slate-900 dark:text-white">Make-up options</h4><p class="mt-1 text-xs leading-5 text-slate-500 dark:text-slate-400">Use the available rescheduling options in your plan.</p></div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Flexible Scheduling -->
+  <section class="relative isolate overflow-hidden bg-[#f3f7fc] py-20 dark:bg-slate-900 sm:py-24">
+    <div aria-hidden="true" class="absolute -right-24 -top-24 h-80 w-80 rounded-full bg-blue-200/40 blur-3xl dark:bg-blue-500/10"></div>
+    <div aria-hidden="true" class="absolute -bottom-28 left-0 h-72 w-72 rounded-full bg-amber-200/35 blur-3xl dark:bg-amber-500/10"></div>
+    <div class="relative mx-auto grid max-w-7xl items-center gap-10 px-4 sm:px-6 lg:grid-cols-[0.8fr_1.2fr] lg:gap-14 lg:px-8">
+      <div>
+        <span class="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-white/80 px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-[0.16em] text-blue-700 shadow-sm dark:border-blue-400/20 dark:bg-blue-400/10 dark:text-blue-300">
+          <i data-lucide="calendar-days" class="h-4 w-4"></i>
+          Family-friendly timing
+        </span>
+        <h2 class="mt-5 max-w-lg font-heading text-4xl font-bold leading-tight text-slate-950 dark:text-white sm:text-5xl">A Schedule That Fits Family Life</h2>
+        <p class="mt-4 max-w-md text-sm leading-7 text-slate-600 dark:text-slate-300 sm:text-base">Choose a weekly class time that works for your family. Our team can help you find an age-appropriate open cohort before you enroll.</p>
+        <div class="mt-8 flex items-center gap-3 text-sm font-semibold text-slate-600 dark:text-slate-300">
+          <span class="flex h-10 w-10 items-center justify-center rounded-2xl bg-blue-600 text-white shadow-lg shadow-blue-600/20"><i data-lucide="clock-3" class="h-5 w-5"></i></span>
+          Find a recurring time that works for you
+        </div>
+      </div>
+
+      <div class="overflow-hidden rounded-[2rem] border border-slate-200/80 bg-white/95 shadow-[0_24px_70px_-32px_rgba(15,23,42,0.28)] dark:border-slate-700 dark:bg-slate-800/95">
+        <div class="h-1.5 bg-gradient-to-r from-blue-600 via-emerald-400 to-amber-400"></div>
+        <div class="p-5 sm:p-7">
+          <div class="flex flex-wrap items-center justify-between gap-3">
+            <div>
+              <p class="text-[10px] font-bold uppercase tracking-[0.18em] text-slate-400">Weekly planner</p>
+              <h3 class="mt-1 font-heading text-xl font-bold text-slate-900 dark:text-white">Choose your class window</h3>
+            </div>
+            <span class="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-emerald-700 dark:bg-emerald-400/10 dark:text-emerald-300"><i data-lucide="check" class="h-3.5 w-3.5"></i> Weekly options</span>
+          </div>
+
+          <div aria-hidden="true" class="mt-6 grid grid-cols-7 gap-1.5 sm:gap-2">
+            <span class="rounded-xl bg-blue-50 py-2.5 text-center text-[9px] font-extrabold uppercase tracking-wide text-blue-700 dark:bg-blue-400/10 dark:text-blue-300 sm:text-[10px]">Mon</span>
+            <span class="rounded-xl bg-blue-50 py-2.5 text-center text-[9px] font-extrabold uppercase tracking-wide text-blue-700 dark:bg-blue-400/10 dark:text-blue-300 sm:text-[10px]">Tue</span>
+            <span class="rounded-xl bg-blue-50 py-2.5 text-center text-[9px] font-extrabold uppercase tracking-wide text-blue-700 dark:bg-blue-400/10 dark:text-blue-300 sm:text-[10px]">Wed</span>
+            <span class="rounded-xl bg-blue-50 py-2.5 text-center text-[9px] font-extrabold uppercase tracking-wide text-blue-700 dark:bg-blue-400/10 dark:text-blue-300 sm:text-[10px]">Thu</span>
+            <span class="rounded-xl bg-blue-50 py-2.5 text-center text-[9px] font-extrabold uppercase tracking-wide text-blue-700 dark:bg-blue-400/10 dark:text-blue-300 sm:text-[10px]">Fri</span>
+            <span class="rounded-xl bg-amber-50 py-2.5 text-center text-[9px] font-extrabold uppercase tracking-wide text-amber-700 dark:bg-amber-400/10 dark:text-amber-300 sm:text-[10px]">Sat</span>
+            <span class="rounded-xl bg-amber-50 py-2.5 text-center text-[9px] font-extrabold uppercase tracking-wide text-amber-700 dark:bg-amber-400/10 dark:text-amber-300 sm:text-[10px]">Sun</span>
+          </div>
+
+          <div class="mt-5 grid gap-3 sm:grid-cols-2">
+            <div class="flex items-center gap-3 rounded-2xl border border-blue-100 bg-blue-50/70 p-4 dark:border-blue-400/15 dark:bg-blue-400/5">
+              <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-blue-600 text-white"><i data-lucide="sun" class="h-5 w-5"></i></span>
+              <div><span class="block text-[10px] font-bold uppercase tracking-wider text-blue-600 dark:text-blue-300">After school</span><strong class="mt-0.5 block text-sm text-slate-900 dark:text-white">Weekday afternoons</strong></div>
+            </div>
+            <div class="flex items-center gap-3 rounded-2xl border border-amber-100 bg-amber-50/70 p-4 dark:border-amber-400/15 dark:bg-amber-400/5">
+              <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-amber-400 text-slate-950"><i data-lucide="calendar-check" class="h-5 w-5"></i></span>
+              <div><span class="block text-[10px] font-bold uppercase tracking-wider text-amber-700 dark:text-amber-300">Weekends</span><strong class="mt-0.5 block text-sm text-slate-900 dark:text-white">Saturday &amp; Sunday</strong></div>
+            </div>
+          </div>
+
+          <div class="mt-4 flex items-start gap-3 rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-4 dark:border-slate-600 dark:bg-slate-900/70">
+            <i data-lucide="repeat-2" class="mt-0.5 h-4 w-4 shrink-0 text-emerald-600 dark:text-emerald-400"></i>
+            <p class="text-xs leading-5 text-slate-600 dark:text-slate-300"><strong class="text-slate-900 dark:text-white">Need a change?</strong> Ask about available make-up sessions.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tuition Support -->
+  <section class="relative isolate overflow-hidden bg-[#f3f7fc] py-16 dark:bg-slate-900 sm:py-20">
+    <div aria-hidden="true" class="absolute -bottom-28 -right-20 h-80 w-80 rounded-full bg-amber-200/35 blur-3xl dark:bg-amber-500/10"></div>
+    <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="grid overflow-hidden rounded-[2.25rem] shadow-[0_28px_80px_-38px_rgba(15,23,42,0.35)] lg:grid-cols-[0.9fr_1.1fr]">
+        <div class="relative isolate overflow-hidden bg-[#0b1120] p-7 text-white sm:p-10 lg:p-12">
+          <div aria-hidden="true" class="absolute -right-20 -top-16 -z-10 h-64 w-64 rounded-full bg-blue-600/25 blur-3xl"></div>
+          <div aria-hidden="true" class="absolute -bottom-24 left-0 -z-10 h-56 w-56 rounded-full bg-emerald-500/15 blur-3xl"></div>
+          <span class="inline-flex items-center gap-2 rounded-full border border-amber-300/20 bg-amber-300/10 px-3.5 py-1.5 text-[10px] font-bold uppercase tracking-[0.18em] text-amber-200">
+            <i data-lucide="heart-handshake" class="h-4 w-4"></i>
+            Tuition support
+          </span>
+          <h2 class="mt-6 max-w-md font-heading text-3xl font-bold leading-tight sm:text-4xl">Questions about the details? <span class="text-blue-300">Let’s talk.</span></h2>
+          <p class="mt-4 max-w-md text-sm leading-7 text-slate-300">Our team can help you understand your options before you enroll.</p>
+          <a href="contact.html" class="mt-8 inline-flex items-center gap-2 rounded-xl bg-white px-5 py-3 text-sm font-bold text-blue-700 shadow-lg transition hover:-translate-y-0.5 hover:bg-blue-50">
+            Talk with our team <i data-lucide="arrow-right" class="h-4 w-4"></i>
+          </a>
+          <div class="mt-10 flex items-center gap-2 border-t border-white/10 pt-5 text-[10px] font-bold uppercase tracking-[0.16em] text-slate-400">
+            <span class="h-2 w-2 rounded-full bg-emerald-400"></span>
+            A real person, clear answers
+          </div>
+        </div>
+
+        <div class="bg-white p-6 dark:bg-slate-800 sm:p-9 lg:p-10">
+          <div class="mb-4 flex items-center justify-between gap-3">
+            <div>
+              <p class="text-[10px] font-bold uppercase tracking-[0.18em] text-slate-400">Quick guide</p>
+              <h3 class="mt-1 font-heading text-xl font-bold text-slate-900 dark:text-white">What can we help with?</h3>
+            </div>
+            <span class="rounded-full bg-blue-50 px-3 py-1.5 text-[10px] font-extrabold uppercase tracking-wider text-blue-700 dark:bg-blue-400/10 dark:text-blue-300">Ask us</span>
+          </div>
+
+          <div class="divide-y divide-slate-100 dark:divide-slate-700">
+            <div class="flex items-start gap-4 py-4">
+              <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-600 dark:bg-blue-400/10 dark:text-blue-300"><i data-lucide="users-round" class="h-5 w-5"></i></span>
+              <div><h4 class="font-bold text-slate-900 dark:text-white">Sibling discounts</h4><p class="mt-1 text-xs leading-5 text-slate-500 dark:text-slate-400">See the comparison table for listed savings.</p></div>
+            </div>
+            <div class="flex items-start gap-4 py-4">
+              <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600 dark:bg-emerald-400/10 dark:text-emerald-300"><i data-lucide="calendar-search" class="h-5 w-5"></i></span>
+              <div><h4 class="font-bold text-slate-900 dark:text-white">Current availability</h4><p class="mt-1 text-xs leading-5 text-slate-500 dark:text-slate-400">Ask about open cohorts for your child’s age.</p></div>
+            </div>
+            <div class="flex items-start gap-4 py-4">
+              <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-amber-50 text-amber-600 dark:bg-amber-400/10 dark:text-amber-300"><i data-lucide="calendar-clock" class="h-5 w-5"></i></span>
+              <div><h4 class="font-bold text-slate-900 dark:text-white">Billing dates</h4><p class="mt-1 text-xs leading-5 text-slate-500 dark:text-slate-400">Get clarification on when payments are due.</p></div>
+            </div>
+            <div class="flex items-start gap-4 py-4">
+              <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-rose-50 text-rose-600 dark:bg-rose-400/10 dark:text-rose-300"><i data-lucide="sliders-horizontal" class="h-5 w-5"></i></span>
+              <div><h4 class="font-bold text-slate-900 dark:text-white">Plan changes</h4><p class="mt-1 text-xs leading-5 text-slate-500 dark:text-slate-400">Talk through your options if your needs change.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Call to Action -->
+  <section class="py-14 bg-blue-700 text-white text-center">
+    <div class="max-w-3xl mx-auto px-4 space-y-4"><h2 class="text-3xl font-heading font-bold">Start with a Free Trial</h2><p class="text-sm text-blue-100">Let your child try a hands-on robotics class before choosing a membership.</p><button onclick="openEnrollModal('Pricing Page Free Trial')" class="btn-brick btn-brick-yellow px-7 py-3 rounded-2xl font-heading font-bold">Reserve a Trial Spot</button></div>
+  </section>
+
+    <!-- Footer -->
+  <footer class="bg-[#0B1120] text-slate-300 pt-16 pb-8 border-t border-slate-800/80 transition-colors">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-8 pb-12">
+        
+        <!-- Col 1: Brand & Socials -->
+        <div class="lg:col-span-3 space-y-4">
+          <a href="index.html" class="flex items-center gap-3 group flex-shrink-0">
+            <img src="assets/logo.png" alt="RoboBricks Logo" class="w-11 h-11 rounded-2xl object-contain shadow-lg shadow-blue-500/25 group-hover:scale-105 transition-transform duration-200 flex-shrink-0">
+            <div>
+              <span class="font-heading text-xl font-bold tracking-tight text-white flex items-center gap-1 leading-none">
+                Robo<span class="text-blue-400">Bricks</span>
+                <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+              </span>
+              <span class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mt-1 leading-none">Kids Robotics & LEGO Club</span>
+            </div>
+          </a>
+          
+          <p class="text-xs sm:text-sm text-slate-400 leading-relaxed max-w-sm">
+            Helping young minds build confidence through creative LEGO engineering, coding, and hands-on robotics.
+          </p>
+
+          <div class="flex items-center gap-2.5 pt-2">
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="w-9 h-9 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-slate-700 hover:bg-slate-800 transition">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd"/>
+              </svg>
+            </a>
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="w-9 h-9 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-slate-700 hover:bg-slate-800 transition">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd"/>
+              </svg>
+            </a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="w-9 h-9 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-slate-700 hover:bg-slate-800 transition">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+              </svg>
+            </a>
+            <a href="https://x.com" target="_blank" rel="noopener noreferrer" aria-label="X / Twitter" class="w-9 h-9 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-slate-700 hover:bg-slate-800 transition">
+              <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Col 2: Navigation -->
+        <div class="lg:col-span-2 space-y-3">
+          <h4 class="font-bold text-xs uppercase tracking-widest text-white mb-4">NAVIGATION</h4>
+          <ul class="space-y-2 text-xs sm:text-sm text-slate-400">
+            <li><a href="index.html" class="hover:text-blue-400 transition">Home</a></li>
+            <li><a href="about.html" class="hover:text-blue-400 transition">About Us</a></li>
+            <li><a href="programs.html" class="hover:text-blue-400 transition">Programs</a></li>
+            <li><a href="instructors.html" class="hover:text-blue-400 transition">Instructors</a></li>
+            <li><a href="pricing.html" class="hover:text-blue-400 transition">Pricing Tiers</a></li>
+            <li><a href="gallery.html" class="hover:text-blue-400 transition">Gallery & Builds</a></li>
+            <li><a href="blog.html" class="hover:text-blue-400 transition">Blog & Journal</a></li>
+            <li><a href="contact.html" class="hover:text-blue-400 transition">Contact Club</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Club Standards -->
+        <div class="lg:col-span-4 space-y-3">
+          <h4 class="font-bold text-xs uppercase tracking-widest text-white mb-4">CAMP STANDARDS</h4>
+          <div class="grid grid-cols-2 gap-x-4 gap-y-3 text-xs sm:text-sm">
+            <div class="font-bold text-white">1:6 Coach Ratio</div>
+            <div class="text-slate-400">Certified STEM Mentors</div>
+
+            <div class="font-bold text-white">Daily Build Time</div>
+            <div class="text-slate-400">Live Hands-On Practice</div>
+
+            <div class="font-bold text-white">FLL League Prep</div>
+            <div class="text-slate-400">Gala Showcase Challenges</div>
+
+            <div class="font-bold text-white">Ages 5–16</div>
+            <div class="text-slate-400">Junior, Teen & Exec Tracks</div>
+
+            <div class="font-bold text-white">5 Regional Hubs</div>
+            <div class="text-slate-400">Robotics & Coding Campuses</div>
+          </div>
+        </div>
+
+        <!-- Col 4: Admissions & Contact -->
+        <div class="lg:col-span-3 space-y-3">
+          <h4 class="font-bold text-xs uppercase tracking-widest text-white mb-4">CAMP ADMISSIONS</h4>
+          <div class="space-y-2.5 text-xs sm:text-sm text-slate-400">
+            <div class="flex items-center gap-2.5">
+              <i data-lucide="mail" class="w-4 h-4 text-blue-400 flex-shrink-0"></i>
+              <a href="mailto:admissions@robobricks.club" class="hover:text-white transition">admissions@robobricks.club</a>
+            </div>
+            <div class="flex items-center gap-2.5">
+              <i data-lucide="phone" class="w-4 h-4 text-blue-400 flex-shrink-0"></i>
+              <a href="tel:+18005557626" class="hover:text-white transition">+1 (800) 555-ROBO</a>
+            </div>
+            <div class="flex items-start gap-2.5">
+              <i data-lucide="map-pin" class="w-4 h-4 text-blue-400 flex-shrink-0 mt-0.5"></i>
+              <span>100 Innovation Way, Suite 400, Austin, TX 78701</span>
+            </div>
+          </div>
+
+          <div class="pt-2">
+            <button onclick="openEnrollModal('Connect Admissions Team')" class="w-full py-3 px-6 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold text-sm shadow-lg shadow-blue-600/30 transition-all hover:scale-[1.02] flex items-center justify-center gap-2">
+              <span>Connect Admissions Team</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Copyright Bar -->
+      <div class="mt-8 pt-8 border-t border-slate-800/80 text-center text-xs text-slate-500">
+        <p>&copy; 2026 RoboBricks Youth Robotics Academy Ltd. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Universal Enrollment Modal -->
+  <div id="enroll-modal" class="fixed inset-0 z-50 bg-slate-900/70 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-white dark:bg-slate-800 rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-slate-100 dark:border-slate-700 relative max-h-[92vh] overflow-y-auto">
+      <button onclick="closeEnrollModal()" class="absolute top-5 right-5 p-2 rounded-xl bg-slate-100 dark:bg-slate-700 text-slate-500">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+      <h3 id="enroll-modal-program-name" class="font-heading text-xl font-bold text-slate-900 dark:text-white mb-4">Membership Enrollment</h3>
+      <form id="enroll-form" class="space-y-4">
+        <input type="text" required placeholder="Child's Name" class="w-full text-sm px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900">
+        <input type="email" required placeholder="Parent Email" class="w-full text-sm px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900">
+        <input type="tel" required placeholder="Phone Number" class="w-full text-sm px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900">
+        <button type="submit" class="btn-brick btn-brick-yellow w-full py-3 rounded-2xl font-heading text-base font-bold">
+          Submit Enrollment
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <div id="toast-container"></div>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

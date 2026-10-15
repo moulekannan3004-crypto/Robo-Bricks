@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog & STEM Insights for Parents | RoboBricks</title>
+  <meta name="description" content="Helpful guides, robotics tips, parenting advice, and competition news from the coaches at RoboBricks.">
+  
+  <link rel="icon" type="image/png" href="assets/logo.png">
+
+  <!-- TailwindCSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: { 50: '#eff6ff', 100: '#dbeafe', 500: '#3b82f6', 600: '#2563eb', 700: '#1d4ed8' },
+            brick: { yellow: '#FBBF24', red: '#EF4444', blue: '#2563EB', green: '#10B981', purple: '#8B5CF6' }
+          },
+          fontFamily: {
+            heading: ['Fredoka', 'cursive', 'sans-serif'],
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            tech: ['"Space Grotesk"', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons & Alpine.js -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <link rel="stylesheet" href="assets/css/custom.css">
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 min-h-screen flex flex-col font-sans transition-colors duration-200">
+
+      <!-- Main Navigation Bar -->
+  <header class="sticky top-0 z-40 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 shadow-sm transition-colors">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20 gap-2 xl:gap-4">
+        
+        <!-- Logo -->
+        <a href="index.html" class="flex items-center gap-3 group flex-shrink-0">
+          <img src="assets/logo.png" alt="RoboBricks Logo" class="w-11 h-11 rounded-2xl object-contain shadow-lg shadow-blue-500/25 group-hover:scale-105 transition-transform duration-200 flex-shrink-0">
+          <div>
+            <span class="font-heading text-xl font-bold tracking-tight text-slate-900 dark:text-white flex items-center gap-1 leading-none">
+              Robo<span class="text-blue-600 dark:text-blue-400">Bricks</span>
+              <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+            </span>
+            <span class="block text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mt-1 leading-none">Kids Robotics & LEGO Club</span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="hidden xl:flex items-center gap-0.5 xl:gap-1.5 font-semibold text-xs xl:text-sm whitespace-nowrap">
+          <!-- Home with Home 2 Dropdown -->
+          <div class="relative flex-shrink-0" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false" @keydown.escape.window="open = false">
+            <button @click="open = !open" type="button" class="h-10 px-2.5 xl:px-3 rounded-xl inline-flex items-center gap-1 text-slate-700 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition whitespace-nowrap flex-shrink-0" :class="{ 'bg-blue-50/90 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 shadow-sm': open }">
+              <span>Home</span>
+              <i data-lucide="chevron-down" class="w-3.5 h-3.5 transition-transform duration-200" :class="{ 'rotate-180': open }"></i>
+            </button>
+            <div x-show="open" 
+                 x-cloak
+                 @click.outside="open = false"
+                 x-transition:enter="transition ease-out duration-150"
+                 x-transition:enter-start="opacity-0 translate-y-1"
+                 x-transition:enter-end="opacity-100 translate-y-0"
+                 x-transition:leave="transition ease-in duration-100"
+                 x-transition:leave-start="opacity-100 translate-y-0"
+                 x-transition:leave-end="opacity-0 translate-y-1"
+                 class="absolute left-0 top-full pt-2 w-56 z-50">
+              <div class="rounded-2xl bg-white dark:bg-slate-800 shadow-2xl border border-slate-200/90 dark:border-slate-700 p-2">
+                <a href="index.html" class="flex items-center gap-2.5 px-3 py-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 text-sm transition">
+                  <i data-lucide="bot" class="w-4 h-4 text-blue-500"></i>
+                  <div>
+                    <span class="block leading-tight ">Home 1</span>
+                    <span class="text-[11px] font-normal text-slate-500 dark:text-slate-400">Kids Robotics Club</span>
+                  </div>
+                </a>
+                <a href="index-2.html" class="flex items-center gap-2.5 px-3 py-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 text-sm transition">
+                  <i data-lucide="graduation-cap" class="w-4 h-4 text-blue-500"></i>
+                  <div>
+                    <span class="block leading-tight ">Home 2</span>
+                    <span class="text-[11px] text-slate-500 dark:text-slate-400">STEM Academy Variant</span>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <a href="about.html" class="h-10 px-2.5 xl:px-3 rounded-xl inline-flex items-center text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-blue-600 dark:hover:text-blue-400 transition whitespace-nowrap flex-shrink-0">About Us</a>
+
+          <a href="programs.html" class="h-10 px-2.5 xl:px-3 rounded-xl inline-flex items-center text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-blue-600 dark:hover:text-blue-400 transition whitespace-nowrap flex-shrink-0">Programs</a>
+
+          <a href="instructors.html" class="h-10 px-2.5 xl:px-3 rounded-xl inline-flex items-center text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-blue-600 dark:hover:text-blue-400 transition whitespace-nowrap flex-shrink-0">Instructors</a>
+          <a href="pricing.html" class="h-10 px-2.5 xl:px-3 rounded-xl inline-flex items-center text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-blue-600 dark:hover:text-blue-400 transition whitespace-nowrap flex-shrink-0">Pricing</a>
+          <a href="gallery.html" class="h-10 px-2.5 xl:px-3 rounded-xl inline-flex items-center text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-blue-600 dark:hover:text-blue-400 transition whitespace-nowrap flex-shrink-0">Gallery</a>
+          <a href="blog.html" class="h-10 px-2.5 xl:px-3 rounded-xl inline-flex items-center text-blue-600 dark:text-blue-400 bg-blue-50/80 dark:bg-blue-950/40 font-bold whitespace-nowrap flex-shrink-0">Blog</a>
+          <a href="contact.html" class="h-10 px-2.5 xl:px-3 rounded-xl inline-flex items-center text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-blue-600 dark:hover:text-blue-400 transition whitespace-nowrap flex-shrink-0">Contact</a>
+        </nav>
+
+        <!-- Right Action Buttons: Theme, RTL, Dashboard, and Sign Up -->
+        <div class="hidden xl:flex items-center gap-1.5 xl:gap-2 flex-shrink-0">
+          <!-- RTL Toggle Button -->
+          <button onclick="toggleRTL()" title="Toggle RTL / LTR Direction" class="h-10 px-2.5 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 transition text-xs font-bold inline-flex items-center gap-1.5 whitespace-nowrap flex-shrink-0">
+            <i data-lucide="arrow-left-right" class="w-4 h-4 text-blue-600 dark:text-blue-400"></i>
+            <span class="dir-badge-text">RTL</span>
+          </button>
+
+          <!-- Theme Toggle Button -->
+          <button onclick="toggleTheme()" title="Toggle Dark / Light Theme" class="h-10 w-10 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 transition inline-flex items-center justify-center flex-shrink-0">
+            <i data-lucide="sun" class="w-4 h-4 text-amber-500 theme-sun-icon hidden"></i>
+            <i data-lucide="moon" class="w-4 h-4 text-blue-600 dark:text-blue-400 theme-moon-icon"></i>
+          </button>
+
+          <a href="dashboard/index.html" class="h-10 px-3 xl:px-3.5 rounded-xl font-bold text-xs xl:text-sm text-slate-700 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition inline-flex items-center gap-1.5 xl:gap-2 whitespace-nowrap flex-shrink-0">
+            <i data-lucide="layout-dashboard" class="w-4 h-4 text-blue-600 dark:text-blue-400"></i>
+            <span>Dashboard</span>
+          </a>
+
+          <a href="login.html" class="h-10 px-3.5 xl:px-4 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs xl:text-sm font-heading tracking-wide inline-flex items-center justify-center gap-1.5 xl:gap-2 shadow-sm transition whitespace-nowrap flex-shrink-0">
+            <i data-lucide="log-in" class="w-4 h-4"></i>
+            <span>Login</span>
+          </a>
+        </div>
+
+        <!-- Mobile Menu Toggle Button -->
+        <div class="flex items-center gap-2 xl:hidden flex-shrink-0">
+          <button onclick="toggleTheme()" class="h-10 w-10 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 inline-flex items-center justify-center">
+            <i data-lucide="sun" class="w-4 h-4 text-amber-500 theme-sun-icon hidden"></i>
+            <i data-lucide="moon" class="w-4 h-4 text-blue-500 theme-moon-icon"></i>
+          </button>
+          <button onclick="toggleMobileMenu()" class="h-10 w-10 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 inline-flex items-center justify-center">
+            <i data-lucide="menu" class="w-6 h-6"></i>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div id="mobile-menu" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden flex flex-col justify-end">
+    <div class="bg-white dark:bg-slate-900 rounded-t-3xl p-6 max-h-[85vh] overflow-y-auto space-y-4 shadow-2xl">
+      <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-4">
+        <span class="font-heading text-xl font-bold">Menu Navigation</span>
+        <button onclick="toggleMobileMenu()" class="p-2 rounded-xl bg-slate-100 dark:bg-slate-800">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <div class="space-y-1 font-semibold text-slate-800 dark:text-slate-100">
+        <a href="index.html" class="block px-4 py-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800">Home 1 (Main Club)</a>
+        <a href="index-2.html" class="block px-4 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 pl-8 text-xs text-slate-500">&bull; Home 2 (STEM Academy)</a>
+        <a href="about.html" class="block px-4 py-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800">About Us</a>
+        
+        <a href="programs.html" class="block px-4 py-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800">Programs</a>
+
+        <a href="instructors.html" class="block px-4 py-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800">Instructors & Mentors</a>
+        <a href="pricing.html" class="block px-4 py-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800">Pricing</a>
+        <a href="gallery.html" class="block px-4 py-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800">Gallery</a>
+        <a href="blog.html" class="block px-4 py-2.5 rounded-xl bg-blue-50 dark:bg-blue-900/40 text-blue-600 dark:text-blue-300 font-bold">Blog</a>
+        <a href="contact.html" class="block px-4 py-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800">Contact</a>
+        <a href="dashboard/index.html" class="block px-4 py-2.5 rounded-xl bg-blue-50 dark:bg-blue-950/40 text-blue-600 dark:text-blue-400 font-bold">Parent & Admin Dashboard &rarr;</a>
+      </div>
+
+      <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex flex-col gap-2.5">
+        <button onclick="toggleRTL()" class="w-full py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 flex items-center justify-center gap-2 text-sm font-bold">
+          <i data-lucide="arrow-left-right" class="w-4 h-4"></i> Switch Layout (LTR / RTL)
+        </button>
+        <a href="login.html" class="btn-brick bg-blue-600 hover:bg-blue-700 text-white w-full py-3 rounded-2xl font-heading text-base flex items-center justify-center gap-2 transition">
+          <i data-lucide="log-in" class="w-5 h-5"></i>
+          <span>Parent Login</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Page Header -->
+  <section class="py-14 sm:py-20 bg-[#0B1120] text-slate-100 border-b border-slate-800/80 relative overflow-hidden">
+    <!-- Solid dark navy background with subtle stud pattern -->
+    <div class="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+      <div class="absolute inset-0 bg-gradient-to-b from-[#0B1120]/90 via-[#0B1120]/75 to-[#0B1120]/95"></div>
+      <div class="absolute inset-0 bg-studs opacity-40"></div>
+    </div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+      <div class="flex items-center justify-center gap-2 text-xs font-semibold text-slate-400 mb-3">
+        <a href="index.html" class="hover:text-white transition">Home</a>
+        <span>/</span>
+        <span class="text-blue-400 font-bold">Blog & Resources</span>
+      </div>
+      <h1 class="text-4xl sm:text-5xl font-heading font-extrabold text-white tracking-tight">
+        STEM Parenting & Robotics Insights
+      </h1>
+      <p class="mt-3 text-base text-slate-300 max-w-2xl mx-auto">
+        Practical articles, engineering concepts explained simply, and guides to help your child thrive in technology.
+      </p>
+    </div>
+  </section>
+
+  <!-- Blog Articles -->
+  <section class="py-16 bg-slate-50 dark:bg-slate-900" x-data="{
+    activeCategory: 'all',
+    page: 1,
+    pageSize: 3,
+    posts: [
+      {
+        id: 1,
+        title: 'Why Physical LEGO Building Beats Pure Screen Time for 7-Year-Olds',
+        category: 'parenting',
+        categoryLabel: 'Parenting Tips',
+        date: 'Oct 10, 2026',
+        author: 'Coach Sarah Miller',
+        readTime: '4 Min Read',
+        image: 'assets/blog-article-physical-lego-building.png',
+        snippet: 'Spatial reasoning, tactile feedback, and fine motor skills are dramatically strengthened when kids manipulate real 3D gears rather than flat glass screens.',
+        featured: true
+      },
+      {
+        id: 2,
+        title: 'From Block Coding to Python: Helping Kids Make the Leap Without Frustration',
+        category: 'coding',
+        categoryLabel: 'Coding Guides',
+        date: 'Oct 4, 2026',
+        author: 'Coach Alex Rivera',
+        readTime: '6 Min Read',
+        image: 'assets/blog-article-block-coding-to-python.png',
+        snippet: 'Transitioning from colorful Scratch blocks to raw syntax can be daunting. Here is the step-by-step bridge we use with MicroPython and Spike Prime hubs.',
+        featured: false
+      },
+      {
+        id: 3,
+        title: '5 Crucial Questions to Ask Before Entering the FIRST LEGO League (FLL)',
+        category: 'competitions',
+        categoryLabel: 'Competitions',
+        date: 'Sep 28, 2026',
+        author: 'Coach Marcus Vance',
+        readTime: '5 Min Read',
+        image: 'assets/blog-article-fll-crucial-questions.jpg',
+        snippet: 'How to know if your child is ready for competitive robotics, how team dynamics function, and what judges look for in the Innovation Project.',
+        featured: false
+      },
+      {
+        id: 4,
+        title: 'Gear Ratios Explained Simply: The Secret to High-Torque BattleBots',
+        category: 'robotics',
+        categoryLabel: 'Robotics 101',
+        date: 'Sep 21, 2026',
+        author: 'Coach Sarah Miller',
+        readTime: '5 Min Read',
+        image: 'assets/blog-article-gear-ratios-battlebots.png',
+        snippet: 'Learn how an 8-tooth driver gear paired with a 40-tooth follower gear creates a 5:1 reduction that crushes obstacles with pure mechanical advantage.',
+        featured: false
+      },
+      {
+        id: 5,
+        title: 'How to Build an At-Home STEM Maker Nook on a Reasonable Budget',
+        category: 'parenting',
+        categoryLabel: 'Parenting Tips',
+        date: 'Sep 15, 2026',
+        author: 'Priya Patel',
+        readTime: '4 Min Read',
+        image: 'assets/blog-article-home-stem-maker-nook.png',
+        snippet: 'You do not need a high-end lab at home. A simple tackle box for sorting technic pins, a magnetic mat, and a cardboard prototyping box go a very long way.',
+        featured: false
+      },
+      {
+        id: 6,
+        title: 'The Resilience Superpower: What Broken Robots Teach Kids About Life',
+        category: 'parenting',
+        categoryLabel: 'Parenting Tips',
+        date: 'Sep 08, 2026',
+        author: 'Coach Alex Rivera',
+        readTime: '4 Min Read',
+        image: 'assets/blog-article-resilience-superpower.png',
+        snippet: 'When a robot crashes or code errors, children naturally learn to reframe failure as diagnostic feedback rather than defeat.',
+        featured: false
+      }
+    ],
+    init() {
+      const category = new URLSearchParams(window.location.search).get('category');
+      if (['parenting', 'coding', 'competitions', 'robotics'].includes(category)) {
+        this.activeCategory = category;
+      }
+    },
+    get filteredPosts() {
+      return this.activeCategory === 'all'
+        ? this.posts
+        : this.posts.filter(post => post.category === this.activeCategory);
+    },
+    get pageCount() {
+      return Math.max(1, Math.ceil(this.filteredPosts.length / this.pageSize));
+    },
+    get visiblePosts() {
+      const start = (this.page - 1) * this.pageSize;
+      return this.filteredPosts.slice(start, start + this.pageSize);
+    },
+    goToPage(pageNumber) {
+      this.page = Math.min(this.pageCount, Math.max(1, pageNumber));
+    }
+  }">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Articles Grid -->
+      <div class="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <template x-for="post in visiblePosts" :key="post.id">
+          <article class="bg-white dark:bg-slate-800 rounded-3xl border border-slate-200 dark:border-slate-700 overflow-hidden shadow-md hover:shadow-2xl transition duration-300 flex flex-col group">
+            
+            <a :href="'blog-detail.html?article=' + post.id" class="relative aspect-[16/10] overflow-hidden bg-slate-900 block">
+              <img :src="post.image" :alt="post.title" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+              <span class="absolute top-4 left-4 bg-slate-900/80 backdrop-blur text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider" x-text="post.categoryLabel"></span>
+            </a>
+
+            <div class="p-6 flex-1 flex flex-col justify-between">
+              <div>
+                <div class="flex items-center gap-2 text-xs text-slate-400 font-semibold mb-2">
+                  <span x-text="post.date"></span>
+                  <span>&bull;</span>
+                  <span x-text="post.readTime"></span>
+                </div>
+                <h3 class="font-heading text-xl font-bold text-slate-900 dark:text-white mb-3 leading-tight group-hover:text-blue-600 transition">
+                  <a :href="'blog-detail.html?article=' + post.id" x-text="post.title"></a>
+                </h3>
+                <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-4" x-text="post.snippet"></p>
+              </div>
+
+              <div class="pt-4 border-t border-slate-100 dark:border-slate-700 flex items-center justify-between text-xs">
+                <span class="font-bold text-slate-700 dark:text-slate-300" x-text="'By ' + post.author"></span>
+                <a :href="'blog-detail.html?article=' + post.id" class="text-blue-600 dark:text-blue-400 font-bold hover:underline flex items-center gap-1">
+                  <span>Read Article</span> &rarr;
+                </a>
+              </div>
+            </div>
+
+          </article>
+        </template>
+      </div>
+
+      <!-- Pagination -->
+      <div x-show="pageCount > 1" class="mt-14 flex items-center justify-center gap-2" aria-label="Article pages">
+        <button @click="goToPage(page - 1)" :disabled="page === 1" aria-label="Previous page" class="p-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-600 hover:text-slate-800 disabled:opacity-40 disabled:cursor-not-allowed">
+          <i data-lucide="chevron-left" class="w-4 h-4"></i>
+        </button>
+        <template x-for="pageNumber in pageCount" :key="pageNumber">
+          <button @click="goToPage(pageNumber)" :aria-current="page === pageNumber ? 'page' : null" :class="page === pageNumber ? 'bg-blue-600 text-white' : 'border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-100'" class="px-3.5 py-2 rounded-xl font-bold text-xs" x-text="pageNumber"></button>
+        </template>
+        <button @click="goToPage(page + 1)" :disabled="page === pageCount" aria-label="Next page" class="p-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-600 hover:text-slate-800 disabled:opacity-40 disabled:cursor-not-allowed">
+          <i data-lucide="chevron-right" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Blog Topics -->
+  <section class="relative isolate overflow-hidden bg-[#f3f7fc] py-16 dark:bg-slate-950 sm:py-20">
+    <div aria-hidden="true" class="absolute -right-24 top-0 h-96 w-96 rounded-full bg-cyan-200/30 blur-3xl dark:bg-blue-500/10"></div>
+    <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-12">
+        <div class="relative isolate flex min-h-[330px] flex-col justify-between overflow-hidden rounded-[2rem] bg-slate-950 p-7 text-white shadow-xl shadow-slate-900/10 sm:col-span-2 lg:col-span-4 lg:row-span-2 lg:p-8">
+          <div aria-hidden="true" class="absolute -right-10 -top-10 -z-10 text-white/[0.06]"><i data-lucide="notebook-tabs" class="h-64 w-64"></i></div>
+          <div>
+            <span class="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.18em] text-blue-200"><i data-lucide="sparkles" class="h-3.5 w-3.5"></i> Explore the journal</span>
+            <h2 class="mt-8 max-w-sm font-heading text-3xl font-bold leading-tight sm:text-4xl">Ideas for Curious Families</h2>
+            <p class="mt-4 max-w-sm text-sm leading-6 text-slate-300">Small sparks for big ideasâ€”from the first cardboard prototype to a robot that follows its own code.</p>
+          </div>
+          <a href="blog.html" class="mt-8 inline-flex w-fit items-center gap-2 border-b border-blue-300/50 pb-1 text-sm font-bold text-blue-200 transition hover:gap-3 hover:text-white">Browse all stories <i data-lucide="arrow-up-right" class="h-4 w-4"></i></a>
+        </div>
+
+        <a href="blog.html?category=parenting" class="group relative flex min-h-[155px] flex-col justify-between overflow-hidden rounded-[1.75rem] border border-orange-200 bg-gradient-to-br from-orange-50 to-amber-100/80 p-6 transition duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-orange-900/10 dark:border-orange-300/15 dark:from-orange-400/10 dark:to-amber-300/5 lg:col-span-4">
+          <div class="flex items-start justify-between"><span class="font-tech text-xs font-bold tracking-[0.16em] text-orange-700 dark:text-orange-300">01 / MAKE</span><span class="flex h-11 w-11 items-center justify-center rounded-2xl bg-orange-500 text-white shadow-lg shadow-orange-500/20"><i data-lucide="house" class="h-5 w-5"></i></span></div>
+          <div class="mt-6 flex items-end justify-between gap-3"><div><h3 class="font-heading text-lg font-bold text-slate-950 dark:text-white">Building at Home</h3><p class="mt-1.5 max-w-xs text-xs leading-5 text-slate-600 dark:text-slate-300">Simple ways to turn everyday questions into builds.</p></div><i data-lucide="arrow-up-right" class="mb-1 h-5 w-5 shrink-0 text-orange-700 transition group-hover:-translate-y-1 group-hover:translate-x-1 dark:text-orange-300"></i></div>
+        </a>
+
+        <a href="blog.html?category=coding" class="group relative flex min-h-[155px] flex-col justify-between overflow-hidden rounded-[1.75rem] border border-blue-200 bg-gradient-to-br from-blue-50 to-sky-100/80 p-6 transition duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-900/10 dark:border-blue-300/15 dark:from-blue-400/10 dark:to-sky-300/5 lg:col-span-4">
+          <div class="flex items-start justify-between"><span class="font-tech text-xs font-bold tracking-[0.16em] text-blue-700 dark:text-blue-300">02 / CODE</span><span class="flex h-11 w-11 items-center justify-center rounded-2xl bg-blue-600 text-white shadow-lg shadow-blue-600/20"><i data-lucide="code-2" class="h-5 w-5"></i></span></div>
+          <div class="mt-6 flex items-end justify-between gap-3"><div><h3 class="font-heading text-lg font-bold text-slate-950 dark:text-white">Learning to Code</h3><p class="mt-1.5 max-w-xs text-xs leading-5 text-slate-600 dark:text-slate-300">Make programming ideas easier to explore together.</p></div><i data-lucide="arrow-up-right" class="mb-1 h-5 w-5 shrink-0 text-blue-700 transition group-hover:-translate-y-1 group-hover:translate-x-1 dark:text-blue-300"></i></div>
+        </a>
+
+        <a href="blog.html?category=robotics" class="group relative flex min-h-[155px] flex-col justify-between overflow-hidden rounded-[1.75rem] border border-emerald-200 bg-gradient-to-br from-emerald-50 to-teal-100/80 p-6 transition duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-emerald-900/10 dark:border-emerald-300/15 dark:from-emerald-400/10 dark:to-teal-300/5 lg:col-span-4">
+          <div class="flex items-start justify-between"><span class="font-tech text-xs font-bold tracking-[0.16em] text-emerald-700 dark:text-emerald-300">03 / EXPLORE</span><span class="flex h-11 w-11 items-center justify-center rounded-2xl bg-emerald-600 text-white shadow-lg shadow-emerald-600/20"><i data-lucide="bot" class="h-5 w-5"></i></span></div>
+          <div class="mt-6 flex items-end justify-between gap-3"><div><h3 class="font-heading text-lg font-bold text-slate-950 dark:text-white">Robotics at Every Age</h3><p class="mt-1.5 max-w-xs text-xs leading-5 text-slate-600 dark:text-slate-300">Find an activity suited to your child's stage.</p></div><i data-lucide="arrow-up-right" class="mb-1 h-5 w-5 shrink-0 text-emerald-700 transition group-hover:-translate-y-1 group-hover:translate-x-1 dark:text-emerald-300"></i></div>
+        </a>
+
+        <a href="blog.html?category=parenting" class="group relative flex min-h-[155px] flex-col justify-between overflow-hidden rounded-[1.75rem] border border-violet-200 bg-gradient-to-br from-violet-50 to-fuchsia-100/80 p-6 transition duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-violet-900/10 dark:border-violet-300/15 dark:from-violet-400/10 dark:to-fuchsia-300/5 lg:col-span-4">
+          <div class="flex items-start justify-between"><span class="font-tech text-xs font-bold tracking-[0.16em] text-violet-700 dark:text-violet-300">04 / GROW</span><span class="flex h-11 w-11 items-center justify-center rounded-2xl bg-violet-600 text-white shadow-lg shadow-violet-600/20"><i data-lucide="book-open-check" class="h-5 w-5"></i></span></div>
+          <div class="mt-6 flex items-end justify-between gap-3"><div><h3 class="font-heading text-lg font-bold text-slate-950 dark:text-white">Parent Guides</h3><p class="mt-1.5 max-w-xs text-xs leading-5 text-slate-600 dark:text-slate-300">Understand projects, classes, and STEM skills.</p></div><i data-lucide="arrow-up-right" class="mb-1 h-5 w-5 shrink-0 text-violet-700 transition group-hover:-translate-y-1 group-hover:translate-x-1 dark:text-violet-300"></i></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Try It At Home -->
+  <section class="relative isolate overflow-hidden bg-[#fff8e8] py-16 dark:bg-amber-950/20 sm:py-20">
+    <div aria-hidden="true" class="absolute -left-24 top-10 h-72 w-72 rounded-full bg-amber-200/50 blur-3xl dark:bg-amber-400/10"></div>
+    <div class="relative mx-auto grid max-w-7xl gap-6 px-4 sm:px-6 md:grid-cols-[1.05fr_.95fr] lg:px-8">
+      <div class="relative isolate flex flex-col justify-between overflow-hidden rounded-[2rem] bg-slate-950 p-7 text-white shadow-2xl shadow-amber-900/10 sm:p-9">
+        <div aria-hidden="true" class="absolute -right-8 -top-10 -z-10 text-white/[0.05]"><i data-lucide="hammer" class="h-64 w-64"></i></div>
+        <div>
+          <span class="inline-flex items-center gap-2 rounded-full border border-amber-300/20 bg-amber-300/10 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.18em] text-amber-200"><i data-lucide="timer" class="h-3.5 w-3.5"></i> A quick family challenge</span>
+          <h2 class="mt-7 max-w-lg font-heading text-3xl font-bold leading-tight sm:text-4xl">Build a Bridge That Holds a Toy</h2>
+          <p class="mt-3 max-w-lg text-sm leading-6 text-slate-300">Try three different shapes, test each one with the same toy, then talk about what made the strongest design.</p>
+        </div>
+        <div class="mt-8 grid gap-3 border-t border-white/10 pt-5 sm:grid-cols-3">
+          <div class="flex items-center gap-2 text-xs font-semibold text-slate-200"><span class="font-tech text-amber-300">01</span> Sketch three shapes</div>
+          <div class="flex items-center gap-2 text-xs font-semibold text-slate-200"><span class="font-tech text-amber-300">02</span> Test the same toy</div>
+          <div class="flex items-center gap-2 text-xs font-semibold text-slate-200"><span class="font-tech text-amber-300">03</span> Improve your design</div>
+        </div>
+        <a href="blog.html?category=parenting" class="mt-7 inline-flex w-fit items-center gap-2 rounded-xl bg-amber-300 px-5 py-3 text-sm font-bold text-slate-950 transition hover:-translate-y-0.5 hover:bg-amber-200">Read the family guide <i data-lucide="arrow-right" class="h-4 w-4"></i></a>
+      </div>
+
+      <div class="relative flex min-h-[300px] flex-col justify-between overflow-hidden rounded-[2rem] border border-amber-200 bg-white p-6 shadow-lg shadow-amber-900/5 dark:border-amber-300/15 dark:bg-slate-900 sm:min-h-[360px] sm:p-8">
+        <div class="flex items-start justify-between gap-4">
+          <div><p class="font-tech text-[10px] font-bold uppercase tracking-[0.2em] text-amber-700 dark:text-amber-300">The engineering notebook</p><h3 class="mt-1 font-heading text-xl font-bold text-slate-950 dark:text-white">One bridge. Three tries.</h3></div>
+          <span class="rounded-xl bg-amber-100 px-3 py-2 font-tech text-[10px] font-bold uppercase tracking-wider text-amber-800 dark:bg-amber-300/10 dark:text-amber-200">Build / test</span>
+        </div>
+        <div class="my-4 flex flex-1 items-center justify-center rounded-2xl bg-[#f7f9fc] p-4 dark:bg-slate-800/70">
+          <svg viewBox="0 0 520 230" role="img" aria-label="A toy car crossing a small bridge made from building beams" class="h-auto w-full max-w-[470px]">
+            <path d="M32 190H488" stroke="#CBD5E1" stroke-width="4" stroke-linecap="round" stroke-dasharray="8 10"/>
+            <path d="M78 163H442" stroke="#2563EB" stroke-width="18" stroke-linecap="round"/>
+            <path d="M112 160L186 72L260 160L334 72L408 160" fill="none" stroke="#F59E0B" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M112 163V190M408 163V190" stroke="#0F766E" stroke-width="16" stroke-linecap="round"/>
+            <path d="M230 130H321L344 151H218L230 130Z" fill="#F43F5E"/>
+            <path d="M250 111H298L318 130H239L250 111Z" fill="#FB7185"/>
+            <circle cx="246" cy="153" r="12" fill="#0F172A"/><circle cx="316" cy="153" r="12" fill="#0F172A"/>
+            <circle cx="246" cy="153" r="5" fill="#E2E8F0"/><circle cx="316" cy="153" r="5" fill="#E2E8F0"/>
+            <path d="M178 52L186 38L194 52M326 52L334 38L342 52" fill="none" stroke="#94A3B8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            <text x="260" y="218" text-anchor="middle" fill="#64748B" font-size="12" font-family="sans-serif" font-weight="700" letter-spacing="2">TEST • ADJUST • TRY AGAIN</text>
+          </svg>
+        </div>
+        <div class="flex items-center justify-between gap-3"><p class="text-xs leading-5 text-slate-500 dark:text-slate-400">Ask: where does the bridge bend first?</p><span class="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-emerald-700 dark:text-emerald-300"><i data-lucide="lightbulb" class="h-4 w-4"></i> Think like an engineer</span></div>
+      </div>
+    </div>
+  </section>
+  <!-- Reading Paths -->
+  <section class="relative isolate overflow-hidden bg-[#f3f7fc] py-16 dark:bg-slate-900 sm:py-20">
+    <div aria-hidden="true" class="absolute -right-20 bottom-0 h-80 w-80 rounded-full bg-indigo-200/30 blur-3xl dark:bg-indigo-500/10"></div>
+    <div class="relative mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 md:grid-cols-[.8fr_1.2fr] md:items-center lg:px-8">
+      <div class="md:pr-6">
+        <span class="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-white/80 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.18em] text-blue-700 shadow-sm dark:border-blue-400/20 dark:bg-blue-400/10 dark:text-blue-300"><i data-lucide="route" class="h-3.5 w-3.5"></i> Three ways in</span>
+        <h2 class="mt-5 max-w-md font-heading text-3xl font-bold leading-tight text-slate-950 dark:text-white sm:text-4xl">Choose a Reading Path</h2>
+        <p class="mt-4 max-w-sm text-sm leading-6 text-slate-600 dark:text-slate-300">Start with the question your family is asking. Follow a path to stories selected for that next step.</p>
+        <div class="mt-7 inline-flex items-center gap-2 rounded-xl bg-white px-3.5 py-2.5 text-xs font-semibold text-slate-600 shadow-sm dark:bg-slate-800 dark:text-slate-300"><i data-lucide="mouse-pointer-2" class="h-4 w-4 text-blue-600 dark:text-blue-400"></i> Pick a route to filter the journal</div>
+      </div>
+
+      <div class="relative space-y-3.5">
+        <div aria-hidden="true" class="absolute bottom-8 left-[1.35rem] top-8 w-px bg-gradient-to-b from-blue-300 via-emerald-300 to-amber-300 dark:from-blue-500/50 dark:via-emerald-500/50 dark:to-amber-500/50"></div>
+        <a href="blog.html?category=robotics" class="group relative flex items-center gap-4 rounded-2xl border border-blue-100 bg-white p-4 shadow-sm transition duration-300 hover:translate-x-1 hover:border-blue-300 hover:shadow-lg dark:border-slate-700 dark:bg-slate-800 dark:hover:border-blue-400/40 sm:gap-5 sm:p-5">
+          <span class="relative z-10 flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-blue-600 font-tech text-xs font-bold text-white shadow-lg shadow-blue-600/20">01</span>
+          <span class="flex min-w-0 flex-1 flex-col sm:flex-row sm:items-center sm:justify-between sm:gap-4"><span><span class="block text-[9px] font-bold uppercase tracking-[0.16em] text-blue-600 dark:text-blue-400">Find your bearings</span><span class="mt-1 block font-heading text-base font-bold text-slate-950 dark:text-white">New to robotics?</span><span class="mt-1 block text-xs leading-5 text-slate-600 dark:text-slate-300">Learn how hands-on building helps children experiment.</span></span><span class="mt-3 inline-flex items-center gap-1.5 text-xs font-bold text-blue-700 transition group-hover:gap-2.5 dark:text-blue-300 sm:mt-0">Start here <i data-lucide="arrow-right" class="h-4 w-4"></i></span></span>
+        </a>
+
+        <a href="blog.html?category=parenting" class="group relative flex items-center gap-4 rounded-2xl border border-emerald-100 bg-white p-4 shadow-sm transition duration-300 hover:translate-x-1 hover:border-emerald-300 hover:shadow-lg dark:border-slate-700 dark:bg-slate-800 dark:hover:border-emerald-400/40 sm:gap-5 sm:p-5">
+          <span class="relative z-10 flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-emerald-600 font-tech text-xs font-bold text-white shadow-lg shadow-emerald-600/20">02</span>
+          <span class="flex min-w-0 flex-1 flex-col sm:flex-row sm:items-center sm:justify-between sm:gap-4"><span><span class="block text-[9px] font-bold uppercase tracking-[0.16em] text-emerald-700 dark:text-emerald-300">Compare your options</span><span class="mt-1 block font-heading text-base font-bold text-slate-950 dark:text-white">Choosing a class?</span><span class="mt-1 block text-xs leading-5 text-slate-600 dark:text-slate-300">Explore age groups, coding tools, and project formats.</span></span><span class="mt-3 inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 transition group-hover:gap-2.5 dark:text-emerald-300 sm:mt-0">Explore guides <i data-lucide="arrow-right" class="h-4 w-4"></i></span></span>
+        </a>
+
+        <a href="blog.html?category=competitions" class="group relative flex items-center gap-4 rounded-2xl border border-amber-100 bg-white p-4 shadow-sm transition duration-300 hover:translate-x-1 hover:border-amber-300 hover:shadow-lg dark:border-slate-700 dark:bg-slate-800 dark:hover:border-amber-400/40 sm:gap-5 sm:p-5">
+          <span class="relative z-10 flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-amber-400 font-tech text-xs font-bold text-slate-950 shadow-lg shadow-amber-500/20">03</span>
+          <span class="flex min-w-0 flex-1 flex-col sm:flex-row sm:items-center sm:justify-between sm:gap-4"><span><span class="block text-[9px] font-bold uppercase tracking-[0.16em] text-amber-700 dark:text-amber-300">Take on a challenge</span><span class="mt-1 block font-heading text-base font-bold text-slate-950 dark:text-white">Already building?</span><span class="mt-1 block text-xs leading-5 text-slate-600 dark:text-slate-300">Find new challenges to keep a curious maker learning.</span></span><span class="mt-3 inline-flex items-center gap-1.5 text-xs font-bold text-amber-700 transition group-hover:gap-2.5 dark:text-amber-300 sm:mt-0">Go further <i data-lucide="arrow-right" class="h-4 w-4"></i></span></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog Newsletter -->
+  <section class="py-14 bg-blue-700 text-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4"><h2 class="text-3xl font-heading font-bold">Get New STEM Ideas by Email</h2><p class="text-sm text-blue-100">A short note with robotics activities and club news for parents.</p><form class="newsletter-form mx-auto flex max-w-lg flex-col sm:flex-row gap-2"><input type="email" required placeholder="Parent email address" class="min-w-0 flex-1 rounded-xl px-4 py-3 text-sm text-slate-900"><button type="submit" class="btn-brick btn-brick-yellow px-5 py-3 rounded-xl font-bold text-sm">Subscribe</button></form></div>
+  </section>
+
+    <!-- Footer -->
+  <footer class="bg-[#0B1120] text-slate-300 pt-16 pb-8 border-t border-slate-800/80 transition-colors">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-8 pb-12">
+        
+        <!-- Col 1: Brand & Socials -->
+        <div class="lg:col-span-3 space-y-4">
+          <a href="index.html" class="flex items-center gap-3 group flex-shrink-0">
+            <img src="assets/logo.png" alt="RoboBricks Logo" class="w-11 h-11 rounded-2xl object-contain shadow-lg shadow-blue-500/25 group-hover:scale-105 transition-transform duration-200 flex-shrink-0">
+            <div>
+              <span class="font-heading text-xl font-bold tracking-tight text-white flex items-center gap-1 leading-none">
+                Robo<span class="text-blue-400">Bricks</span>
+                <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+              </span>
+              <span class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mt-1 leading-none">Kids Robotics & LEGO Club</span>
+            </div>
+          </a>
+          
+          <p class="text-xs sm:text-sm text-slate-400 leading-relaxed max-w-sm">
+            Helping young minds build confidence through creative LEGO engineering, coding, and hands-on robotics.
+          </p>
+
+          <div class="flex items-center gap-2.5 pt-2">
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="w-9 h-9 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-slate-700 hover:bg-slate-800 transition">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd"/>
+              </svg>
+            </a>
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="w-9 h-9 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-slate-700 hover:bg-slate-800 transition">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd"/>
+              </svg>
+            </a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="w-9 h-9 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-slate-700 hover:bg-slate-800 transition">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+              </svg>
+            </a>
+            <a href="https://x.com" target="_blank" rel="noopener noreferrer" aria-label="X / Twitter" class="w-9 h-9 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-slate-700 hover:bg-slate-800 transition">
+              <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Col 2: Navigation -->
+        <div class="lg:col-span-2 space-y-3">
+          <h4 class="font-bold text-xs uppercase tracking-widest text-white mb-4">NAVIGATION</h4>
+          <ul class="space-y-2 text-xs sm:text-sm text-slate-400">
+            <li><a href="index.html" class="hover:text-blue-400 transition">Home</a></li>
+            <li><a href="about.html" class="hover:text-blue-400 transition">About Us</a></li>
+            <li><a href="programs.html" class="hover:text-blue-400 transition">Programs</a></li>
+            <li><a href="instructors.html" class="hover:text-blue-400 transition">Instructors</a></li>
+            <li><a href="pricing.html" class="hover:text-blue-400 transition">Pricing Tiers</a></li>
+            <li><a href="gallery.html" class="hover:text-blue-400 transition">Gallery & Builds</a></li>
+            <li><a href="blog.html" class="hover:text-blue-400 transition">Blog & Journal</a></li>
+            <li><a href="contact.html" class="hover:text-blue-400 transition">Contact Club</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Club Standards -->
+        <div class="lg:col-span-4 space-y-3">
+          <h4 class="font-bold text-xs uppercase tracking-widest text-white mb-4">CAMP STANDARDS</h4>
+          <div class="grid grid-cols-2 gap-x-4 gap-y-3 text-xs sm:text-sm">
+            <div class="font-bold text-white">1:6 Coach Ratio</div>
+            <div class="text-slate-400">Certified STEM Mentors</div>
+
+            <div class="font-bold text-white">Daily Build Time</div>
+            <div class="text-slate-400">Live Hands-On Practice</div>
+
+            <div class="font-bold text-white">FLL League Prep</div>
+            <div class="text-slate-400">Gala Showcase Challenges</div>
+
+            <div class="font-bold text-white">Ages 5â€“16</div>
+            <div class="text-slate-400">Junior, Teen & Exec Tracks</div>
+
+            <div class="font-bold text-white">5 Regional Hubs</div>
+            <div class="text-slate-400">Robotics & Coding Campuses</div>
+          </div>
+        </div>
+
+        <!-- Col 4: Admissions & Contact -->
+        <div class="lg:col-span-3 space-y-3">
+          <h4 class="font-bold text-xs uppercase tracking-widest text-white mb-4">CAMP ADMISSIONS</h4>
+          <div class="space-y-2.5 text-xs sm:text-sm text-slate-400">
+            <div class="flex items-center gap-2.5">
+              <i data-lucide="mail" class="w-4 h-4 text-blue-400 flex-shrink-0"></i>
+              <a href="mailto:admissions@robobricks.club" class="hover:text-white transition">admissions@robobricks.club</a>
+            </div>
+            <div class="flex items-center gap-2.5">
+              <i data-lucide="phone" class="w-4 h-4 text-blue-400 flex-shrink-0"></i>
+              <a href="tel:+18005557626" class="hover:text-white transition">+1 (800) 555-ROBO</a>
+            </div>
+            <div class="flex items-start gap-2.5">
+              <i data-lucide="map-pin" class="w-4 h-4 text-blue-400 flex-shrink-0 mt-0.5"></i>
+              <span>100 Innovation Way, Suite 400, Austin, TX 78701</span>
+            </div>
+          </div>
+
+          <div class="pt-2">
+            <button onclick="openEnrollModal('Connect Admissions Team')" class="w-full py-3 px-6 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold text-sm shadow-lg shadow-blue-600/30 transition-all hover:scale-[1.02] flex items-center justify-center gap-2">
+              <span>Connect Admissions Team</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Copyright Bar -->
+      <div class="mt-8 pt-8 border-t border-slate-800/80 text-center text-xs text-slate-500">
+        <p>&copy; 2026 RoboBricks Youth Robotics Academy Ltd. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Universal Enrollment Modal -->
+  <div id="enroll-modal" class="fixed inset-0 z-50 bg-slate-900/70 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-white dark:bg-slate-800 rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-slate-100 dark:border-slate-700 relative max-h-[92vh] overflow-y-auto">
+      <button onclick="closeEnrollModal()" class="absolute top-5 right-5 p-2 rounded-xl bg-slate-100 dark:bg-slate-700 text-slate-500">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+      <h3 id="enroll-modal-program-name" class="font-heading text-xl font-bold text-slate-900 dark:text-white mb-4">Book a Free Trial Session</h3>
+      <form id="enroll-form" class="space-y-4">
+        <input type="text" required placeholder="Child's Name" class="w-full text-sm px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900">
+        <input type="email" required placeholder="Parent Email" class="w-full text-sm px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900">
+        <input type="tel" required placeholder="Phone Number" class="w-full text-sm px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900">
+        <button type="submit" class="btn-brick btn-brick-yellow w-full py-3 rounded-2xl font-heading text-base font-bold">
+          Confirm Free Spot
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <div id="toast-container"></div>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

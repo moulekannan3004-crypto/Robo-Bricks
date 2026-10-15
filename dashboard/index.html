@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Parent Portal - Dashboard Overview | RoboBricks</title>
+  <meta name="description" content="Track your child's robotics progress, upcoming sessions, and unlocked STEM badges.">
+  
+  <link rel="icon" type="image/png" href="../assets/logo.png">
+
+  <!-- TailwindCSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: { 50: '#eff6ff', 100: '#dbeafe', 500: '#3b82f6', 600: '#2563eb', 700: '#1d4ed8' },
+            brick: { yellow: '#FBBF24', red: '#EF4444', blue: '#2563EB', green: '#10B981', purple: '#8B5CF6' }
+          },
+          fontFamily: {
+            heading: ['Fredoka', 'cursive', 'sans-serif'],
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            tech: ['"Space Grotesk"', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons & Alpine.js -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <link rel="stylesheet" href="../assets/css/custom.css">
+</head>
+<body class="bg-slate-100 dark:bg-slate-950 text-slate-800 dark:text-slate-100 min-h-screen flex font-sans transition-colors duration-200" x-data="{ sidebarOpen: false }">
+
+  <!-- Sidebar Overlay for Mobile -->
+  <div x-show="sidebarOpen" @click="sidebarOpen = false" class="fixed inset-0 z-40 bg-slate-900/60 backdrop-blur-sm lg:hidden" x-transition.opacity></div>
+
+  <!-- Dashboard Sidebar -->
+  <aside :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'" class="fixed lg:sticky top-0 left-0 z-50 h-screen w-72 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 flex flex-col justify-between transition-transform duration-300 shadow-xl lg:shadow-none">
+    
+    <div>
+      <!-- Brand Logo in Dashboard -->
+      <div class="p-6 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between">
+        <a href="../index.html" class="flex items-center gap-3 group flex-shrink-0">
+          <img src="../assets/logo.png" alt="RoboBricks Logo" class="w-11 h-11 rounded-2xl object-contain shadow-lg shadow-blue-500/25 group-hover:scale-105 transition-transform duration-200 flex-shrink-0">
+          <div>
+            <span class="font-heading text-xl font-bold tracking-tight text-slate-900 dark:text-white flex items-center gap-1 leading-none">
+              Robo<span class="text-blue-600 dark:text-blue-400">Portal</span>
+              <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+            </span>
+            <span class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mt-1 leading-none">Parent & Coach Hub</span>
+          </div>
+        </a>
+        <button @click="sidebarOpen = false" class="lg:hidden p-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-500">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <!-- Child Profile Quick Switcher -->
+      <div class="p-4 mx-4 mt-4 rounded-2xl bg-blue-50/80 dark:bg-slate-800 border border-blue-100 dark:border-slate-700 space-y-2">
+        <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400 block">Active Student Profile</span>
+        <div class="flex items-center gap-2">
+          <button onclick="switchChild('leo')" data-child="leo" class="child-tab-btn flex-1 py-1.5 px-3 rounded-xl text-xs font-bold border border-blue-600 bg-blue-50 text-blue-700 dark:bg-blue-900/40 dark:text-blue-300 transition flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-blue-600"></span> Leo (Age 8)
+          </button>
+          <button onclick="switchChild('maya')" data-child="maya" class="child-tab-btn flex-1 py-1.5 px-3 rounded-xl text-xs font-bold border border-transparent text-slate-500 hover:text-slate-900 transition flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-purple-500"></span> Maya (12)
+          </button>
+        </div>
+      </div>
+
+      <!-- Navigation Links -->
+      <nav class="p-4 space-y-1 font-semibold text-sm">
+        <a href="index.html" class="flex items-center gap-3 px-4 py-3 rounded-2xl bg-blue-600 text-white shadow-md shadow-blue-500/25">
+          <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
+          <span>Overview</span>
+        </a>
+        <a href="sessions.html" class="flex items-center gap-3 px-4 py-3 rounded-2xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <i data-lucide="calendar" class="w-5 h-5 text-slate-400"></i>
+          <span>Sessions & Booking</span>
+        </a>
+        <a href="progress.html" class="flex items-center gap-3 px-4 py-3 rounded-2xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <i data-lucide="award" class="w-5 h-5 text-slate-400"></i>
+          <span>Progress & Badges</span>
+        </a>
+        <a href="settings.html" class="flex items-center gap-3 px-4 py-3 rounded-2xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <i data-lucide="settings" class="w-5 h-5 text-slate-400"></i>
+          <span>Account & Invoices</span>
+        </a>
+      </nav>
+    </div>
+
+    <!-- Bottom Sidebar Utilities -->
+    <div class="p-4 border-t border-slate-100 dark:border-slate-800 space-y-3">
+      <div class="flex items-center justify-between text-xs">
+        <button onclick="toggleTheme()" class="flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-slate-100 dark:bg-slate-800 font-bold">
+          <i data-lucide="moon" class="w-3.5 h-3.5 theme-moon-icon"></i>
+          <i data-lucide="sun" class="w-3.5 h-3.5 text-amber-500 theme-sun-icon hidden"></i>
+          <span>Mode</span>
+        </button>
+        <button onclick="toggleRTL()" class="flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-slate-100 dark:bg-slate-800 font-bold">
+          <i data-lucide="arrow-left-right" class="w-3.5 h-3.5 text-blue-500"></i>
+          <span class="dir-badge-text">RTL</span>
+        </button>
+      </div>
+
+      <button onclick="window.location.href='../index.html'" class="flex items-center justify-center gap-2 py-2.5 rounded-xl border border-red-200 dark:border-red-800 text-xs font-bold text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 transition">
+        <i data-lucide="log-out" class="w-4 h-4"></i> Logout
+      </button>
+    </div>
+
+  </aside>
+
+  <!-- Main Content Area -->
+  <div class="flex-1 flex flex-col min-w-0">
+    
+    <!-- Top Dashboard Header Bar -->
+    <header class="bg-white dark:bg-slate-900 border-b border-slate-200/80 dark:border-slate-800 py-4 px-6 sm:px-8 flex items-center justify-between sticky top-0 z-30 shadow-xs">
+      <div class="flex items-center gap-4">
+        <button @click="sidebarOpen = true" class="lg:hidden p-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200">
+          <i data-lucide="menu" class="w-5 h-5"></i>
+        </button>
+        <div>
+          <h1 class="text-xl sm:text-2xl font-heading font-bold text-slate-900 dark:text-white">
+            Hello, Sarah! 👋
+          </h1>
+          <p class="text-xs text-slate-500">Viewing active student: <strong class="active-child-name text-blue-600 dark:text-blue-400">Leo Chen</strong> &bull; <span class="active-child-level">RoboExplorers (Level 2)</span></p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <button onclick="openBookingModal()" class="btn-brick btn-brick-yellow px-4 py-2 rounded-xl text-xs sm:text-sm font-heading font-bold shadow hidden sm:flex">
+          <i data-lucide="calendar-plus" class="w-4 h-4"></i> Book Session
+        </button>
+        <button onclick="showToast('🔔 All session reminders are up to date!', 'info')" class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-600 hover:bg-slate-100 transition relative" title="Notifications">
+          <i data-lucide="bell" class="w-4 h-4"></i>
+          <span class="absolute top-1 right-1 w-2 h-2 rounded-full bg-rose-500"></span>
+        </button>
+        <img src="../assets/user-sarah-chen.jpg" alt="Sarah Chen" class="w-10 h-10 rounded-2xl border-2 border-blue-500 object-cover shadow-sm">
+      </div>
+    </header>
+
+    <!-- Main Dashboard View Container -->
+    <main class="p-6 sm:p-8 space-y-8 max-w-7xl w-full mx-auto flex-1 overflow-y-auto">
+      
+      <!-- Top 4 Analytics Metric Cards -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        
+        <!-- Metric 1: XP Progress -->
+        <div class="bg-white dark:bg-slate-900 rounded-3xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Inventor XP Rank</span>
+            <div class="w-8 h-8 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center font-bold text-xs">
+              XP
+            </div>
+          </div>
+          <div>
+            <div class="font-heading text-2xl font-bold active-child-xp text-slate-900 dark:text-white">2,450 / 3,000 XP</div>
+            <span class="text-xs text-amber-500 font-semibold">550 XP to 'Master Builder'</span>
+          </div>
+          <div class="w-full bg-slate-100 dark:bg-slate-800 rounded-full h-2 overflow-hidden">
+            <div id="active-child-xp-bar" class="bg-amber-400 h-2 rounded-full transition-all duration-500" style="width: 82%;"></div>
+          </div>
+        </div>
+
+        <!-- Metric 2: Sessions Completed -->
+        <div class="bg-white dark:bg-slate-900 rounded-3xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Term Classes</span>
+            <div class="w-8 h-8 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center">
+              <i data-lucide="calendar" class="w-4 h-4"></i>
+            </div>
+          </div>
+          <div>
+            <div class="font-heading text-2xl font-bold active-child-sessions text-slate-900 dark:text-white">14/18</div>
+            <span class="text-xs text-emerald-500 font-semibold">4 Sessions Remaining</span>
+          </div>
+          <div class="w-full bg-slate-100 dark:bg-slate-800 rounded-full h-2 overflow-hidden">
+            <div class="bg-blue-600 h-2 rounded-full" style="width: 77%;"></div>
+          </div>
+        </div>
+
+        <!-- Metric 3: Badges Unlocked -->
+        <div class="bg-white dark:bg-slate-900 rounded-3xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Skill Badges</span>
+            <div class="w-8 h-8 rounded-xl bg-purple-100 text-purple-600 flex items-center justify-center">
+              <i data-lucide="award" class="w-4 h-4"></i>
+            </div>
+          </div>
+          <div>
+            <div class="font-heading text-2xl font-bold active-child-badges text-slate-900 dark:text-white">7 Unlocked</div>
+            <span class="text-xs text-purple-600 font-semibold">+2 earned this term</span>
+          </div>
+          <div class="w-full bg-slate-100 dark:bg-slate-800 rounded-full h-2 overflow-hidden">
+            <div class="bg-purple-600 h-2 rounded-full" style="width: 65%;"></div>
+          </div>
+        </div>
+
+        <!-- Metric 4: Attendance Rate -->
+        <div class="bg-white dark:bg-slate-900 rounded-3xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Lab Attendance</span>
+            <div class="w-8 h-8 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center">
+              <i data-lucide="check-circle" class="w-4 h-4"></i>
+            </div>
+          </div>
+          <div>
+            <div class="font-heading text-2xl font-bold text-slate-900 dark:text-white">96%</div>
+            <span class="text-xs text-slate-400">No unexcused absences</span>
+          </div>
+          <div class="w-full bg-slate-100 dark:bg-slate-800 rounded-full h-2 overflow-hidden">
+            <div class="bg-emerald-500 h-2 rounded-full" style="width: 96%;"></div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Main Middle Row: Upcoming Class Card & Active Capstone Project -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        
+        <!-- Upcoming Class Focus Card (7 cols) -->
+        <div class="lg:col-span-7 bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-sm space-y-6">
+          <div class="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-slate-800">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">Next Live Session</span>
+              <h2 class="text-2xl font-heading font-bold text-slate-900 dark:text-white">Saturday, Oct 17 &bull; 10:00 AM</h2>
+            </div>
+            <span class="px-3 py-1 rounded-full bg-emerald-100 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-400 text-xs font-bold">
+              Confirmed Slot
+            </span>
+          </div>
+
+          <!-- Session Detail Box -->
+          <div class="flex flex-col sm:flex-row gap-5 items-start sm:items-center p-4 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-700">
+            <div class="w-16 h-16 rounded-2xl bg-amber-400 text-amber-950 flex items-center justify-center flex-shrink-0 shadow">
+              <i data-lucide="cpu" class="w-8 h-8"></i>
+            </div>
+            <div class="space-y-1 flex-1">
+              <span class="text-xs font-bold text-amber-600 dark:text-amber-400 uppercase">Module 5 Challenge</span>
+              <h4 class="font-heading font-bold text-lg text-slate-900 dark:text-white leading-tight">
+                Autonomous Mars Obstacle Rover (Part 2)
+              </h4>
+              <p class="text-xs text-slate-500 dark:text-slate-400">
+                Calibrating ultrasonic ping sensor thresholds and building 4-wheel independent suspension.
+              </p>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 text-xs">
+            <div>
+              <span class="text-slate-400 block font-semibold">Location</span>
+              <span class="font-bold text-slate-800 dark:text-slate-200">Lab Station #4</span>
+            </div>
+            <div>
+              <span class="text-slate-400 block font-semibold">Coach</span>
+              <span class="font-bold text-slate-800 dark:text-slate-200">Coach Sarah Miller</span>
+            </div>
+            <div>
+              <span class="text-slate-400 block font-semibold">Hardware Kit</span>
+              <span class="font-bold text-slate-800 dark:text-slate-200">Spike Prime #L-09</span>
+            </div>
+          </div>
+
+          <div class="pt-2 flex flex-wrap gap-3">
+            <button onclick="downloadTextFile('mars-rover-build-notes.txt', 'RoboBricks Mars Rover Build Notes\n\nToday: calibrate the ultrasonic sensor, test obstacle distances, and inspect each drive motor before changing the chassis.', 'Build notes downloaded.')" class="btn-brick btn-brick-blue px-4 py-2.5 rounded-xl text-xs font-bold">
+              <i data-lucide="download" class="w-4 h-4"></i> Download Session Prep Sheet
+            </button>
+            <button onclick="openBookingModal('Saturday, Oct 17 - 10:00 AM')" class="px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 text-xs font-bold text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+              Reschedule Slot
+            </button>
+          </div>
+        </div>
+
+        <!-- Active Capstone Project Tracker (5 cols) -->
+        <div class="lg:col-span-5 bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-sm space-y-6">
+          <div class="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-slate-800">
+            <h3 class="font-heading font-bold text-lg text-slate-900 dark:text-white">Active Capstone Build</h3>
+            <span id="active-child-project-pct" class="text-sm font-tech font-bold text-blue-600 dark:text-blue-400">75% Complete</span>
+          </div>
+
+          <div class="relative aspect-video rounded-2xl overflow-hidden bg-slate-900">
+            <div role="img" aria-label="Autonomous rover engineering project" class="w-full h-full min-h-48 bg-gradient-to-br from-slate-950 via-blue-950 to-slate-900 flex flex-col items-center justify-center gap-3 relative overflow-hidden">
+              <div class="absolute inset-0 bg-grid-tech opacity-50"></div>
+              <i data-lucide="bot" class="relative z-10 w-20 h-20 text-blue-300"></i>
+              <span class="relative z-10 rounded-full bg-slate-950/70 px-3 py-1 text-xs font-bold text-blue-100">MARS ROVER · BUILD 02</span>
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+            <div class="absolute bottom-3 left-3 text-white">
+              <span class="text-[10px] font-bold text-amber-400 uppercase tracking-wider block">Spike Prime Model</span>
+              <h4 class="active-child-project font-heading font-bold text-base leading-tight">Mars Planetary Rover v2</h4>
+            </div>
+          </div>
+
+          <!-- Milestones Mini-List -->
+          <div class="space-y-2.5 text-xs">
+            <div class="flex items-center justify-between text-slate-600 dark:text-slate-300">
+              <span class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-500"></i> Structural Chassis Build</span>
+              <span class="font-bold text-emerald-500">Done</span>
+            </div>
+            <div class="flex items-center justify-between text-slate-600 dark:text-slate-300">
+              <span class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-500"></i> Ultrasonic Eye Integration</span>
+              <span class="font-bold text-emerald-500">Done</span>
+            </div>
+            <div class="flex items-center justify-between text-slate-600 dark:text-slate-300">
+              <span class="flex items-center gap-1.5"><i data-lucide="loader" class="w-3.5 h-3.5 text-blue-500 animate-spin"></i> Autonomous Path Coding</span>
+              <span class="font-bold text-blue-500">In Progress</span>
+            </div>
+          </div>
+
+          <div class="w-full bg-slate-100 dark:bg-slate-800 rounded-full h-2.5 overflow-hidden">
+            <div id="active-child-project-bar" class="bg-blue-600 h-2.5 rounded-full transition-all duration-500" style="width: 75%;"></div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Bottom Row: Recent Skill Badges & Coach Feedback Log -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        
+        <!-- Badges Earned (7 cols) -->
+        <div class="lg:col-span-7 bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-sm space-y-6">
+          <div class="flex items-center justify-between">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-purple-600 dark:text-purple-400">Accomplishments</span>
+              <h3 class="text-2xl font-heading font-bold text-slate-900 dark:text-white mt-1">Recent Skill Badges</h3>
+            </div>
+            <a href="progress.html" class="text-xs font-bold text-blue-600 dark:text-blue-400 hover:underline">View All Badges &rarr;</a>
+          </div>
+
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+            
+            <!-- Badge 1 -->
+            <button onclick="openBadgeModal('Sensor Wizard', 'Demonstrated mastery connecting ultrasonic distance sensors and writing obstacle avoidance logic loops.', 300, 'Oct 04, 2026', 'zap')" class="p-4 rounded-2xl bg-amber-50/70 dark:bg-slate-800 border-2 border-amber-300 dark:border-amber-700/60 text-center hover:scale-105 transition group">
+              <div class="w-12 h-12 rounded-2xl bg-amber-400 text-slate-950 flex items-center justify-center font-bold text-xl mx-auto mb-2 shadow">
+                ⚡
+              </div>
+              <span class="text-xs font-heading font-bold text-slate-900 dark:text-white block leading-tight">Sensor Wizard</span>
+              <span class="text-[10px] text-amber-600 dark:text-amber-400 font-semibold">+300 XP</span>
+            </button>
+
+            <!-- Badge 2 -->
+            <button onclick="openBadgeModal('Gear Master', 'Calculated 5:1 gear torque ratios and engineered a high-torque hill climbing mechanism.', 250, 'Sep 27, 2026', 'cog')" class="p-4 rounded-2xl bg-blue-50/70 dark:bg-slate-800 border-2 border-blue-300 dark:border-blue-700/60 text-center hover:scale-105 transition group">
+              <div class="w-12 h-12 rounded-2xl bg-blue-600 text-white flex items-center justify-center font-bold text-xl mx-auto mb-2 shadow">
+                ⚙️
+              </div>
+              <span class="text-xs font-heading font-bold text-slate-900 dark:text-white block leading-tight">Gear Master</span>
+              <span class="text-[10px] text-blue-600 dark:text-blue-400 font-semibold">+250 XP</span>
+            </button>
+
+            <!-- Badge 3 -->
+            <button onclick="openBadgeModal('Sumo Victor', 'Won 3 consecutive robot sumo ring bouts during Friday Night Arena tournaments.', 400, 'Sep 20, 2026', 'swords')" class="p-4 rounded-2xl bg-rose-50/70 dark:bg-slate-800 border-2 border-rose-300 dark:border-rose-700/60 text-center hover:scale-105 transition group">
+              <div class="w-12 h-12 rounded-2xl bg-rose-500 text-white flex items-center justify-center font-bold text-xl mx-auto mb-2 shadow">
+                ⚔️
+              </div>
+              <span class="text-xs font-heading font-bold text-slate-900 dark:text-white block leading-tight">Sumo Victor</span>
+              <span class="text-[10px] text-rose-500 font-semibold">+400 XP</span>
+            </button>
+
+            <!-- Badge 4 -->
+            <button onclick="openBadgeModal('Loop Commander', 'Wrote nested conditional logic with zero infinite loops in Scratch 3.0.', 200, 'Sep 13, 2026', 'repeat')" class="p-4 rounded-2xl bg-emerald-50/70 dark:bg-slate-800 border-2 border-emerald-300 dark:border-emerald-700/60 text-center hover:scale-105 transition group">
+              <div class="w-12 h-12 rounded-2xl bg-emerald-600 text-white flex items-center justify-center font-bold text-xl mx-auto mb-2 shadow">
+                🔁
+              </div>
+              <span class="text-xs font-heading font-bold text-slate-900 dark:text-white block leading-tight">Loop Cmdr</span>
+              <span class="text-[10px] text-emerald-600 font-semibold">+200 XP</span>
+            </button>
+
+          </div>
+        </div>
+
+        <!-- Instructor Feedback Note (5 cols) -->
+        <div class="lg:col-span-5 bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
+          <div class="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800">
+            <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Coach Feedback</span>
+            <div class="flex text-amber-400">
+              <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-3">
+              <div role="img" aria-label="Coach Sarah Miller" class="w-12 h-12 rounded-2xl border-2 border-blue-500 bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-200 grid place-items-center text-sm font-extrabold">SM</div>
+            <div>
+              <h4 class="font-heading font-bold text-sm text-slate-900 dark:text-white">Coach Sarah Miller</h4>
+              <span class="text-xs text-slate-400">Session #14 &bull; Oct 11, 2026</span>
+            </div>
+          </div>
+
+          <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 italic leading-relaxed">
+            "Leo showed outstanding patience this week! When his rover kept turning left instead of right, he methodically checked each motor port cable rather than tearing down the build. Super proud of his engineering mindset!"
+          </p>
+
+          <button onclick="openEmailDraft('admissions@robobricks.club', 'Message for Coach Sarah', 'Hello Coach Sarah,\n\n')" class="w-full py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 text-xs font-bold text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition flex items-center justify-center gap-2">
+            <i data-lucide="message-square" class="w-4 h-4 text-blue-500"></i> Email Coach Sarah
+          </button>
+        </div>
+
+      </div>
+
+    </main>
+
+  </div>
+
+  <!-- Badge Details Modal -->
+  <div id="badge-modal" class="fixed inset-0 z-50 bg-slate-900/70 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-white dark:bg-slate-800 rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl border border-slate-100 dark:border-slate-700 relative text-center space-y-4">
+      <button onclick="closeBadgeModal()" class="absolute top-5 right-5 p-2 rounded-xl bg-slate-100 dark:bg-slate-700 text-slate-500">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <div class="w-20 h-20 rounded-3xl bg-amber-400 text-slate-950 flex items-center justify-center font-bold text-3xl mx-auto shadow-xl border-4 border-white dark:border-slate-700">
+        <i id="badge-modal-icon" data-lucide="award" class="w-10 h-10"></i>
+      </div>
+
+      <div>
+        <h3 id="badge-modal-title" class="font-heading text-2xl font-bold text-slate-900 dark:text-white">Badge Title</h3>
+        <span id="badge-modal-xp" class="text-xs font-bold text-amber-500 uppercase tracking-wider block mt-1">+300 XP Gained</span>
+      </div>
+
+      <p id="badge-modal-desc" class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed"></p>
+
+      <div class="pt-2 text-[11px] text-slate-400 font-semibold" id="badge-modal-date"></div>
+
+      <div class="pt-3 flex gap-2">
+        <button onclick="printClubCertificate(); closeBadgeModal();" class="btn-brick btn-brick-blue flex-1 py-3 rounded-xl text-xs font-bold">
+          Print Certificate
+        </button>
+        <button onclick="closeBadgeModal()" class="px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 text-xs font-bold">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Booking Modal -->
+  <div id="booking-modal" class="fixed inset-0 z-50 bg-slate-900/70 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-white dark:bg-slate-800 rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl border border-slate-100 dark:border-slate-700 relative space-y-4">
+      <button onclick="closeBookingModal()" class="absolute top-5 right-5 p-2 rounded-xl bg-slate-100 dark:bg-slate-700 text-slate-500">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <div class="flex items-center gap-3">
+        <div class="w-12 h-12 rounded-2xl bg-blue-600 text-white flex items-center justify-center font-bold shadow">
+          <i data-lucide="calendar" class="w-6 h-6"></i>
+        </div>
+        <div>
+          <span class="text-xs font-bold text-blue-600 uppercase tracking-wider block">Cohort Booking</span>
+          <h3 class="font-heading text-xl font-bold text-slate-900 dark:text-white">Book Upcoming Session</h3>
+        </div>
+      </div>
+
+      <form id="session-booking-form" class="space-y-4 pt-2">
+        <div>
+          <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Select Child</label>
+          <select name="student" required class="w-full text-xs sm:text-sm px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900">
+            <option value="leo">Leo Chen (RoboExplorers Level 2)</option>
+            <option value="maya">Maya Chen (Future Engineers Level 4)</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Session Date & Time</label>
+          <input type="text" id="booking-slot-date" name="slot" required value="Saturday, Oct 17 - 10:00 AM" class="w-full text-xs sm:text-sm px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900">
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Session Topic Focus</label>
+          <select name="topic" required class="w-full text-xs sm:text-sm px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900">
+            <option value="obstacle">Autonomous Obstacle Avoiding Rover (Spike Prime)</option>
+            <option value="battlebot">Friday Night BattleBot Tournament Prep</option>
+            <option value="makeup">Missed Class Makeup - Gear Ratios</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn-brick btn-brick-yellow w-full py-3.5 rounded-2xl font-heading text-sm font-bold shadow-lg">
+          Confirm Class Booking
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <div id="toast-container"></div>
+  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/dashboard.js"></script>
+</body>
+</html>

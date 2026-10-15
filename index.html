@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RoboBricks - Kids Robotics & LEGO® Building Club | Playful STEM Learning</title>
+  <meta name="description" content="Engaging hands-on robotics, coding, and LEGO building workshops for kids aged 5-16. Inspire future engineers with Scratch, Python, Spike Prime, and fun competitions.">
+  <meta name="keywords" content="kids robotics, lego club, stem for kids, lego spike prime, coding for children, first lego league">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/logo.png">
+
+  <!-- TailwindCSS CDN with Custom Config -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#eff6ff',
+              100: '#dbeafe',
+              200: '#bfdbfe',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8',
+              800: '#1e40af',
+              900: '#1e3a8a',
+            },
+            brick: {
+              yellow: '#FBBF24',
+              'yellow-dark': '#D97706',
+              red: '#EF4444',
+              'red-dark': '#B91C1C',
+              blue: '#2563EB',
+              'blue-dark': '#1D4ED8',
+              green: '#10B981',
+              'green-dark': '#047857',
+              purple: '#8B5CF6',
+              orange: '#F97316'
+            }
+          },
+          fontFamily: {
+            heading: ['Fredoka', 'cursive', 'sans-serif'],
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            tech: ['"Space Grotesk"', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Alpine.js CDN for reactive elements -->
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="assets/css/custom.css">
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 min-h-screen flex flex-col font-sans transition-colors duration-200">
+
+        <!-- Main Navigation Bar -->
+  <header class="sticky top-0 z-40 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 shadow-sm transition-colors">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20 gap-2 xl:gap-4">
+        
+        <!-- Logo -->
+        <a href="index.html" class="flex items-center gap-3 group flex-shrink-0">
+          <img src="assets/logo.png" alt="RoboBricks Logo" class="w-11 h-11 rounded-2xl object-contain shadow-lg shadow-blue-500/25 group-hover:scale-105 transition-transform duration-200 flex-shrink-0">
+          <div>
+            <span class="font-heading text-xl font-bold tracking-tight text-slate-900 dark:text-white flex items-center gap-1 leading-none">
+              Robo<span class="text-blue-600 dark:text-blue-400">Bricks</span>
+              <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+            </span>
+            <span class="block text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mt-1 leading-none">Kids Robotics & LEGO Club</span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="hidden xl:flex items-center gap-0.5 xl:gap-1.5 font-semibold text-xs xl:text-sm whitespace-nowrap">
+          <!-- Home with Home 2 Dropdown -->
+          <div class="relative flex-shrink-0" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false" @keydown.escape.window="open = false">
+            <button @click="open = !open" type="button" class="h-10 px-2.5 xl:px-3 rounded-xl inline-flex items-center gap-1 text-blue-600 dark:text-blue-400 bg-blue-50/80 dark:bg-blue-950/40 font-bold whitespace-nowrap flex-shrink-0" :class="{ 'bg-blue-50/90 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 shadow-sm': open }">
+              <span>Home</span>
+              <i data-lucide="chevron-down" class="w-3.5 h-3.5 transition-transform duration-200" :class="{ 'rotate-180': open }"></i>
+            </button>
+            <div x-show="open" 
+                 x-cloak
+                 @click.outside="open = false"
+                 x-transition:enter="transition ease-out duration-150"
+                 x-transition:enter-start="opacity-0 translate-y-1"
+                 x-transition:enter-end="opacity-100 translate-y-0"
+                 x-transition:leave="transition ease-in duration-100"
+                 x-transition:leave-start="opacity-100 translate-y-0"
+                 x-transition:leave-end="opacity-0 translate-y-1"
+                 class="absolute left-0 top-full pt-2 w-56 z-50">
+              <div class="rounded-2xl bg-white dark:bg-slate-800 shadow-2xl border border-slate-200/90 dark:border-slate-700 p-2">
+                <a href="index.html" class="flex items-center gap-2.5 px-3 py-2.5 rounded-xl bg-blue-50 dark:bg-blue-900/40 text-blue-600 dark:text-blue-300 font-bold text-sm transition">
+                  <i data-lucide="bot" class="w-4 h-4 text-blue-500"></i>
+                  <div>
+                    <span class="block leading-tight font-bold">Home 1</span>
+                    <span class="text-[11px] font-normal text-slate-500 dark:text-slate-400">Kids Robotics Club</span>
+                  </div>
+                </a>
+                <a href="index-2.html" class="flex items-center gap-2.5 px-3 py-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 text-sm transition">
+                  <i data-lucide="graduation-cap" class="w-4 h-4 text-blue-500"></i>
+                  <div>
+                    <span class="block leading-tight ">Home 2</span>
+                    <span class="text-[11px] text-slate-500 dark:text-slate-400">STEM Academy Variant</span>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <a href="about.html" class="h-10 px-2.5 xl:px-3 rounded-xl inline-flex items-center text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-blue-600 dark:hover:text-blue-400 transition whitespace-nowrap flex-shrink-0">About Us</a>
+
+          <a href="programs.html" class="h-10 px-2.5 xl:px-3 rounded-xl inline-flex items-center text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-blue-600 dark:hover:text-blue-400 transition whitespace-nowrap flex-shrink-0">Programs</a>
+
+          <a href="instructors.html" class="h-10 px-2.5 xl:px-3 rounded-xl inline-flex items-center text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-blue-600 dark:hover:text-blue-400 transition whitespace-nowrap flex-shrink-0">Instructors</a>
+          <a href="pricing.html" class="h-10 px-2.5 xl:px-3 rounded-xl inline-flex items-center text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-blue-600 dark:hover:text-blue-400 transition whitespace-nowrap flex-shrink-0">Pricing</a>
+          <a href="gallery.html" class="h-10 px-2.5 xl:px-3 rounded-xl inline-flex items-center text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-blue-600 dark:hover:text-blue-400 transition whitespace-nowrap flex-shrink-0">Gallery</a>
+          <a href="blog.html" class="h-10 px-2.5 xl:px-3 rounded-xl inline-flex items-center text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-blue-600 dark:hover:text-blue-400 transition whitespace-nowrap flex-shrink-0">Blog</a>
+          <a href="contact.html" class="h-10 px-2.5 xl:px-3 rounded-xl inline-flex items-center text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-blue-600 dark:hover:text-blue-400 transition whitespace-nowrap flex-shrink-0">Contact</a>
+        </nav>
+
+        <!-- Right Action Buttons: Theme, RTL, Dashboard, and Sign Up -->
+        <div class="hidden xl:flex items-center gap-1.5 xl:gap-2 flex-shrink-0">
+          <!-- RTL Toggle Button -->
+          <button onclick="toggleRTL()" title="Toggle RTL / LTR Direction" class="h-10 px-2.5 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 transition text-xs font-bold inline-flex items-center gap-1.5 whitespace-nowrap flex-shrink-0">
+            <i data-lucide="arrow-left-right" class="w-4 h-4 text-blue-600 dark:text-blue-400"></i>
+            <span class="dir-badge-text">RTL</span>
+          </button>
+
+          <!-- Theme Toggle Button -->
+          <button onclick="toggleTheme()" title="Toggle Dark / Light Theme" class="h-10 w-10 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 transition inline-flex items-center justify-center flex-shrink-0">
+            <i data-lucide="sun" class="w-4 h-4 text-amber-500 theme-sun-icon hidden"></i>
+            <i data-lucide="moon" class="w-4 h-4 text-blue-600 dark:text-blue-400 theme-moon-icon"></i>
+          </button>
+
+          <a href="dashboard/index.html" class="h-10 px-3 xl:px-3.5 rounded-xl font-bold text-xs xl:text-sm text-slate-700 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition inline-flex items-center gap-1.5 xl:gap-2 whitespace-nowrap flex-shrink-0">
+            <i data-lucide="layout-dashboard" class="w-4 h-4 text-blue-600 dark:text-blue-400"></i>
+            <span>Dashboard</span>
+          </a>
+
+          <a href="login.html" class="h-10 px-3.5 xl:px-4 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs xl:text-sm font-heading tracking-wide inline-flex items-center justify-center gap-1.5 xl:gap-2 shadow-sm transition whitespace-nowrap flex-shrink-0">
+            <i data-lucide="log-in" class="w-4 h-4"></i>
+            <span>Login</span>
+          </a>
+        </div>
+
+        <!-- Mobile Menu Toggle Button -->
+        <div class="flex items-center gap-2 xl:hidden flex-shrink-0">
+          <button onclick="toggleTheme()" class="h-10 w-10 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 inline-flex items-center justify-center">
+            <i data-lucide="sun" class="w-4 h-4 text-amber-500 theme-sun-icon hidden"></i>
+            <i data-lucide="moon" class="w-4 h-4 text-blue-500 theme-moon-icon"></i>
+          </button>
+          <button onclick="toggleMobileMenu()" class="h-10 w-10 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 inline-flex items-center justify-center">
+            <i data-lucide="menu" class="w-6 h-6"></i>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Menu -->
+  <div id="mobile-menu" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden flex flex-col justify-end">
+    <div class="bg-white dark:bg-slate-900 rounded-t-3xl p-6 max-h-[85vh] overflow-y-auto space-y-4 shadow-2xl">
+      <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-4">
+        <span class="font-heading text-xl font-bold">Menu Navigation</span>
+        <button onclick="toggleMobileMenu()" class="p-2 rounded-xl bg-slate-100 dark:bg-slate-800">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <div class="space-y-1 font-semibold text-slate-800 dark:text-slate-100">
+        <a href="index.html" class="block px-4 py-2.5 rounded-xl bg-blue-50 dark:bg-blue-900/40 text-blue-600 dark:text-blue-300 font-bold">Home 1 (Main Club)</a>
+        <a href="index-2.html" class="block px-4 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 pl-8 text-xs text-slate-500">&bull; Home 2 (STEM Academy)</a>
+        <a href="about.html" class="block px-4 py-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800">About Us</a>
+        
+        <a href="programs.html" class="block px-4 py-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800">Programs</a>
+
+        <a href="instructors.html" class="block px-4 py-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800">Instructors & Mentors</a>
+        <a href="pricing.html" class="block px-4 py-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800">Pricing</a>
+        <a href="gallery.html" class="block px-4 py-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800">Gallery</a>
+        <a href="blog.html" class="block px-4 py-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800">Blog</a>
+        <a href="contact.html" class="block px-4 py-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800">Contact</a>
+        <a href="dashboard/index.html" class="block px-4 py-2.5 rounded-xl bg-blue-50 dark:bg-blue-950/40 text-blue-600 dark:text-blue-400 font-bold">Parent & Admin Dashboard &rarr;</a>
+      </div>
+
+      <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex flex-col gap-2.5">
+        <button onclick="toggleRTL()" class="w-full py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 flex items-center justify-center gap-2 text-sm font-bold">
+          <i data-lucide="arrow-left-right" class="w-4 h-4"></i> Switch Layout (LTR / RTL)
+        </button>
+        <a href="login.html" class="btn-brick bg-blue-600 hover:bg-blue-700 text-white w-full py-3 rounded-2xl font-heading text-base flex items-center justify-center gap-2 transition">
+          <i data-lucide="log-in" class="w-5 h-5"></i>
+          <span>Parent Login</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="relative py-12 md:py-24 bg-[#0B1120] text-slate-100 border-b border-slate-800/80 overflow-hidden">
+    <!-- Solid dark navy background with subtle stud pattern -->
+    <div class="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+      <div class="absolute inset-0 bg-gradient-to-r from-[#0B1120] via-[#0B1120]/85 to-[#0B1120]/60"></div>
+      <div class="absolute inset-0 bg-studs opacity-40"></div>
+    </div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-8 items-center">
+        
+        <!-- Left Hero Content -->
+        <div class="min-w-0 space-y-6 text-center lg:text-left">
+          
+          <!-- Fun Pill Badge -->
+          <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-400/20 border border-amber-400/40 text-amber-300 text-xs sm:text-sm font-bold shadow-sm">
+            <span class="flex h-2.5 w-2.5 rounded-full bg-amber-500 animate-ping"></span>
+            <span>Ages 5 - 16 &bull; LEGO® Education & Robotics Certified</span>
+          </div>
+
+          <!-- Main Hero Headline -->
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight sm:leading-tight text-white">
+            Where Little Hands <br>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-blue-500 to-amber-500">
+              Build Giant Robots!
+            </span> 🤖
+          </h1>
+
+          <!-- Hero Subtitle -->
+          <p class="text-lg sm:text-xl text-slate-300 max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
+            Unleash your child’s inner inventor! We turn screen time into build time with hands-on LEGO® Spike Prime, Mindstorms, Scratch & Python coding, and thrilling robot battles.
+          </p>
+
+          <!-- Action Buttons -->
+          <div class="flex flex-col sm:flex-row sm:flex-wrap items-center justify-center lg:justify-start gap-4 pt-2">
+            <button onclick="openEnrollModal('Hero Free Trial Session')" class="btn-brick btn-brick-blue px-7 py-4 rounded-2xl text-base sm:text-lg font-heading shadow-xl shadow-blue-500/25 w-full sm:w-auto">
+              <i data-lucide="rocket" class="w-5 h-5"></i>
+              <span>Book a Free Trial Class</span>
+            </button>
+            <a href="programs.html" class="btn-brick btn-brick-yellow px-7 py-4 rounded-2xl text-base sm:text-lg font-heading w-full sm:w-auto">
+              <i data-lucide="compass" class="w-5 h-5"></i>
+              <span>Explore Programs (Ages 5-16)</span>
+            </a>
+          </div>
+
+          <!-- Social Proof & Trust Badges -->
+          <div class="pt-6 border-t border-white/15 flex flex-wrap items-center justify-center lg:justify-start gap-4 sm:gap-6">
+            <div class="flex items-center -space-x-2">
+              <img class="inline-block h-10 w-10 rounded-full ring-2 ring-white dark:ring-slate-900 object-cover" src="https://images.unsplash.com/photo-1544717305-2782549b5136?w=100&auto=format&fit=crop&q=80" alt="Student Leo">
+              <img class="inline-block h-10 w-10 rounded-full ring-2 ring-white dark:ring-slate-900 object-cover" src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=100&auto=format&fit=crop&q=80" alt="Student Maya">
+              <img class="inline-block h-10 w-10 rounded-full ring-2 ring-white dark:ring-slate-900 object-cover" src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=100&auto=format&fit=crop&q=80" alt="Student Sam">
+              <img class="inline-block h-10 w-10 rounded-full ring-2 ring-white dark:ring-slate-900 object-cover" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop&q=80" alt="Student Alex">
+            </div>
+            <div>
+              <div class="flex items-center gap-1 text-amber-400">
+                <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                <span class="text-sm font-bold text-white ml-1">4.9 / 5.0</span>
+              </div>
+              <p class="text-sm text-slate-200 font-medium leading-relaxed">Loved by 1,450+ parents in New York, Austin & Seattle</p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right Hero Interactive Showcase Card -->
+        <div class="relative min-w-0">
+          <!-- Main Hero Frame Card -->
+          <div class="relative mx-auto w-full max-w-md lg:max-w-xl rounded-3xl bg-white dark:bg-slate-800 p-4 sm:p-6 shadow-2xl border-4 border-blue-500/30 dark:border-blue-500/20">
+            
+            <!-- LEGO Top Studs Header on Card -->
+            <div class="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-slate-700">
+              <div class="flex items-center gap-2">
+                <span class="w-3.5 h-3.5 rounded-full bg-rose-500"></span>
+                <span class="w-3.5 h-3.5 rounded-full bg-amber-400"></span>
+                <span class="w-3.5 h-3.5 rounded-full bg-emerald-400"></span>
+                <span class="w-3.5 h-3.5 rounded-full bg-blue-500"></span>
+              </div>
+              <span class="text-xs font-tech font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/40 px-2.5 py-1 rounded-lg">
+                Model: Mars-Rover-v2
+              </span>
+            </div>
+
+            <!-- Showcase Image -->
+            <div class="relative mt-4 rounded-2xl overflow-hidden aspect-[4/3] bg-gradient-to-tr from-slate-900 to-blue-950 group">
+              <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&auto=format&fit=crop&q=80" alt="Kids LEGO Robot Build" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+              
+
+            </div>
+
+            <!-- Interactive Micro-Stats in Card -->
+            <div class="grid grid-cols-3 gap-3 mt-4 pt-2 text-center">
+              <div class="bg-slate-50 dark:bg-slate-900/60 p-2.5 rounded-xl border border-slate-100 dark:border-slate-700">
+                <span class="block text-xs text-slate-500 dark:text-slate-400 font-medium">Sensors</span>
+                <span class="text-sm font-bold text-blue-600 dark:text-blue-400">Ultrasonic + Color</span>
+              </div>
+              <div class="bg-slate-50 dark:bg-slate-900/60 p-2.5 rounded-xl border border-slate-100 dark:border-slate-700">
+                <span class="block text-xs text-slate-500 dark:text-slate-400 font-medium">Language</span>
+                <span class="text-sm font-bold text-emerald-600 dark:text-emerald-400">Python 3.11</span>
+              </div>
+              <div class="bg-slate-50 dark:bg-slate-900/60 p-2.5 rounded-xl border border-slate-100 dark:border-slate-700">
+                <span class="block text-xs text-slate-500 dark:text-slate-400 font-medium">Kit Type</span>
+                <span class="text-sm font-bold text-rose-500 dark:text-rose-400">SPIKE Prime</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Core Club Highlights / Value Props (LEGO Brick Cards) -->
+  <section class="py-16 bg-white dark:bg-slate-950 border-y border-slate-200/80 dark:border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-14 space-y-3">
+        <span class="text-xs font-bold uppercase tracking-widest text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/60 px-3 py-1 rounded-full">
+          Why RoboBricks Rocks
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-heading font-bold text-slate-900 dark:text-white">
+          Building Confidence, One Smart Brick at a Time
+        </h2>
+        <p class="text-slate-600 dark:text-slate-400 text-base">
+          Our curriculum blends fun with rigorous STEM foundations, encouraging problem-solving, resilience, and collaborative teamwork.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 items-stretch gap-6 md:grid-cols-2 lg:grid-cols-4">
+        
+        <!-- Card 1: Blue Brick -->
+        <div class="feature-alignment-card flex h-full flex-col p-6 rounded-3xl bg-blue-50/60 dark:bg-slate-900 border-2 border-blue-200 dark:border-blue-900 hover:shadow-xl transition-all duration-300 group hover:-translate-y-1">
+          <h3 class="font-heading text-xl font-bold text-slate-900 dark:text-white mb-2">Real LEGO® Education Kits</h3>
+          <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+            Every student gets their own Spike Prime & WeDo 2.0 robotics set—no sharing parts or waiting turns.
+          </p>
+          <div class="mt-auto pt-3 border-t border-blue-100 dark:border-slate-800 flex items-center gap-1 text-xs font-bold text-blue-600 dark:text-blue-400">
+            <span>Spike Prime & EV3</span> &rarr;
+          </div>
+        </div>
+
+        <!-- Card 2: Yellow Brick -->
+        <div class="feature-alignment-card flex h-full flex-col p-6 rounded-3xl bg-amber-50/60 dark:bg-slate-900 border-2 border-amber-200 dark:border-amber-900 hover:shadow-xl transition-all duration-300 group hover:-translate-y-1">
+          <h3 class="font-heading text-xl font-bold text-slate-900 dark:text-white mb-2">Block & Text Coding</h3>
+          <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+            Progress naturally from colorful Scratch drag-and-drop logic to real Python code powering autonomous motors.
+          </p>
+          <div class="mt-auto pt-3 border-t border-amber-100 dark:border-slate-800 flex items-center gap-1 text-xs font-bold text-amber-700 dark:text-amber-400">
+            <span>Scratch to Python</span> &rarr;
+          </div>
+        </div>
+
+        <!-- Card 3: Rose Brick -->
+        <div class="feature-alignment-card flex h-full flex-col p-6 rounded-3xl bg-rose-50/60 dark:bg-slate-900 border-2 border-rose-200 dark:border-rose-900 hover:shadow-xl transition-all duration-300 group hover:-translate-y-1">
+          <h3 class="font-heading text-xl font-bold text-slate-900 dark:text-white mb-2">BattleBot Arenas</h3>
+          <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+            Friday night robot sumo matches and obstacle courses where kids test gear ratios, torque, and speed!
+          </p>
+          <div class="mt-auto pt-3 border-t border-rose-100 dark:border-slate-800 flex items-center gap-1 text-xs font-bold text-rose-600 dark:text-rose-400">
+            <span>Weekly Tournaments</span> &rarr;
+          </div>
+        </div>
+
+        <!-- Card 4: Emerald Brick -->
+        <div class="feature-alignment-card flex h-full flex-col p-6 rounded-3xl bg-emerald-50/60 dark:bg-slate-900 border-2 border-emerald-200 dark:border-emerald-900 hover:shadow-xl transition-all duration-300 group hover:-translate-y-1">
+          <h3 class="font-heading text-xl font-bold text-slate-900 dark:text-white mb-2">FIRST LEGO® League</h3>
+          <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+            Official coaching and preparation for regional & national FLL robotics championships with trophy-winning track record.
+          </p>
+          <div class="mt-auto pt-3 border-t border-emerald-100 dark:border-slate-800 flex items-center gap-1 text-xs font-bold text-emerald-600 dark:text-emerald-400">
+            <span>FLL Certified Teams</span> &rarr;
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Interactive Student Build Showcase Gallery -->
+  <section class="py-20 bg-white dark:bg-slate-950 border-t border-slate-200/80 dark:border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-14 space-y-3">
+        <span class="text-xs font-bold uppercase tracking-widest text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 px-3 py-1 rounded-full">
+          Made By Our Students
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-heading font-bold text-slate-900 dark:text-white">
+          Showcase of Real Club Inventions
+        </h2>
+        <p class="text-slate-600 dark:text-slate-400 text-base">
+          Every month, students conceive, assemble, debug, and demo their own robotic creations to parents and peers.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
+        
+        <!-- Showcase 1 -->
+        <div class="group h-full rounded-3xl overflow-hidden bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-md hover:shadow-xl transition flex flex-col">
+          <div class="relative aspect-square overflow-hidden bg-slate-800">
+            <img src="https://content.instructables.com/FY5/TXCD/M0CFTWIV/FY5TXCDM0CFTWIV.jpg?auto=webp&amp;fit=bounds&amp;frame=1&amp;height=1024&amp;height=300&amp;width=1024" alt="Self-balancing robot with a stacked frame and yellow wheels" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+            <div class="absolute bottom-3 left-3 right-3 text-white">
+              <span class="text-[11px] font-bold text-amber-400 uppercase tracking-wider">Ages 9 &bull; Spike Prime</span>
+              <h4 class="font-heading font-bold text-base">Self-Balancing Gyro Bot</h4>
+            </div>
+          </div>
+          <div class="p-4 flex flex-1 flex-col text-xs text-slate-600 dark:text-slate-400">
+            <p class="flex-1 leading-relaxed">Uses an onboard 6-axis IMU sensor to balance on two large motorized wheels without toppling over.</p>
+            <div class="mt-3 pt-2 border-t border-slate-200 dark:border-slate-800 grid grid-cols-2 items-start gap-2 font-bold">
+              <span class="min-w-0 text-slate-900 dark:text-white">Student: Ethan K.</span>
+              <span class="min-w-0 text-right text-blue-600 dark:text-blue-400">Week 6 Project</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Showcase 2 -->
+        <div class="group h-full rounded-3xl overflow-hidden bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-md hover:shadow-xl transition flex flex-col">
+          <div class="relative aspect-square overflow-hidden bg-slate-800">
+            <img src="https://ym-uploads.nyc3.digitaloceanspaces.com/c7x7yt3j6w6e959knkz8kf5bg8i7" alt="Articulated 3D-printed robotic hand prototype held beside a human hand" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+            <div class="absolute bottom-3 left-3 right-3 text-white">
+              <span class="text-[11px] font-bold text-blue-400 uppercase tracking-wider">Ages 11 &bull; Scratch Logic</span>
+              <h4 class="font-heading font-bold text-base">Motorized Robotic Grip Claw</h4>
+            </div>
+          </div>
+          <div class="p-4 flex flex-1 flex-col text-xs text-slate-600 dark:text-slate-400">
+            <p class="flex-1 leading-relaxed">Pneumatic and rack-and-pinion grabber configured to lift soda cans and place them onto sorting trays.</p>
+            <div class="mt-3 pt-2 border-t border-slate-200 dark:border-slate-800 grid grid-cols-2 items-start gap-2 font-bold">
+              <span class="min-w-0 text-slate-900 dark:text-white">Student: Chloe W.</span>
+              <span class="min-w-0 text-right text-emerald-600 dark:text-emerald-400">Week 8 Project</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Showcase 3 -->
+        <div class="group h-full rounded-3xl overflow-hidden bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-md hover:shadow-xl transition flex flex-col">
+          <div class="relative aspect-square overflow-hidden bg-slate-800">
+            <img src="https://i.pinimg.com/originals/84/92/6d/84926d93ef24abf9de267ff8c560c8a0.jpg" alt="Raspberry Pi rover with rugged wheels, suspension and onboard electronics" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+            <div class="absolute bottom-3 left-3 right-3 text-white">
+              <span class="text-[11px] font-bold text-rose-400 uppercase tracking-wider">Ages 13 &bull; Python Algorithm</span>
+              <h4 class="font-heading font-bold text-base">Maze Navigator & LiDAR Rover</h4>
+            </div>
+          </div>
+          <div class="p-4 flex flex-1 flex-col text-xs text-slate-600 dark:text-slate-400">
+            <p class="flex-1 leading-relaxed">Wall-following algorithm using ultrasonic ping echoes to escape a 10x10 wooden maze in under 45 seconds.</p>
+            <div class="mt-3 pt-2 border-t border-slate-200 dark:border-slate-800 grid grid-cols-2 items-start gap-2 font-bold">
+              <span class="min-w-0 text-slate-900 dark:text-white">Student: Lucas T.</span>
+              <span class="min-w-0 text-right text-rose-500 dark:text-rose-400">Capstone Final</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Showcase 4 -->
+        <div class="group h-full rounded-3xl overflow-hidden bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-md hover:shadow-xl transition flex flex-col">
+          <div class="relative aspect-square overflow-hidden bg-slate-800">
+            <img src="https://i.pinimg.com/originals/82/73/08/82730877aa5594e361c6a6759fb858f5.jpg" alt="Red-and-white 3D-printed windmill with visible gears and wiring" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+            <div class="absolute bottom-3 left-3 right-3 text-white">
+              <span class="text-[11px] font-bold text-emerald-400 uppercase tracking-wider">Ages 7 &bull; WeDo Automation</span>
+              <h4 class="font-heading font-bold text-base">Solar Greenhouse Windmill</h4>
+            </div>
+          </div>
+          <div class="p-4 flex flex-1 flex-col text-xs text-slate-600 dark:text-slate-400">
+            <p class="flex-1 leading-relaxed">Light sensor activates a cooling fan when flashlight shines on solar panels, demonstrating green energy.</p>
+            <div class="mt-3 pt-2 border-t border-slate-200 dark:border-slate-800 grid grid-cols-2 items-start gap-2 font-bold">
+              <span class="min-w-0 text-slate-900 dark:text-white">Student: Noah & Mia</span>
+              <span class="min-w-0 text-right text-amber-500 dark:text-amber-400">Week 4 Project</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  <!-- Dynamic Stats Counter Section -->
+  <div class="mt-20 py-16 bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 text-white relative overflow-hidden bg-studs-primary">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-y md:divide-y-0 md:divide-x divide-white/10">
+        
+        <div class="pt-4 md:pt-0">
+          <div class="font-heading text-4xl sm:text-5xl font-extrabold tracking-tight" data-counter="1450" data-suffix="+">1,450+</div>
+          <div class="text-blue-100 text-sm font-semibold mt-1">Graduated Little Builders</div>
+        </div>
+
+        <div class="pt-4 md:pt-0">
+          <div class="font-heading text-4xl sm:text-5xl font-extrabold tracking-tight" data-counter="350" data-suffix="+">350+</div>
+          <div class="text-blue-100 text-sm font-semibold mt-1">Robotics Medals Won</div>
+        </div>
+
+        <div class="pt-4 md:pt-0">
+          <div class="font-heading text-4xl sm:text-5xl font-extrabold tracking-tight" data-counter="98" data-suffix="%">98%</div>
+          <div class="text-blue-100 text-sm font-semibold mt-1">Parent Satisfaction Rate</div>
+        </div>
+
+        <div class="pt-4 md:pt-0">
+          <div class="font-heading text-4xl sm:text-5xl font-extrabold tracking-tight" data-counter="14" data-suffix="">14</div>
+          <div class="text-blue-100 text-sm font-semibold mt-1">Modern Lab Locations</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  </section>
+
+  <!-- Instructor / Coach Highlights -->
+  <section class="py-20 bg-slate-50 dark:bg-slate-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-14 space-y-3">
+        <span class="text-xs font-bold uppercase tracking-widest text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/60 px-3 py-1 rounded-full">
+          Mentors & Role Models
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-heading font-bold text-slate-900 dark:text-white">
+          Meet Our Passionate Robotics Coaches
+        </h2>
+        <p class="text-slate-600 dark:text-slate-400 text-base">
+          Our instructors are mechanical engineers, computer scientists, and certified STEM educators who make learning pure fun.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        
+        <!-- Coach 1 -->
+        <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 border border-slate-200 dark:border-slate-700 text-center hover:shadow-xl transition-all group">
+          <div class="relative w-28 h-28 mx-auto mb-4 rounded-2xl overflow-hidden border-4 border-amber-400 shadow-md">
+            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=300&auto=format&fit=crop&q=80" alt="Coach Sarah Miller" class="w-full h-full object-cover group-hover:scale-105 transition">
+          </div>
+          <h3 class="font-heading font-bold text-lg text-slate-900 dark:text-white">Sarah Miller</h3>
+          <span class="text-xs font-bold text-blue-600 dark:text-blue-400 block mb-2">Lead Spike Prime Mentor</span>
+          <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">M.S. Robotics Engineering, 6+ years training FLL Champion teams.</p>
+          <div class="flex items-center justify-center gap-2 text-slate-400">
+            <span class="text-xs bg-slate-100 dark:bg-slate-700 px-2.5 py-1 rounded-lg font-semibold text-slate-600 dark:text-slate-300">LEGO Spike</span>
+            <span class="text-xs bg-slate-100 dark:bg-slate-700 px-2.5 py-1 rounded-lg font-semibold text-slate-600 dark:text-slate-300">Scratch</span>
+          </div>
+        </div>
+
+        <!-- Coach 2 -->
+        <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 border border-slate-200 dark:border-slate-700 text-center hover:shadow-xl transition-all group">
+          <div class="relative w-28 h-28 mx-auto mb-4 rounded-2xl overflow-hidden border-4 border-blue-500 shadow-md">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300&auto=format&fit=crop&q=80" alt="Coach Alex Rivera" class="w-full h-full object-cover group-hover:scale-105 transition">
+          </div>
+          <h3 class="font-heading font-bold text-lg text-slate-900 dark:text-white">Alex Rivera</h3>
+          <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400 block mb-2">Python & IoT Specialist</span>
+          <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">Former Firmware Developer at DroneLab, loves teaching kids algorithmic thinking.</p>
+          <div class="flex items-center justify-center gap-2 text-slate-400">
+            <span class="text-xs bg-slate-100 dark:bg-slate-700 px-2.5 py-1 rounded-lg font-semibold text-slate-600 dark:text-slate-300">Python 3</span>
+            <span class="text-xs bg-slate-100 dark:bg-slate-700 px-2.5 py-1 rounded-lg font-semibold text-slate-600 dark:text-slate-300">Arduino</span>
+          </div>
+        </div>
+
+        <!-- Coach 3 -->
+        <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 border border-slate-200 dark:border-slate-700 text-center hover:shadow-xl transition-all group">
+          <div class="relative w-28 h-28 mx-auto mb-4 rounded-2xl overflow-hidden border-4 border-rose-500 shadow-md">
+            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=300&auto=format&fit=crop&q=80" alt="Coach Priya Patel" class="w-full h-full object-cover group-hover:scale-105 transition">
+          </div>
+          <h3 class="font-heading font-bold text-lg text-slate-900 dark:text-white">Priya Patel</h3>
+          <span class="text-xs font-bold text-rose-500 dark:text-rose-400 block mb-2">Junior STEM Specialist (5-7)</span>
+          <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">Early Childhood Education credential with focus on kinesthetic learning and blocks.</p>
+          <div class="flex items-center justify-center gap-2 text-slate-400">
+            <span class="text-xs bg-slate-100 dark:bg-slate-700 px-2.5 py-1 rounded-lg font-semibold text-slate-600 dark:text-slate-300">WeDo 2.0</span>
+            <span class="text-xs bg-slate-100 dark:bg-slate-700 px-2.5 py-1 rounded-lg font-semibold text-slate-600 dark:text-slate-300">Gears</span>
+          </div>
+        </div>
+
+        <!-- Coach 4 -->
+        <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 border border-slate-200 dark:border-slate-700 text-center hover:shadow-xl transition-all group">
+          <div class="relative w-28 h-28 mx-auto mb-4 rounded-2xl overflow-hidden border-4 border-emerald-500 shadow-md">
+            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&auto=format&fit=crop&q=80" alt="Coach Marcus Vance" class="w-full h-full object-cover group-hover:scale-105 transition">
+          </div>
+          <h3 class="font-heading font-bold text-lg text-slate-900 dark:text-white">Marcus Vance</h3>
+          <span class="text-xs font-bold text-amber-500 block mb-2">Tournament Strategy Coach</span>
+          <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">Mechanics whiz, expert in high-torque gear trains and BattleBot tactics.</p>
+          <div class="flex items-center justify-center gap-2 text-slate-400">
+            <span class="text-xs bg-slate-100 dark:bg-slate-700 px-2.5 py-1 rounded-lg font-semibold text-slate-600 dark:text-slate-300">BattleBots</span>
+            <span class="text-xs bg-slate-100 dark:bg-slate-700 px-2.5 py-1 rounded-lg font-semibold text-slate-600 dark:text-slate-300">Physics</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Parent Reviews & Testimonials -->
+  <section class="py-20 bg-white dark:bg-slate-950 border-t border-slate-200/80 dark:border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-14 space-y-3">
+        <span class="text-xs font-bold uppercase tracking-widest text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/60 px-3 py-1 rounded-full">
+          Parent Endorsements
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-heading font-bold text-slate-900 dark:text-white">
+          Why Families Love RoboBricks
+        </h2>
+        <p class="text-slate-600 dark:text-slate-400 text-base">
+          Read candid reviews from parents whose children transformed their curiosity into real STEM superpowers.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <!-- Review 1 -->
+        <div class="p-6 rounded-3xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 relative flex flex-col justify-between">
+          <div class="space-y-4">
+            <div class="flex items-center gap-1 text-amber-400">
+              <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+            </div>
+            <p class="text-sm text-slate-700 dark:text-slate-300 italic leading-relaxed">
+              "My 8-year-old son used to just play Minecraft all weekend. After 3 months at RoboBricks, he built his own motorized conveyor belt and explained gear ratios to his grandfather! Truly priceless."
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-slate-200 dark:border-slate-800 flex items-center gap-3">
+            <img class="w-10 h-10 rounded-full object-cover" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&auto=format&fit=crop&q=80" alt="Jessica Taylor">
+            <div>
+              <span class="block text-sm font-bold text-slate-900 dark:text-white">Jessica Taylor</span>
+              <span class="text-xs text-slate-500">Mom of Toby (Age 8) &bull; Austin, TX</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Review 2 -->
+        <div class="p-6 rounded-3xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 relative flex flex-col justify-between">
+          <div class="space-y-4">
+            <div class="flex items-center gap-1 text-amber-400">
+              <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+            </div>
+            <p class="text-sm text-slate-700 dark:text-slate-300 italic leading-relaxed">
+              "The small class ratio (1:6) makes a gigantic difference. Coach Sarah knew my daughter was shy and paired her with another girl to build an interactive robotic dog. She now wants to be an aerospace engineer!"
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-slate-200 dark:border-slate-800 flex items-center gap-3">
+            <img class="w-10 h-10 rounded-full object-cover" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&auto=format&fit=crop&q=80" alt="David Chen">
+            <div>
+              <span class="block text-sm font-bold text-slate-900 dark:text-white">David Chen</span>
+              <span class="text-xs text-slate-500">Dad of Maya (Age 11) &bull; Seattle, WA</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Review 3 -->
+        <div class="p-6 rounded-3xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 relative flex flex-col justify-between">
+          <div class="space-y-4">
+            <div class="flex items-center gap-1 text-amber-400">
+              <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+            </div>
+            <p class="text-sm text-slate-700 dark:text-slate-300 italic leading-relaxed">
+              "The parent dashboard is so helpful! Every Sunday evening I can see the badges my son earned, instructor feedback videos, and photos of his robots. The team genuinely cares about each child's growth."
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-slate-200 dark:border-slate-800 flex items-center gap-3">
+            <img class="w-10 h-10 rounded-full object-cover" src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=100&auto=format&fit=crop&q=80" alt="Elena Rostova">
+            <div>
+              <span class="block text-sm font-bold text-slate-900 dark:text-white">Elena Rostova</span>
+              <span class="text-xs text-slate-500">Mom of Leo (Age 9) &bull; Brooklyn, NY</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  <!-- Big Call to Action (CTA) Banner -->
+  <div class="py-16 bg-slate-50 dark:bg-slate-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="relative rounded-3xl bg-gradient-to-r from-amber-400 via-rose-500 to-blue-600 p-8 sm:p-12 lg:p-16 text-white overflow-hidden shadow-2xl">
+        
+        <!-- Background Brick Decoration -->
+        <div class="absolute -right-10 -bottom-10 w-64 h-64 rounded-full bg-white/10 pointer-events-none blur-2xl"></div>
+
+        <div class="relative z-10 max-w-3xl space-y-6">
+          <span class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/20 backdrop-blur text-xs font-bold uppercase tracking-wider">
+            <i data-lucide="sparkles" class="w-4 h-4 text-amber-200"></i> Zero Risk &bull; 100% Free First Class
+          </span>
+          <h2 class="text-3xl sm:text-5xl font-heading font-extrabold tracking-tight leading-tight">
+            Ready to Spark Your Child’s Engineering Genius?
+          </h2>
+          <p class="text-base sm:text-lg text-white/90 leading-relaxed max-w-2xl">
+            Book a complimentary 60-minute trial class this weekend. We provide all LEGO Spike kits, iPads, and materials. No commitments required!
+          </p>
+          
+          <div class="flex flex-col sm:flex-row items-center gap-4 pt-2">
+            <button onclick="openEnrollModal('CTA Free Trial Session')" class="btn-brick bg-slate-900 text-white hover:bg-slate-800 border-b-4 border-black px-8 py-4 rounded-2xl font-heading text-lg w-full sm:w-auto shadow-2xl">
+              <i data-lucide="calendar" class="w-5 h-5 text-amber-400"></i>
+              <span>Book Your Free Trial Spot</span>
+            </button>
+            <a href="contact.html" class="px-6 py-4 rounded-2xl bg-white/15 hover:bg-white/25 backdrop-blur font-bold text-white transition text-center w-full sm:w-auto">
+              Visit Lab / Call Us
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  </section>
+
+  <!-- Global Footer -->
+    <!-- Footer -->
+  <footer class="bg-[#0B1120] text-slate-300 pt-16 pb-8 border-t border-slate-800/80 transition-colors">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-8 pb-12">
+        
+        <!-- Col 1: Brand & Socials -->
+        <div class="lg:col-span-3 space-y-4">
+          <a href="index.html" class="flex items-center gap-3 group flex-shrink-0">
+            <img src="assets/logo.png" alt="RoboBricks Logo" class="w-11 h-11 rounded-2xl object-contain shadow-lg shadow-blue-500/25 group-hover:scale-105 transition-transform duration-200 flex-shrink-0">
+            <div>
+              <span class="font-heading text-xl font-bold tracking-tight text-white flex items-center gap-1 leading-none">
+                Robo<span class="text-blue-400">Bricks</span>
+                <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+              </span>
+              <span class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mt-1 leading-none">Kids Robotics & LEGO Club</span>
+            </div>
+          </a>
+          
+          <p class="text-xs sm:text-sm text-slate-400 leading-relaxed max-w-sm">
+            Helping young minds build confidence through creative LEGO engineering, coding, and hands-on robotics.
+          </p>
+
+          <div class="flex items-center gap-2.5 pt-2">
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="w-9 h-9 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-slate-700 hover:bg-slate-800 transition">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd"/>
+              </svg>
+            </a>
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="w-9 h-9 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-slate-700 hover:bg-slate-800 transition">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd"/>
+              </svg>
+            </a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="w-9 h-9 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-slate-700 hover:bg-slate-800 transition">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+              </svg>
+            </a>
+            <a href="https://x.com" target="_blank" rel="noopener noreferrer" aria-label="X / Twitter" class="w-9 h-9 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-slate-700 hover:bg-slate-800 transition">
+              <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Col 2: Navigation -->
+        <div class="lg:col-span-2 space-y-3">
+          <h4 class="font-bold text-xs uppercase tracking-widest text-white mb-4">NAVIGATION</h4>
+          <ul class="space-y-2 text-xs sm:text-sm text-slate-400">
+            <li><a href="index.html" class="hover:text-blue-400 transition">Home</a></li>
+            <li><a href="about.html" class="hover:text-blue-400 transition">About Us</a></li>
+            <li><a href="programs.html" class="hover:text-blue-400 transition">Programs</a></li>
+            <li><a href="instructors.html" class="hover:text-blue-400 transition">Instructors</a></li>
+            <li><a href="pricing.html" class="hover:text-blue-400 transition">Pricing Tiers</a></li>
+            <li><a href="gallery.html" class="hover:text-blue-400 transition">Gallery & Builds</a></li>
+            <li><a href="blog.html" class="hover:text-blue-400 transition">Blog & Journal</a></li>
+            <li><a href="contact.html" class="hover:text-blue-400 transition">Contact Club</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Club Standards -->
+        <div class="lg:col-span-4 space-y-3">
+          <h4 class="font-bold text-xs uppercase tracking-widest text-white mb-4">CAMP STANDARDS</h4>
+          <div class="grid grid-cols-2 gap-x-4 gap-y-3 text-xs sm:text-sm">
+            <div class="font-bold text-white">1:6 Coach Ratio</div>
+            <div class="text-slate-400">Certified STEM Mentors</div>
+
+            <div class="font-bold text-white">Daily Build Time</div>
+            <div class="text-slate-400">Live Hands-On Practice</div>
+
+            <div class="font-bold text-white">FLL League Prep</div>
+            <div class="text-slate-400">Gala Showcase Challenges</div>
+
+            <div class="font-bold text-white">Ages 5–16</div>
+            <div class="text-slate-400">Junior, Teen & Exec Tracks</div>
+
+            <div class="font-bold text-white">5 Regional Hubs</div>
+            <div class="text-slate-400">Robotics & Coding Campuses</div>
+          </div>
+        </div>
+
+        <!-- Col 4: Admissions & Contact -->
+        <div class="lg:col-span-3 space-y-3">
+          <h4 class="font-bold text-xs uppercase tracking-widest text-white mb-4">CAMP ADMISSIONS</h4>
+          <div class="space-y-2.5 text-xs sm:text-sm text-slate-400">
+            <div class="flex items-center gap-2.5">
+              <i data-lucide="mail" class="w-4 h-4 text-blue-400 flex-shrink-0"></i>
+              <a href="mailto:admissions@robobricks.club" class="hover:text-white transition">admissions@robobricks.club</a>
+            </div>
+            <div class="flex items-center gap-2.5">
+              <i data-lucide="phone" class="w-4 h-4 text-blue-400 flex-shrink-0"></i>
+              <a href="tel:+18005557626" class="hover:text-white transition">+1 (800) 555-ROBO</a>
+            </div>
+            <div class="flex items-start gap-2.5">
+              <i data-lucide="map-pin" class="w-4 h-4 text-blue-400 flex-shrink-0 mt-0.5"></i>
+              <span>100 Innovation Way, Suite 400, Austin, TX 78701</span>
+            </div>
+          </div>
+
+          <div class="pt-2">
+            <button onclick="openEnrollModal('Connect Admissions Team')" class="w-full py-3 px-6 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold text-sm shadow-lg shadow-blue-600/30 transition-all hover:scale-[1.02] flex items-center justify-center gap-2">
+              <span>Connect Admissions Team</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Copyright Bar -->
+      <div class="mt-8 pt-8 border-t border-slate-800/80 text-center text-xs text-slate-500">
+        <p>&copy; 2026 RoboBricks Youth Robotics Academy Ltd. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Universal Free Trial / Enrollment Modal -->
+  <div id="enroll-modal" class="fixed inset-0 z-50 bg-slate-900/70 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-white dark:bg-slate-800 rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-slate-100 dark:border-slate-700 relative animate-float-gentle max-h-[92vh] overflow-y-auto">
+      
+      <button onclick="closeEnrollModal()" class="absolute top-5 right-5 p-2 rounded-xl bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 text-slate-500 dark:text-slate-300 transition">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <!-- Modal Header -->
+      <div class="flex items-center gap-3 mb-4">
+        <div aria-hidden="true" class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-blue-600 to-blue-700 flex items-center justify-center shadow-lg shadow-blue-500/25">
+          <div class="grid grid-cols-2 gap-1.5 p-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-amber-400 shadow-inner"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-rose-500 shadow-inner"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 shadow-inner"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-white shadow-inner"></span>
+          </div>
+        </div>
+        <div>
+          <span class="text-xs font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wider block">Free Trial Experience</span>
+          <h3 id="enroll-modal-program-name" class="font-heading text-xl sm:text-2xl font-bold text-slate-900 dark:text-white leading-tight">
+            Book a Free Trial Session
+          </h3>
+        </div>
+      </div>
+
+      <p class="text-xs text-slate-600 dark:text-slate-400 mb-6">
+        Fill out this quick form to reserve a hands-on robotic build session. No credit card required.
+      </p>
+
+      <!-- Form -->
+      <form id="enroll-form" class="space-y-4">
+        <input type="hidden" id="enroll-program-title" value="LEGO & Robotics Free Trial">
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Child's Full Name *</label>
+            <input type="text" required autocomplete="name" placeholder="e.g. Leo Chen" class="w-full text-sm px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:ring-2 focus:ring-blue-500 focus:outline-none">
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Child's Age *</label>
+            <select required class="w-full text-sm px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:ring-2 focus:ring-blue-500 focus:outline-none">
+              <option value="">Select age...</option>
+              <option value="5">5 Years (Junior)</option>
+              <option value="6">6 Years (Junior)</option>
+              <option value="7">7 Years (Junior)</option>
+              <option value="8">8 Years (RoboExplorers)</option>
+              <option value="9">9 Years (RoboExplorers)</option>
+              <option value="10">10 Years (RoboExplorers)</option>
+              <option value="11">11 Years (RoboExplorers)</option>
+              <option value="12">12 Years (Future Engineers)</option>
+              <option value="13+">13-16 Years (Advanced)</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Parent / Guardian Name *</label>
+          <input type="text" required autocomplete="name" placeholder="e.g. Sarah Chen" class="w-full text-sm px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:ring-2 focus:ring-blue-500 focus:outline-none">
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Email Address *</label>
+            <input type="email" required placeholder="parent@example.com" class="w-full text-sm px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:ring-2 focus:ring-blue-500 focus:outline-none">
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Phone Number *</label>
+            <input type="tel" required inputmode="tel" autocomplete="tel" maxlength="24" pattern="[0-9+(). -]{7,24}" title="Enter 7 to 15 digits. You may include spaces, parentheses, hyphens, or a leading +." placeholder="(555) 000-0000" class="w-full text-sm px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:ring-2 focus:ring-blue-500 focus:outline-none">
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Preferred Lab Slot *</label>
+          <select required class="w-full text-sm px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:ring-2 focus:ring-blue-500 focus:outline-none">
+            <option value="sat-10am">Saturday 10:00 AM - 11:30 AM (Weekend Hub)</option>
+            <option value="sat-2pm">Saturday 2:00 PM - 3:30 PM (Weekend Hub)</option>
+            <option value="sun-11am">Sunday 11:00 AM - 12:30 PM (Weekend Hub)</option>
+            <option value="wed-4pm">Wednesday 4:30 PM - 6:00 PM (After-School)</option>
+          </select>
+        </div>
+
+        <div class="flex items-center gap-2 pt-1">
+          <input type="checkbox" id="terms-agree" required class="rounded text-blue-600 focus:ring-blue-500 h-4 w-4">
+          <label for="terms-agree" class="text-xs text-slate-600 dark:text-slate-400">
+            I agree to club safety guidelines and consent to receiving booking confirmation via SMS/Email.
+          </label>
+        </div>
+
+        <button type="submit" class="btn-brick btn-brick-yellow w-full py-3.5 rounded-2xl font-heading text-base font-bold shadow-lg mt-2">
+          <i data-lucide="check-circle" class="w-5 h-5"></i>
+          <span>Confirm Free Trial Reservation</span>
+        </button>
+      </form>
+
+    </div>
+  </div>
+
+  <!-- Global Toast Notification Container -->
+  <div id="toast-container"></div>
+
+  <!-- Scripts -->
+  <script src="assets/js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.lucide) window.lucide.createIcons();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sessions & Booking - Parent Portal | RoboBricks</title>
+  <meta name="description" content="Manage upcoming robotics sessions, book weekend slots, and reschedule makeup classes.">
+  
+  <link rel="icon" type="image/png" href="../assets/logo.png">
+
+  <!-- TailwindCSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: { 50: '#eff6ff', 100: '#dbeafe', 500: '#3b82f6', 600: '#2563eb', 700: '#1d4ed8' },
+            brick: { yellow: '#FBBF24', red: '#EF4444', blue: '#2563EB', green: '#10B981', purple: '#8B5CF6' }
+          },
+          fontFamily: {
+            heading: ['Fredoka', 'cursive', 'sans-serif'],
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            tech: ['"Space Grotesk"', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons & Alpine.js -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <link rel="stylesheet" href="../assets/css/custom.css">
+</head>
+<body class="bg-slate-100 dark:bg-slate-950 text-slate-800 dark:text-slate-100 min-h-screen flex font-sans transition-colors duration-200" x-data="{ sidebarOpen: false, sessionFilter: 'upcoming' }">
+
+  <!-- Sidebar Overlay -->
+  <div x-show="sidebarOpen" @click="sidebarOpen = false" class="fixed inset-0 z-40 bg-slate-900/60 backdrop-blur-sm lg:hidden" x-transition.opacity></div>
+
+  <!-- Sidebar -->
+  <aside :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'" class="fixed lg:sticky top-0 left-0 z-50 h-screen w-72 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 flex flex-col justify-between transition-transform duration-300 shadow-xl lg:shadow-none">
+    <div>
+      <div class="p-6 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between">
+        <a href="../index.html" class="flex items-center gap-3 group flex-shrink-0">
+          <img src="../assets/logo.png" alt="RoboBricks Logo" class="w-11 h-11 rounded-2xl object-contain shadow-lg shadow-blue-500/25 group-hover:scale-105 transition-transform duration-200 flex-shrink-0">
+          <div>
+            <span class="font-heading text-xl font-bold tracking-tight text-slate-900 dark:text-white flex items-center gap-1 leading-none">
+              Robo<span class="text-blue-600 dark:text-blue-400">Portal</span>
+              <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+            </span>
+            <span class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mt-1 leading-none">Parent & Coach Hub</span>
+          </div>
+        </a>
+        <button @click="sidebarOpen = false" class="lg:hidden p-1.5 rounded-lg bg-slate-100 dark:bg-slate-800">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <div class="p-4 mx-4 mt-4 rounded-2xl bg-blue-50/80 dark:bg-slate-800 border border-blue-100 dark:border-slate-700 space-y-2">
+        <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400 block">Active Student Profile</span>
+        <div class="flex items-center gap-2">
+          <button onclick="switchChild('leo')" data-child="leo" class="child-tab-btn flex-1 py-1.5 px-3 rounded-xl text-xs font-bold border border-blue-600 bg-blue-50 text-blue-700 dark:bg-blue-900/40 dark:text-blue-300 transition flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-blue-600"></span> Leo (8)
+          </button>
+          <button onclick="switchChild('maya')" data-child="maya" class="child-tab-btn flex-1 py-1.5 px-3 rounded-xl text-xs font-bold border border-transparent text-slate-500 transition flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-purple-500"></span> Maya (12)
+          </button>
+        </div>
+      </div>
+
+      <nav class="p-4 space-y-1 font-semibold text-sm">
+        <a href="index.html" class="flex items-center gap-3 px-4 py-3 rounded-2xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <i data-lucide="layout-dashboard" class="w-5 h-5 text-slate-400"></i>
+          <span>Overview</span>
+        </a>
+        <a href="sessions.html" class="flex items-center gap-3 px-4 py-3 rounded-2xl bg-blue-600 text-white shadow-md shadow-blue-500/25">
+          <i data-lucide="calendar" class="w-5 h-5"></i>
+          <span>Sessions & Booking</span>
+        </a>
+        <a href="progress.html" class="flex items-center gap-3 px-4 py-3 rounded-2xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <i data-lucide="award" class="w-5 h-5 text-slate-400"></i>
+          <span>Progress & Badges</span>
+        </a>
+        <a href="settings.html" class="flex items-center gap-3 px-4 py-3 rounded-2xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <i data-lucide="settings" class="w-5 h-5 text-slate-400"></i>
+          <span>Account & Invoices</span>
+        </a>
+      </nav>
+    </div>
+
+    <div class="p-4 border-t border-slate-100 dark:border-slate-800 space-y-3">
+      <div class="flex items-center justify-between text-xs">
+        <button onclick="toggleTheme()" class="flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-slate-100 dark:bg-slate-800 font-bold">
+          <i data-lucide="moon" class="w-3.5 h-3.5 theme-moon-icon"></i>
+          <i data-lucide="sun" class="w-3.5 h-3.5 text-amber-500 theme-sun-icon hidden"></i>
+          <span>Mode</span>
+        </button>
+        <button onclick="toggleRTL()" class="flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-slate-100 dark:bg-slate-800 font-bold">
+          <i data-lucide="arrow-left-right" class="w-3.5 h-3.5 text-blue-500"></i>
+          <span class="dir-badge-text">RTL</span>
+        </button>
+      </div>
+      <button onclick="window.location.href='../index.html'" class="flex items-center justify-center gap-2 py-2.5 rounded-xl border border-red-200 dark:border-red-800 text-xs font-bold text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 transition">
+        <i data-lucide="log-out" class="w-4 h-4"></i> Logout
+      </button>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <div class="flex-1 flex flex-col min-w-0">
+    <header class="bg-white dark:bg-slate-900 border-b border-slate-200/80 dark:border-slate-800 py-4 px-6 sm:px-8 flex items-center justify-between sticky top-0 z-30">
+      <div class="flex items-center gap-4">
+        <button @click="sidebarOpen = true" class="lg:hidden p-2 rounded-xl bg-slate-100 dark:bg-slate-800">
+          <i data-lucide="menu" class="w-5 h-5"></i>
+        </button>
+        <div>
+          <h1 class="text-xl sm:text-2xl font-heading font-bold text-slate-900 dark:text-white">Sessions & Class Registration</h1>
+          <p class="text-xs text-slate-500">Manage bookings for <strong class="active-child-name text-blue-600 dark:text-blue-400">Leo Chen</strong></p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <button onclick="openBookingModal()" class="btn-brick btn-brick-yellow px-4 py-2 rounded-xl text-xs sm:text-sm font-heading font-bold shadow">
+          <i data-lucide="calendar-plus" class="w-4 h-4"></i> Book New Session
+        </button>
+        <img src="../assets/user-sarah-chen.jpg" alt="Sarah Chen" class="w-10 h-10 rounded-2xl border-2 border-blue-500 object-cover shadow-sm">
+      </div>
+    </header>
+
+    <main class="p-6 sm:p-8 space-y-8 max-w-7xl w-full mx-auto flex-1 overflow-y-auto">
+      
+      <!-- Filter Tabs & Available Makeups Summary -->
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div class="flex items-center gap-2 p-1 bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
+          <button @click="sessionFilter = 'upcoming'" :class="sessionFilter === 'upcoming' ? 'bg-blue-600 text-white' : 'text-slate-600 dark:text-slate-300'" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition">
+            Upcoming Classes (4)
+          </button>
+          <button @click="sessionFilter = 'completed'" :class="sessionFilter === 'completed' ? 'bg-blue-600 text-white' : 'text-slate-600 dark:text-slate-300'" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition">
+            Past Completed (14)
+          </button>
+        </div>
+
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-2xl bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800 text-xs text-emerald-800 dark:text-emerald-300 font-semibold">
+          <i data-lucide="sparkles" class="w-4 h-4 text-emerald-500"></i>
+          <span>2 Flexible Make-up Tokens Available</span>
+        </div>
+      </div>
+
+      <!-- UPCOMING SESSIONS LIST -->
+      <div x-show="sessionFilter === 'upcoming'" class="space-y-4">
+        
+        <!-- Session 1 -->
+        <div class="bg-white dark:bg-slate-900 rounded-3xl p-6 border-2 border-blue-500/40 shadow-sm flex flex-col md:flex-row gap-6 items-start md:items-center justify-between">
+          <div class="flex items-start gap-4">
+            <div class="w-16 h-16 rounded-2xl bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 flex flex-col items-center justify-center font-bold flex-shrink-0">
+              <span class="text-xs uppercase">OCT</span>
+                <span class="text-xl leading-none">17</span>
+            </div>
+            <div class="space-y-1">
+              <div class="flex items-center gap-2">
+                <span class="bg-blue-100 dark:bg-blue-900/60 text-blue-700 dark:text-blue-300 text-[10px] font-bold px-2 py-0.5 rounded-md uppercase">This Saturday</span>
+                <span class="text-xs text-slate-400">10:00 AM - 11:30 AM (90 mins)</span>
+              </div>
+              <h3 class="font-heading font-bold text-lg text-slate-900 dark:text-white">Autonomous Mars Obstacle Rover (Part 2)</h3>
+              <p class="text-xs text-slate-500">Coach Sarah Miller &bull; Main Lab Station #4 &bull; LEGO Spike Kit #L-09</p>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-3 w-full md:w-auto justify-end border-t md:border-t-0 pt-3 md:pt-0">
+            <button onclick="downloadTextFile('mars-rover-prep-sheet.txt', 'RoboBricks Mars Rover Prep Sheet\n\nBuild focus: ultrasonic sensor thresholds and four-wheel suspension.\nBring: notebook and pencil.\nCoach: Sarah Miller.\nSession length: 90 minutes.', 'Prep sheet downloaded.')" class="btn-brick btn-brick-blue px-4 py-2 rounded-xl text-xs font-bold">
+              Download Prep Sheet
+            </button>
+            <button onclick="openBookingModal('Saturday, Oct 17 - 10:00 AM')" class="px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 text-xs font-bold hover:bg-slate-100 dark:hover:bg-slate-800">
+              Reschedule
+            </button>
+          </div>
+        </div>
+
+        <!-- Session 2 -->
+        <div class="bg-white dark:bg-slate-900 rounded-3xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col md:flex-row gap-6 items-start md:items-center justify-between">
+          <div class="flex items-start gap-4">
+            <div class="w-16 h-16 rounded-2xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 flex flex-col items-center justify-center font-bold flex-shrink-0">
+              <span class="text-xs uppercase">OCT</span>
+                <span class="text-xl leading-none">24</span>
+            </div>
+            <div class="space-y-1">
+              <span class="text-xs text-slate-400">10:00 AM - 11:30 AM (90 mins)</span>
+              <h3 class="font-heading font-bold text-lg text-slate-900 dark:text-white">Gyro-Balanced Two-Wheel Segway Bot</h3>
+              <p class="text-xs text-slate-500">Coach Sarah Miller &bull; Main Lab Station #4 &bull; LEGO Spike Kit #L-09</p>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-3 w-full md:w-auto justify-end border-t md:border-t-0 pt-3 md:pt-0">
+            <button onclick="downloadTextFile('gyro-segway-prep-sheet.txt', 'RoboBricks Gyro-Balanced Segway Prep Sheet\n\nBuild focus: balance, wheel spacing, and gyro calibration.\nBring: notebook and pencil.\nCoach: Sarah Miller.', 'Prep sheet downloaded.')" class="px-4 py-2 rounded-xl border border-slate-200 dark:border-slate-700 text-xs font-bold hover:bg-slate-100">
+              Download Prep Sheet
+            </button>
+            <button onclick="openBookingModal('Saturday, Oct 24 - 10:00 AM')" class="px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 text-xs font-bold hover:bg-slate-100">
+              Reschedule
+            </button>
+          </div>
+        </div>
+
+        <!-- Session 3 -->
+        <div class="bg-white dark:bg-slate-900 rounded-3xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col md:flex-row gap-6 items-start md:items-center justify-between">
+          <div class="flex items-start gap-4">
+            <div class="w-16 h-16 rounded-2xl bg-rose-100 dark:bg-rose-950/60 text-rose-600 dark:text-rose-400 flex flex-col items-center justify-center font-bold flex-shrink-0">
+              <span class="text-xs uppercase">OCT</span>
+              <span class="text-xl leading-none">30</span>
+            </div>
+            <div class="space-y-1">
+              <div class="flex items-center gap-2">
+                <span class="bg-rose-100 text-rose-700 text-[10px] font-bold px-2 py-0.5 rounded-md uppercase">Tournament Special</span>
+                <span class="text-xs text-slate-400">6:00 PM - 7:30 PM (Battle Arena)</span>
+              </div>
+              <h3 class="font-heading font-bold text-lg text-slate-900 dark:text-white">Friday Night BattleBot Sumo Challenge</h3>
+              <p class="text-xs text-slate-500">Coach Marcus Vance &bull; Arena Mat #1 &bull; Heavy-Duty Technic Hub</p>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-3 w-full md:w-auto justify-end border-t md:border-t-0 pt-3 md:pt-0">
+            <button onclick="downloadTextFile('battlebot-arena-rules.txt', 'RoboBricks BattleBot Arena Rules\n\n1. Keep hands outside the arena while robots are active.\n2. Only approved low-voltage club kits may compete.\n3. A match ends when a robot is immobilized or leaves the ring.\n4. Coaches make the final safety call.', 'Arena rules downloaded.')" class="btn-brick btn-brick-red px-4 py-2 rounded-xl text-xs font-bold">
+              Download Arena Rules
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- COMPLETED SESSIONS LIST -->
+      <div x-show="sessionFilter === 'completed'" class="space-y-4">
+        <div class="bg-white dark:bg-slate-900 rounded-3xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm flex items-center justify-between">
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-600 flex items-center justify-center font-bold text-lg">
+              ✓
+            </div>
+            <div>
+              <span class="text-xs text-slate-400">Completed on Oct 11, 2026 &bull; Session #14</span>
+              <h4 class="font-heading font-bold text-base text-slate-900 dark:text-white">Autonomous Rover Suspension & Drive Motors</h4>
+              <p class="text-xs text-emerald-600 font-semibold">Attendance: Present &bull; +150 XP Earned</p>
+            </div>
+          </div>
+          <button onclick="downloadTextFile('coach-feedback-sensor-session.txt', 'Coach Notes — Sensor Session\n\nLeo tuned the ultrasonic distance threshold and explained how sensor readings affect obstacle avoidance. Keep practicing with three different target distances.', 'Coach notes downloaded.')" class="text-xs font-bold text-blue-600 hover:underline">
+            Download Coach Notes
+          </button>
+        </div>
+
+        <div class="bg-white dark:bg-slate-900 rounded-3xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm flex items-center justify-between">
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-600 flex items-center justify-center font-bold text-lg">
+              ✓
+            </div>
+            <div>
+              <span class="text-xs text-slate-400">Completed on Oct 04, 2026 &bull; Session #13</span>
+              <h4 class="font-heading font-bold text-base text-slate-900 dark:text-white">Ultrasonic Sensor Distance Threshold Tuning</h4>
+              <p class="text-xs text-emerald-600 font-semibold">Attendance: Present &bull; +300 XP Earned (Sensor Wizard Badge)</p>
+            </div>
+          </div>
+          <button onclick="downloadTextFile('coach-feedback-ultrasonic-session.txt', 'Coach Notes — Ultrasonic Sensor Session\n\nLeo tuned the sensor threshold and tested three approach distances. Continue checking that the sensor is mounted square to the chassis before each run.', 'Coach notes downloaded.')" class="text-xs font-bold text-blue-600 hover:underline">
+            Download Coach Notes
+          </button>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- Booking Modal -->
+  <div id="booking-modal" class="fixed inset-0 z-50 bg-slate-900/70 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-white dark:bg-slate-800 rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl border border-slate-100 dark:border-slate-700 relative space-y-4">
+      <button onclick="closeBookingModal()" class="absolute top-5 right-5 p-2 rounded-xl bg-slate-100 dark:bg-slate-700 text-slate-500">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <div class="flex items-center gap-3">
+        <div class="w-12 h-12 rounded-2xl bg-blue-600 text-white flex items-center justify-center font-bold shadow">
+          <i data-lucide="calendar" class="w-6 h-6"></i>
+        </div>
+        <div>
+          <span class="text-xs font-bold text-blue-600 uppercase tracking-wider block">Session Registration</span>
+          <h3 class="font-heading text-xl font-bold text-slate-900 dark:text-white">Book Class Slot</h3>
+        </div>
+      </div>
+
+      <form id="session-booking-form" class="space-y-4 pt-2">
+        <div>
+          <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Student</label>
+          <select name="student" required class="w-full text-xs sm:text-sm px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900">
+            <option value="leo">Leo Chen (RoboExplorers Level 2)</option>
+            <option value="maya">Maya Chen (Future Engineers Level 4)</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Available Lab Slots</label>
+          <select id="booking-slot-date" name="slot" required class="w-full text-xs sm:text-sm px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900">
+            <option value="Saturday, Oct 17 - 10:00 AM">Saturday, Oct 17 &bull; 10:00 AM - 11:30 AM (Coach Sarah)</option>
+            <option value="Saturday, Oct 17 - 2:00 PM">Saturday, Oct 17 &bull; 2:00 PM - 3:30 PM (Coach Marcus)</option>
+            <option value="Sunday, Oct 18 - 11:00 AM">Sunday, Oct 18 &bull; 11:00 AM - 12:30 PM (Coach Sarah)</option>
+            <option value="Saturday, Oct 24 - 10:00 AM">Saturday, Oct 24 &bull; 10:00 AM - 11:30 AM (Coach Sarah)</option>
+            <option value="Friday, Oct 30 - 6:00 PM">Friday, Oct 30 &bull; 6:00 PM - 7:30 PM (BattleBot Arena)</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn-brick btn-brick-yellow w-full py-3.5 rounded-2xl font-heading text-sm font-bold shadow-lg">
+          Confirm Class Booking &rarr;
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <div id="toast-container"></div>
+  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/dashboard.js"></script>
+</body>
+</html>

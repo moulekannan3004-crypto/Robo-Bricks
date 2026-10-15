@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Instructors & Mentors - Certified Robotics Coaches | RoboBricks</title>
+  <meta name="description" content="Meet our certified LEGO Education coaches, robotics engineers, and passionate STEM educators. Guaranteed 1:6 mentor-to-student ratio.">
+  
+  <link rel="icon" type="image/png" href="assets/logo.png">
+
+  <!-- TailwindCSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#eff6ff',
+              100: '#dbeafe',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8'
+            },
+            brick: {
+              yellow: '#FBBF24',
+              red: '#EF4444',
+              blue: '#2563EB',
+              green: '#10B981',
+              purple: '#8B5CF6'
+            }
+          },
+          fontFamily: {
+            heading: ['Fredoka', 'cursive', 'sans-serif'],
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            tech: ['"Space Grotesk"', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons & Alpine.js -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="assets/css/custom.css">
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 min-h-screen flex flex-col font-sans transition-colors duration-200">
+
+      <!-- Main Navigation Bar -->
+  <header class="sticky top-0 z-40 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 shadow-sm transition-colors">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20 gap-2 xl:gap-4">
+        
+        <!-- Logo -->
+        <a href="index.html" class="flex items-center gap-3 group flex-shrink-0">
+          <img src="assets/logo.png" alt="RoboBricks Logo" class="w-11 h-11 rounded-2xl object-contain shadow-lg shadow-blue-500/25 group-hover:scale-105 transition-transform duration-200 flex-shrink-0">
+          <div>
+            <span class="font-heading text-xl font-bold tracking-tight text-slate-900 dark:text-white flex items-center gap-1 leading-none">
+              Robo<span class="text-blue-600 dark:text-blue-400">Bricks</span>
+              <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+            </span>
+            <span class="block text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mt-1 leading-none">Kids Robotics & LEGO Club</span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="hidden xl:flex items-center gap-0.5 xl:gap-1.5 font-semibold text-xs xl:text-sm whitespace-nowrap">
+          <!-- Home with Home 2 Dropdown -->
+          <div class="relative flex-shrink-0" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false" @keydown.escape.window="open = false">
+            <button @click="open = !open" type="button" class="h-10 px-2.5 xl:px-3 rounded-xl inline-flex items-center gap-1 text-slate-700 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition whitespace-nowrap flex-shrink-0" :class="{ 'bg-blue-50/90 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 shadow-sm': open }">
+              <span>Home</span>
+              <i data-lucide="chevron-down" class="w-3.5 h-3.5 transition-transform duration-200" :class="{ 'rotate-180': open }"></i>
+            </button>
+            <div x-show="open" 
+                 x-cloak
+                 @click.outside="open = false"
+                 x-transition:enter="transition ease-out duration-150"
+                 x-transition:enter-start="opacity-0 translate-y-1"
+                 x-transition:enter-end="opacity-100 translate-y-0"
+                 x-transition:leave="transition ease-in duration-100"
+                 x-transition:leave-start="opacity-100 translate-y-0"
+                 x-transition:leave-end="opacity-0 translate-y-1"
+                 class="absolute left-0 top-full pt-2 w-56 z-50">
+              <div class="rounded-2xl bg-white dark:bg-slate-800 shadow-2xl border border-slate-200/90 dark:border-slate-700 p-2">
+                <a href="index.html" class="flex items-center gap-2.5 px-3 py-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 text-sm transition">
+                  <i data-lucide="bot" class="w-4 h-4 text-blue-500"></i>
+                  <div>
+                    <span class="block leading-tight ">Home 1</span>
+                    <span class="text-[11px] font-normal text-slate-500 dark:text-slate-400">Kids Robotics Club</span>
+                  </div>
+                </a>
+                <a href="index-2.html" class="flex items-center gap-2.5 px-3 py-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 text-sm transition">
+                  <i data-lucide="graduation-cap" class="w-4 h-4 text-blue-500"></i>
+                  <div>
+                    <span class="block leading-tight ">Home 2</span>
+                    <span class="text-[11px] text-slate-500 dark:text-slate-400">STEM Academy Variant</span>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <a href="about.html" class="h-10 px-2.5 xl:px-3 rounded-xl inline-flex items-center text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-blue-600 dark:hover:text-blue-400 transition whitespace-nowrap flex-shrink-0">About Us</a>
+
+          <a href="programs.html" class="h-10 px-2.5 xl:px-3 rounded-xl inline-flex items-center text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-blue-600 dark:hover:text-blue-400 transition whitespace-nowrap flex-shrink-0">Programs</a>
+
+          <a href="instructors.html" class="h-10 px-2.5 xl:px-3 rounded-xl inline-flex items-center text-blue-600 dark:text-blue-400 bg-blue-50/80 dark:bg-blue-950/40 font-bold whitespace-nowrap flex-shrink-0">Instructors</a>
+          <a href="pricing.html" class="h-10 px-2.5 xl:px-3 rounded-xl inline-flex items-center text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-blue-600 dark:hover:text-blue-400 transition whitespace-nowrap flex-shrink-0">Pricing</a>
+          <a href="gallery.html" class="h-10 px-2.5 xl:px-3 rounded-xl inline-flex items-center text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-blue-600 dark:hover:text-blue-400 transition whitespace-nowrap flex-shrink-0">Gallery</a>
+          <a href="blog.html" class="h-10 px-2.5 xl:px-3 rounded-xl inline-flex items-center text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-blue-600 dark:hover:text-blue-400 transition whitespace-nowrap flex-shrink-0">Blog</a>
+          <a href="contact.html" class="h-10 px-2.5 xl:px-3 rounded-xl inline-flex items-center text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-blue-600 dark:hover:text-blue-400 transition whitespace-nowrap flex-shrink-0">Contact</a>
+        </nav>
+
+        <!-- Right Action Buttons: Theme, RTL, Dashboard, and Sign Up -->
+        <div class="hidden xl:flex items-center gap-1.5 xl:gap-2 flex-shrink-0">
+          <!-- RTL Toggle Button -->
+          <button onclick="toggleRTL()" title="Toggle RTL / LTR Direction" class="h-10 px-2.5 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 transition text-xs font-bold inline-flex items-center gap-1.5 whitespace-nowrap flex-shrink-0">
+            <i data-lucide="arrow-left-right" class="w-4 h-4 text-blue-600 dark:text-blue-400"></i>
+            <span class="dir-badge-text">RTL</span>
+          </button>
+
+          <!-- Theme Toggle Button -->
+          <button onclick="toggleTheme()" title="Toggle Dark / Light Theme" class="h-10 w-10 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 transition inline-flex items-center justify-center flex-shrink-0">
+            <i data-lucide="sun" class="w-4 h-4 text-amber-500 theme-sun-icon hidden"></i>
+            <i data-lucide="moon" class="w-4 h-4 text-blue-600 dark:text-blue-400 theme-moon-icon"></i>
+          </button>
+
+          <a href="dashboard/index.html" class="h-10 px-3 xl:px-3.5 rounded-xl font-bold text-xs xl:text-sm text-slate-700 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition inline-flex items-center gap-1.5 xl:gap-2 whitespace-nowrap flex-shrink-0">
+            <i data-lucide="layout-dashboard" class="w-4 h-4 text-blue-600 dark:text-blue-400"></i>
+            <span>Dashboard</span>
+          </a>
+
+          <a href="login.html" class="h-10 px-3.5 xl:px-4 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs xl:text-sm font-heading tracking-wide inline-flex items-center justify-center gap-1.5 xl:gap-2 shadow-sm transition whitespace-nowrap flex-shrink-0">
+            <i data-lucide="log-in" class="w-4 h-4"></i>
+            <span>Login</span>
+          </a>
+        </div>
+
+        <!-- Mobile Menu Toggle Button -->
+        <div class="flex items-center gap-2 xl:hidden flex-shrink-0">
+          <button onclick="toggleTheme()" class="h-10 w-10 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 inline-flex items-center justify-center">
+            <i data-lucide="sun" class="w-4 h-4 text-amber-500 theme-sun-icon hidden"></i>
+            <i data-lucide="moon" class="w-4 h-4 text-blue-500 theme-moon-icon"></i>
+          </button>
+          <button onclick="toggleMobileMenu()" class="h-10 w-10 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 inline-flex items-center justify-center">
+            <i data-lucide="menu" class="w-6 h-6"></i>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Menu Drawer -->
+  <div id="mobile-menu" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden flex flex-col justify-end">
+    <div class="bg-white dark:bg-slate-900 rounded-t-3xl p-6 max-h-[85vh] overflow-y-auto space-y-4 shadow-2xl">
+      <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-4">
+        <span class="font-heading text-xl font-bold">Menu Navigation</span>
+        <button onclick="toggleMobileMenu()" class="p-2 rounded-xl bg-slate-100 dark:bg-slate-800">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <div class="space-y-1 font-semibold text-slate-800 dark:text-slate-100">
+        <a href="index.html" class="block px-4 py-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800">Home 1 (Main Club)</a>
+        <a href="index-2.html" class="block px-4 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 pl-8 text-xs text-slate-500">&bull; Home 2 (STEM Academy)</a>
+        <a href="about.html" class="block px-4 py-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800">About Us</a>
+        
+        <a href="programs.html" class="block px-4 py-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800">Programs</a>
+
+        <a href="instructors.html" class="block px-4 py-2.5 rounded-xl bg-blue-50 dark:bg-blue-900/40 text-blue-600 dark:text-blue-300 font-bold">Instructors & Mentors</a>
+        <a href="pricing.html" class="block px-4 py-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800">Pricing</a>
+        <a href="gallery.html" class="block px-4 py-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800">Gallery</a>
+        <a href="blog.html" class="block px-4 py-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800">Blog</a>
+        <a href="contact.html" class="block px-4 py-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800">Contact</a>
+        <a href="dashboard/index.html" class="block px-4 py-2.5 rounded-xl bg-blue-50 dark:bg-blue-950/40 text-blue-600 dark:text-blue-400 font-bold">Parent & Admin Dashboard &rarr;</a>
+      </div>
+
+      <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex flex-col gap-2.5">
+        <button onclick="toggleRTL()" class="w-full py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 flex items-center justify-center gap-2 text-sm font-bold">
+          <i data-lucide="arrow-left-right" class="w-4 h-4"></i> Switch Layout (LTR / RTL)
+        </button>
+        <a href="login.html" class="btn-brick bg-blue-600 hover:bg-blue-700 text-white w-full py-3 rounded-2xl font-heading text-base flex items-center justify-center gap-2 transition">
+          <i data-lucide="log-in" class="w-5 h-5"></i>
+          <span>Parent Login</span>
+        </a>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <!-- Page Hero Header -->
+  <section class="py-14 sm:py-20 bg-[#0B1120] text-slate-100 border-b border-slate-800/80 relative overflow-hidden">
+    <!-- Solid dark navy background with subtle stud pattern -->
+    <div class="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+      <div class="absolute inset-0 bg-gradient-to-b from-[#0B1120]/90 via-[#0B1120]/75 to-[#0B1120]/95"></div>
+      <div class="absolute inset-0 bg-studs opacity-40"></div>
+    </div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+      
+      <!-- Breadcrumb -->
+      <div class="flex items-center justify-center gap-2 text-xs font-semibold text-slate-400 mb-3">
+        <a href="index.html" class="hover:text-white transition">Home</a>
+        <span>/</span>
+        <a href="about.html" class="hover:text-white transition">About Us</a>
+        <span>/</span>
+        <span class="text-blue-400 font-bold">Instructors & Mentors</span>
+      </div>
+
+      <!-- Main Headline -->
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 dark:bg-blue-950/60 border border-blue-200 dark:border-blue-800 text-blue-600 dark:text-blue-400 text-xs font-bold uppercase tracking-wider mb-4">
+        <i data-lucide="award" class="w-4 h-4 text-amber-500"></i>
+        <span>Certified Robotics Coaches & STEM Mentors</span>
+      </div>
+
+      <h1 class="text-4xl sm:text-6xl font-heading font-extrabold text-white tracking-tight">
+        Passionate Mentors Who Turn <br class="hidden sm:inline">
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-blue-500 to-amber-500">
+          Curious Kids into Confident Creators
+        </span> 🤖🚀
+      </h1>
+
+      <p class="mt-4 text-base sm:text-lg text-slate-300 max-w-3xl mx-auto leading-relaxed">
+        Our mentors aren’t just robotics engineers and computer scientists — they are patient guides who celebrate mistakes as learning moments, keep team ratios small (1:6), and ignite a lifelong love for technology.
+      </p>
+
+      <!-- Trust Badges Bar -->
+      <div class="mt-8 flex flex-wrap items-center justify-center gap-4 sm:gap-8 text-xs font-bold text-slate-800 dark:text-slate-100">
+        <div class="flex items-center gap-2 bg-slate-100 dark:bg-slate-800/80 px-4 py-2 rounded-2xl border border-slate-200 dark:border-slate-700">
+          <i data-lucide="shield-check" class="w-4 h-4 text-emerald-500"></i>
+          <span>100% FBI & State Fingerprint Cleared</span>
+        </div>
+        <div class="flex items-center gap-2 bg-slate-100 dark:bg-slate-800/80 px-4 py-2 rounded-2xl border border-slate-200 dark:border-slate-700">
+          <i data-lucide="heart-pulse" class="w-4 h-4 text-rose-500"></i>
+          <span>Pediatric First Aid & CPR Certified</span>
+        </div>
+        <div class="flex items-center gap-2 bg-slate-100 dark:bg-slate-800/80 px-4 py-2 rounded-2xl border border-slate-200 dark:border-slate-700">
+          <i data-lucide="check-circle-2" class="w-4 h-4 text-blue-500"></i>
+          <span>LEGO® Education Academy Certified</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Interactive Instructor Roster Section -->
+  <section id="instructor-roster" class="py-10 sm:py-14 bg-slate-50 dark:bg-slate-900 flex-1">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Coaches Grid -->
+      <div id="instructor-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8" aria-live="polite"></div>
+
+    </div>
+  </section>
+
+  <!-- Mentor Standards -->
+  <section class="relative isolate overflow-hidden bg-[#0b1120] py-20 sm:py-24 text-white">
+    <div aria-hidden="true" class="absolute -top-28 -left-20 h-80 w-80 rounded-full bg-blue-600/20 blur-3xl"></div>
+    <div aria-hidden="true" class="absolute -bottom-32 right-0 h-96 w-96 rounded-full bg-emerald-500/10 blur-3xl"></div>
+    <div class="relative mx-auto grid max-w-7xl items-center gap-12 px-4 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8">
+
+      <div>
+        <span class="inline-flex items-center gap-2 rounded-full border border-emerald-400/20 bg-emerald-400/10 px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-[0.18em] text-emerald-300">
+          <i data-lucide="shield-check" class="h-4 w-4"></i>
+          Parent Peace of Mind
+        </span>
+        <h2 class="mt-6 max-w-xl font-heading text-4xl font-bold leading-tight sm:text-5xl">
+          Great mentors are built on <span class="text-blue-300">trust.</span>
+        </h2>
+        <p class="mt-5 max-w-lg text-sm leading-7 text-slate-300 sm:text-base">
+          We only hire educators we would wholeheartedly trust to teach and protect our own children.
+        </p>
+
+        <div class="mt-9 max-w-lg rounded-[1.75rem] border border-white/10 bg-white/[0.04] p-6 sm:p-7">
+          <div class="flex items-center justify-between gap-4">
+            <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400">Our screening sequence</span>
+            <span class="rounded-full bg-blue-400/10 px-3 py-1 text-xs font-bold text-blue-200">01 / 03</span>
+          </div>
+          <div class="mt-5 flex items-end gap-4">
+            <span class="font-heading text-7xl font-bold leading-none text-white sm:text-8xl">03</span>
+            <p class="max-w-[12rem] pb-1 text-sm leading-5 text-slate-300">checks before a mentor steps into our lab</p>
+          </div>
+          <div class="mt-6 grid grid-cols-3 gap-2 border-t border-white/10 pt-5 text-center text-[10px] font-bold uppercase tracking-wider text-slate-300 sm:text-xs">
+            <span class="rounded-xl bg-white/[0.04] px-2 py-2.5">FBI</span>
+            <span class="rounded-xl bg-white/[0.04] px-2 py-2.5">State</span>
+            <span class="rounded-xl bg-white/[0.04] px-2 py-2.5">References</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="relative space-y-4">
+        <div aria-hidden="true" class="absolute bottom-10 left-7 top-10 hidden w-px bg-gradient-to-b from-emerald-400/60 via-blue-400/60 to-amber-300/60 sm:block"></div>
+
+        <article class="relative grid grid-cols-[2rem_3rem_minmax(0,1fr)] items-start gap-3 rounded-[1.75rem] border border-white/10 bg-white/[0.045] p-4 transition hover:border-emerald-300/30 hover:bg-white/[0.07] sm:grid-cols-[3.5rem_3rem_minmax(0,1fr)] sm:gap-5 sm:p-6">
+          <span class="font-heading text-sm font-bold tracking-widest text-emerald-300 sm:pt-2">01</span>
+          <span class="flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-300/10 text-emerald-300 ring-1 ring-emerald-300/20">
+            <i data-lucide="fingerprint" class="h-6 w-6"></i>
+          </span>
+          <div>
+            <p class="mb-1 text-[10px] font-bold uppercase tracking-[0.18em] text-emerald-300">Safety, verified</p>
+            <h3 class="font-heading text-xl font-bold text-white">Triple Background Checks</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-300">Every candidate undergoes mandatory FBI fingerprint clearance, state criminal background registries, and comprehensive reference verifications prior to entering our labs.</p>
+          </div>
+        </article>
+
+        <article class="relative grid grid-cols-[2rem_3rem_minmax(0,1fr)] items-start gap-3 rounded-[1.75rem] border border-white/10 bg-white/[0.045] p-4 transition hover:border-blue-300/30 hover:bg-white/[0.07] sm:grid-cols-[3.5rem_3rem_minmax(0,1fr)] sm:gap-5 sm:p-6">
+          <span class="font-heading text-sm font-bold tracking-widest text-blue-300 sm:pt-2">02</span>
+          <span class="flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-300/10 text-blue-300 ring-1 ring-blue-300/20">
+            <i data-lucide="users-round" class="h-6 w-6"></i>
+          </span>
+          <div>
+            <p class="mb-1 text-[10px] font-bold uppercase tracking-[0.18em] text-blue-300">Room to guide</p>
+            <h3 class="font-heading text-xl font-bold text-white">Strict 1:6 Teacher Ratios</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-300">We cap every classroom session at six children per mentor. No student is ever left behind or stuck waiting with a broken gear assembly or coding error.</p>
+          </div>
+        </article>
+
+        <article class="relative grid grid-cols-[2rem_3rem_minmax(0,1fr)] items-start gap-3 rounded-[1.75rem] border border-white/10 bg-white/[0.045] p-4 transition hover:border-amber-300/30 hover:bg-white/[0.07] sm:grid-cols-[3.5rem_3rem_minmax(0,1fr)] sm:gap-5 sm:p-6">
+          <span class="font-heading text-sm font-bold tracking-widest text-amber-300 sm:pt-2">03</span>
+          <span class="flex h-12 w-12 items-center justify-center rounded-2xl bg-amber-300/10 text-amber-300 ring-1 ring-amber-300/20">
+            <i data-lucide="lightbulb" class="h-6 w-6"></i>
+          </span>
+          <div>
+            <p class="mb-1 text-[10px] font-bold uppercase tracking-[0.18em] text-amber-300">Curiosity over perfection</p>
+            <h3 class="font-heading text-xl font-bold text-white">Growth Mindset Pedagogy</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-300">We coach coaches on celebrating the trial-and-error scientific method. Failed rover tests are treated as puzzle breakthroughs rather than errors.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Coach Preparation -->
+  <section class="relative isolate overflow-hidden bg-[#f3f7fc] py-20 dark:bg-slate-900 sm:py-24">
+    <div aria-hidden="true" class="absolute -right-24 -top-24 h-80 w-80 rounded-full bg-blue-200/40 blur-3xl dark:bg-blue-500/10"></div>
+    <div aria-hidden="true" class="absolute -bottom-32 -left-20 h-80 w-80 rounded-full bg-amber-200/40 blur-3xl dark:bg-amber-500/10"></div>
+    <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
+        <div>
+          <span class="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-white/80 px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-[0.18em] text-blue-700 shadow-sm dark:border-blue-400/20 dark:bg-blue-400/10 dark:text-blue-300">
+            <i data-lucide="workflow" class="h-4 w-4"></i>
+            The Coach Playbook
+          </span>
+          <h2 class="mt-5 max-w-xl font-heading text-4xl font-bold leading-tight text-slate-950 dark:text-white sm:text-5xl">How Our Coaches Prepare</h2>
+        </div>
+        <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+          <p class="max-w-xl text-sm leading-7 text-slate-600 dark:text-slate-300 sm:text-base">Instructors plan age-appropriate challenges and learn to guide students through open-ended builds.</p>
+          <span class="shrink-0 pb-1 text-[10px] font-bold uppercase tracking-[0.18em] text-slate-400 dark:text-slate-500">A class in three moves</span>
+        </div>
+      </div>
+
+      <div class="relative mt-14 sm:mt-16">
+        <div aria-hidden="true" class="absolute left-[16.66%] right-[16.66%] top-8 hidden h-px bg-gradient-to-r from-blue-300 via-emerald-300 to-amber-300 dark:from-blue-500/50 dark:via-emerald-500/50 dark:to-amber-500/50 md:block"></div>
+        <div class="grid gap-9 md:grid-cols-3 md:gap-0">
+          <article class="relative px-2 md:px-8">
+            <div class="flex items-center gap-4 md:mb-7 md:flex-col md:items-center md:gap-5">
+              <span class="relative z-10 flex h-16 w-16 shrink-0 items-center justify-center rounded-[1.35rem] border-4 border-[#f3f7fc] bg-blue-600 text-white shadow-lg shadow-blue-600/20 dark:border-slate-900">
+                <i data-lucide="pencil-ruler" class="h-7 w-7"></i>
+              </span>
+              <span class="font-heading text-sm font-bold tracking-[0.16em] text-blue-700 dark:text-blue-300">01 / DESIGN</span>
+            </div>
+            <h3 class="font-heading text-2xl font-bold text-slate-950 dark:text-white md:text-center">Plan the challenge</h3>
+            <p class="mt-3 max-w-sm text-sm leading-6 text-slate-600 dark:text-slate-300 md:mx-auto md:text-center">Lessons connect a project to a clear engineering idea.</p>
+            <div class="mt-6 inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-blue-700 shadow-sm dark:bg-slate-800 dark:text-blue-300 md:flex md:w-fit md:mx-auto">
+              <i data-lucide="target" class="h-3.5 w-3.5"></i> Start with a mission
+            </div>
+          </article>
+
+          <article class="relative border-slate-200/80 px-2 md:border-l md:px-8 dark:border-slate-700">
+            <div class="flex items-center gap-4 md:mb-7 md:flex-col md:items-center md:gap-5">
+              <span class="relative z-10 flex h-16 w-16 shrink-0 items-center justify-center rounded-[1.35rem] border-4 border-[#f3f7fc] bg-emerald-500 text-white shadow-lg shadow-emerald-500/20 dark:border-slate-900">
+                <i data-lucide="messages-square" class="h-7 w-7"></i>
+              </span>
+              <span class="font-heading text-sm font-bold tracking-[0.16em] text-emerald-700 dark:text-emerald-300">02 / COACH</span>
+            </div>
+            <h3 class="font-heading text-2xl font-bold text-slate-950 dark:text-white md:text-center">Guide, then step back</h3>
+            <p class="mt-3 max-w-sm text-sm leading-6 text-slate-600 dark:text-slate-300 md:mx-auto md:text-center">Coaches use prompts that let kids own the solution.</p>
+            <div class="mt-6 inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-emerald-700 shadow-sm dark:bg-slate-800 dark:text-emerald-300 md:flex md:w-fit md:mx-auto">
+              <i data-lucide="hand" class="h-3.5 w-3.5"></i> Let kids lead
+            </div>
+          </article>
+
+          <article class="relative border-slate-200/80 px-2 md:border-l md:px-8 dark:border-slate-700">
+            <div class="flex items-center gap-4 md:mb-7 md:flex-col md:items-center md:gap-5">
+              <span class="relative z-10 flex h-16 w-16 shrink-0 items-center justify-center rounded-[1.35rem] border-4 border-[#f3f7fc] bg-amber-400 text-slate-950 shadow-lg shadow-amber-400/20 dark:border-slate-900">
+                <i data-lucide="rotate-cw" class="h-7 w-7"></i>
+              </span>
+              <span class="font-heading text-sm font-bold tracking-[0.16em] text-amber-700 dark:text-amber-300">03 / REFLECT</span>
+            </div>
+            <h3 class="font-heading text-2xl font-bold text-slate-950 dark:text-white md:text-center">Reflect together</h3>
+            <p class="mt-3 max-w-sm text-sm leading-6 text-slate-600 dark:text-slate-300 md:mx-auto md:text-center">Students share tests, revisions, and next steps.</p>
+            <div class="mt-6 inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-amber-700 shadow-sm dark:bg-slate-800 dark:text-amber-300 md:flex md:w-fit md:mx-auto">
+              <i data-lucide="repeat-2" class="h-3.5 w-3.5"></i> Improve the next build
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Family Communication -->
+  <section class="py-16 bg-white dark:bg-slate-950">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 grid gap-6 md:grid-cols-[1fr_auto] md:items-center">
+      <div><h2 class="text-3xl font-heading font-bold text-slate-900 dark:text-white">A Clear View of Your Child’s Growth</h2><p class="mt-3 text-sm leading-relaxed text-slate-600 dark:text-slate-400">Coaches share project feedback and celebrate progress so families can see the ideas and skills behind each build.</p></div>
+      <a href="dashboard/index.html" class="inline-flex justify-center px-5 py-3 rounded-xl bg-blue-50 dark:bg-blue-950/40 text-blue-700 dark:text-blue-300 font-bold text-sm">Parent Portal →</a>
+    </div>
+  </section>
+
+  <!-- CTA Banner: Join Our Teaching Team -->
+  <section class="py-16 bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 text-white relative overflow-hidden bg-studs-primary">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 space-y-6">
+      <div class="w-14 h-14 rounded-2xl bg-white/20 backdrop-blur mx-auto flex items-center justify-center text-amber-300 shadow-lg">
+        <i data-lucide="graduation-cap" class="w-7 h-7"></i>
+      </div>
+      <h2 class="text-3xl sm:text-4xl font-heading font-bold">
+        Are You a Passionate Robotics Educator or Engineer?
+      </h2>
+      <p class="text-sm sm:text-base text-blue-100 max-w-2xl mx-auto">
+        We are always seeking certified robotics instructors, passionate computer science students, and LEGO hobbyists to lead weekend sessions and competitive cohorts.
+      </p>
+      <div class="pt-2 flex flex-wrap items-center justify-center gap-4">
+        <a href="contact.html" class="btn-brick btn-brick-yellow px-8 py-3.5 rounded-2xl font-heading text-sm font-bold shadow-xl">
+          Apply to Join Our Squad
+        </a>
+        <button onclick="openEnrollModal('Instructor Page Free Trial')" class="px-6 py-3.5 rounded-2xl bg-white/10 hover:bg-white/20 border border-white/30 text-white font-bold text-sm transition">
+          Book a Child Trial Session
+        </button>
+      </div>
+    </div>
+  </section>
+
+    <!-- Footer -->
+  <footer class="bg-[#0B1120] text-slate-300 pt-16 pb-8 border-t border-slate-800/80 transition-colors">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-8 pb-12">
+        
+        <!-- Col 1: Brand & Socials -->
+        <div class="lg:col-span-3 space-y-4">
+          <a href="index.html" class="flex items-center gap-3 group flex-shrink-0">
+            <img src="assets/logo.png" alt="RoboBricks Logo" class="w-11 h-11 rounded-2xl object-contain shadow-lg shadow-blue-500/25 group-hover:scale-105 transition-transform duration-200 flex-shrink-0">
+            <div>
+              <span class="font-heading text-xl font-bold tracking-tight text-white flex items-center gap-1 leading-none">
+                Robo<span class="text-blue-400">Bricks</span>
+                <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+              </span>
+              <span class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mt-1 leading-none">Kids Robotics & LEGO Club</span>
+            </div>
+          </a>
+          
+          <p class="text-xs sm:text-sm text-slate-400 leading-relaxed max-w-sm">
+            Helping young minds build confidence through creative LEGO engineering, coding, and hands-on robotics.
+          </p>
+
+          <div class="flex items-center gap-2.5 pt-2">
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="w-9 h-9 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-slate-700 hover:bg-slate-800 transition">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd"/>
+              </svg>
+            </a>
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="w-9 h-9 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-slate-700 hover:bg-slate-800 transition">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd"/>
+              </svg>
+            </a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="w-9 h-9 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-slate-700 hover:bg-slate-800 transition">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+              </svg>
+            </a>
+            <a href="https://x.com" target="_blank" rel="noopener noreferrer" aria-label="X / Twitter" class="w-9 h-9 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-slate-700 hover:bg-slate-800 transition">
+              <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Col 2: Navigation -->
+        <div class="lg:col-span-2 space-y-3">
+          <h4 class="font-bold text-xs uppercase tracking-widest text-white mb-4">NAVIGATION</h4>
+          <ul class="space-y-2 text-xs sm:text-sm text-slate-400">
+            <li><a href="index.html" class="hover:text-blue-400 transition">Home</a></li>
+            <li><a href="about.html" class="hover:text-blue-400 transition">About Us</a></li>
+            <li><a href="programs.html" class="hover:text-blue-400 transition">Programs</a></li>
+            <li><a href="instructors.html" class="hover:text-blue-400 transition">Instructors</a></li>
+            <li><a href="pricing.html" class="hover:text-blue-400 transition">Pricing Tiers</a></li>
+            <li><a href="gallery.html" class="hover:text-blue-400 transition">Gallery & Builds</a></li>
+            <li><a href="blog.html" class="hover:text-blue-400 transition">Blog & Journal</a></li>
+            <li><a href="contact.html" class="hover:text-blue-400 transition">Contact Club</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Club Standards -->
+        <div class="lg:col-span-4 space-y-3">
+          <h4 class="font-bold text-xs uppercase tracking-widest text-white mb-4">CAMP STANDARDS</h4>
+          <div class="grid grid-cols-2 gap-x-4 gap-y-3 text-xs sm:text-sm">
+            <div class="font-bold text-white">1:6 Coach Ratio</div>
+            <div class="text-slate-400">Certified STEM Mentors</div>
+
+            <div class="font-bold text-white">Daily Build Time</div>
+            <div class="text-slate-400">Live Hands-On Practice</div>
+
+            <div class="font-bold text-white">FLL League Prep</div>
+            <div class="text-slate-400">Gala Showcase Challenges</div>
+
+            <div class="font-bold text-white">Ages 5–16</div>
+            <div class="text-slate-400">Junior, Teen & Exec Tracks</div>
+
+            <div class="font-bold text-white">5 Regional Hubs</div>
+            <div class="text-slate-400">Robotics & Coding Campuses</div>
+          </div>
+        </div>
+
+        <!-- Col 4: Admissions & Contact -->
+        <div class="lg:col-span-3 space-y-3">
+          <h4 class="font-bold text-xs uppercase tracking-widest text-white mb-4">CAMP ADMISSIONS</h4>
+          <div class="space-y-2.5 text-xs sm:text-sm text-slate-400">
+            <div class="flex items-center gap-2.5">
+              <i data-lucide="mail" class="w-4 h-4 text-blue-400 flex-shrink-0"></i>
+              <a href="mailto:admissions@robobricks.club" class="hover:text-white transition">admissions@robobricks.club</a>
+            </div>
+            <div class="flex items-center gap-2.5">
+              <i data-lucide="phone" class="w-4 h-4 text-blue-400 flex-shrink-0"></i>
+              <a href="tel:+18005557626" class="hover:text-white transition">+1 (800) 555-ROBO</a>
+            </div>
+            <div class="flex items-start gap-2.5">
+              <i data-lucide="map-pin" class="w-4 h-4 text-blue-400 flex-shrink-0 mt-0.5"></i>
+              <span>100 Innovation Way, Suite 400, Austin, TX 78701</span>
+            </div>
+          </div>
+
+          <div class="pt-2">
+            <button onclick="openEnrollModal('Connect Admissions Team')" class="w-full py-3 px-6 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold text-sm shadow-lg shadow-blue-600/30 transition-all hover:scale-[1.02] flex items-center justify-center gap-2">
+              <span>Connect Admissions Team</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Copyright Bar -->
+      <div class="mt-8 pt-8 border-t border-slate-800/80 text-center text-xs text-slate-500">
+        <p>&copy; 2026 RoboBricks Youth Robotics Academy Ltd. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Universal Multi-Step Enrollment / Free Trial Modal -->
+  <div id="enroll-modal" class="fixed inset-0 z-50 bg-slate-900/70 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-white dark:bg-slate-800 rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-slate-200 dark:border-slate-700 relative overflow-hidden">
+      
+      <!-- Top Decorative Bar -->
+      <div class="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-blue-600 via-amber-400 to-blue-600"></div>
+
+      <div class="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-slate-700">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">Join RoboBricks</span>
+          <h3 id="modal-title" class="font-heading font-bold text-xl text-slate-900 dark:text-white">Book Free Trial Session</h3>
+        </div>
+        <button onclick="closeEnrollModal()" class="p-2 rounded-xl text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-700">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <form id="enroll-form" class="mt-6 space-y-4">
+        <div class="space-y-1">
+          <label class="text-xs font-bold text-slate-700 dark:text-slate-300">Parent / Guardian Name</label>
+          <input type="text" required placeholder="e.g. Jessica Chen" class="w-full text-xs sm:text-sm px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500">
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="space-y-1">
+            <label class="text-xs font-bold text-slate-700 dark:text-slate-300">Child's Name</label>
+            <input type="text" required placeholder="e.g. Leo" class="w-full text-xs sm:text-sm px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500">
+          </div>
+          <div class="space-y-1">
+            <label class="text-xs font-bold text-slate-700 dark:text-slate-300">Child's Age</label>
+            <select class="w-full text-xs sm:text-sm px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <option>5 - 7 Years (Junior WeDo)</option>
+              <option selected>8 - 11 Years (SPIKE Prime)</option>
+              <option>12 - 16 Years (Python & AI)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="space-y-1">
+          <label class="text-xs font-bold text-slate-700 dark:text-slate-300">Email Address</label>
+          <input type="email" required placeholder="jessica@example.com" class="w-full text-xs sm:text-sm px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500">
+        </div>
+
+        <div class="space-y-1">
+          <label class="text-xs font-bold text-slate-700 dark:text-slate-300">Phone (for SMS confirmation)</label>
+          <input type="tel" required placeholder="+1 (555) 000-0000" class="w-full text-xs sm:text-sm px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500">
+        </div>
+
+        <button type="submit" class="btn-brick btn-brick-yellow w-full py-3.5 rounded-2xl font-heading font-bold text-sm shadow-lg mt-2">
+          Confirm Free Spot Now 🚀
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Page and shared JavaScript -->
+  <script src="assets/js/instructors.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

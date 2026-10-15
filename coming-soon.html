@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Under Active Construction - Arena Launch | RoboBricks</title>
+  <meta name="description" content="Our brand-new high-tech BattleBot Arena and AI Robotics Lab is launching soon. Join the parent VIP early access waitlist.">
+  
+  <link rel="icon" type="image/png" href="assets/logo.png">
+
+  <!-- TailwindCSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: { 50: '#eff6ff', 100: '#dbeafe', 500: '#3b82f6', 600: '#2563eb', 700: '#1d4ed8' },
+            brick: { yellow: '#FBBF24', red: '#EF4444', blue: '#2563EB', green: '#10B981', purple: '#8B5CF6' }
+          },
+          fontFamily: {
+            heading: ['Fredoka', 'cursive', 'sans-serif'],
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            tech: ['"Space Grotesk"', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons & Alpine.js -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <link rel="stylesheet" href="assets/css/custom.css">
+</head>
+<body class="bg-slate-900 text-white min-h-screen flex flex-col font-sans relative overflow-x-hidden bg-studs" x-data="{
+  targetDate: new Date(2026, 10, 8, 0, 0, 0).getTime(),
+  days: 0,
+  hours: 0,
+  minutes: 0,
+  seconds: 0,
+  init() {
+    const updateCountdown = () => {
+      const remaining = Math.max(0, this.targetDate - Date.now());
+      const totalSeconds = Math.floor(remaining / 1000);
+      this.days = Math.floor(totalSeconds / 86400);
+      this.hours = Math.floor((totalSeconds % 86400) / 3600);
+      this.minutes = Math.floor((totalSeconds % 3600) / 60);
+      this.seconds = totalSeconds % 60;
+    };
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  }
+}">
+
+  <!-- Top Utilities -->
+  <header class="py-4 px-4 sm:px-6 border-b border-white/10 flex flex-wrap items-center justify-between gap-3">
+    <a href="index.html" class="flex items-center gap-3 group flex-shrink-0">
+            <img src="assets/logo.png" alt="RoboBricks Logo" class="w-11 h-11 rounded-2xl object-contain shadow-lg shadow-blue-500/25 group-hover:scale-105 transition-transform duration-200 flex-shrink-0">
+            <div>
+              <span class="font-heading text-xl font-bold tracking-tight text-slate-900 dark:text-white flex items-center gap-1 leading-none">
+                Robo<span class="text-blue-600 dark:text-blue-400">Bricks</span>
+                <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+              </span>
+              <span class="block text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mt-1 leading-none">Kids Robotics & LEGO Club</span>
+            </div>
+          </a>
+
+    <div class="flex items-center gap-3">
+      <button onclick="toggleRTL()" class="p-1.5 rounded-lg border border-white/20 text-xs font-bold text-white">
+        <span class="dir-badge-text">RTL</span>
+      </button>
+      <a href="index.html" class="text-xs font-bold text-white/80 hover:text-white flex items-center gap-1">
+        <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i> Back to Main Site
+      </a>
+    </div>
+  </header>
+
+  <!-- Main Hero Construction View -->
+  <main class="flex-1 flex items-center justify-center p-6 text-center">
+    <div class="max-w-3xl w-full space-y-8 py-10">
+      
+      <!-- Launch Status Pill -->
+      <section aria-label="Launch status">
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-400/20 border border-amber-400/40 text-amber-300 text-xs sm:text-sm font-bold">
+        <span class="w-2.5 h-2.5 rounded-full bg-amber-400 animate-ping"></span>
+        <span>Robotics Lab 2.0 & Mega Arena &bull; Launching Soon!</span>
+      </div>
+      </section>
+
+      <!-- Main Headline -->
+      <section>
+      <h1 class="text-4xl sm:text-6xl font-heading font-extrabold tracking-tight leading-tight">
+        Under Active Construction! <br>
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-rose-500 to-blue-400">
+          Our New Battle Arena is Loading
+        </span> 🤖🛠️
+      </h1>
+
+      <p class="text-base sm:text-lg text-slate-300 max-w-xl mx-auto leading-relaxed">
+        We're snapping the final bricks onto our 3,000 sq.ft. innovation hub, featuring 360° robot combat arenas and high-speed autonomous tracks.
+      </p>
+      </section>
+
+      <!-- Live Reactive Countdown Timer -->
+      <section aria-label="Opening countdown">
+      <div class="grid grid-cols-4 gap-3 sm:gap-6 max-w-lg mx-auto py-4">
+        
+        <div class="bg-white/10 backdrop-blur rounded-2xl p-3 sm:p-5 border border-white/15">
+          <span class="block text-3xl sm:text-5xl font-heading font-bold text-amber-400 font-tech" x-text="days">24</span>
+          <span class="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-slate-300">Days</span>
+        </div>
+
+        <div class="bg-white/10 backdrop-blur rounded-2xl p-3 sm:p-5 border border-white/15">
+          <span class="block text-3xl sm:text-5xl font-heading font-bold text-rose-400 font-tech" x-text="hours">14</span>
+          <span class="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-slate-300">Hours</span>
+        </div>
+
+        <div class="bg-white/10 backdrop-blur rounded-2xl p-3 sm:p-5 border border-white/15">
+          <span class="block text-3xl sm:text-5xl font-heading font-bold text-blue-400 font-tech" x-text="minutes">32</span>
+          <span class="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-slate-300">Mins</span>
+        </div>
+
+        <div class="bg-white/10 backdrop-blur rounded-2xl p-3 sm:p-5 border border-white/15">
+          <span class="block text-3xl sm:text-5xl font-heading font-bold text-emerald-400 font-tech" x-text="seconds">45</span>
+          <span class="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-slate-300">Secs</span>
+        </div>
+
+      </div>
+      </section>
+
+      <!-- Waitlist Subscription Form -->
+      <section>
+      <div class="max-w-md mx-auto pt-2">
+        <form onsubmit="event.preventDefault(); requestWaitlistSignup(this);" class="flex flex-col sm:flex-row gap-2">
+          <input type="email" required placeholder="Parent email for VIP opening invites..." class="flex-1 px-4 py-3 rounded-2xl bg-white/10 border border-white/20 text-white placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-amber-400">
+          <button type="submit" class="btn-brick btn-brick-yellow px-6 py-3 rounded-2xl font-heading text-sm font-bold whitespace-nowrap">
+            Notify Me First
+          </button>
+        </form>
+        <span class="block text-xs text-slate-400 mt-2">First 50 signups receive a free LEGO Spike build kit.</span>
+      </div>
+      </section>
+
+      <section class="rounded-3xl border border-white/10 bg-white/5 p-6 sm:p-8 text-left">
+        <h2 class="text-xl font-heading font-bold text-white text-center">A New Space for Big Ideas</h2>
+        <div class="mt-5 grid gap-4 sm:grid-cols-3 text-center">
+          <div><i data-lucide="target" class="w-5 h-5 mx-auto text-amber-300"></i><h3 class="mt-2 text-sm font-bold text-white">Robot arenas</h3><p class="mt-1 text-xs text-slate-400">Room to test and refine a design.</p></div>
+          <div><i data-lucide="route" class="w-5 h-5 mx-auto text-blue-300"></i><h3 class="mt-2 text-sm font-bold text-white">Autonomous tracks</h3><p class="mt-1 text-xs text-slate-400">Challenges for sensors and code.</p></div>
+          <div><i data-lucide="users" class="w-5 h-5 mx-auto text-rose-300"></i><h3 class="mt-2 text-sm font-bold text-white">Team workbenches</h3><p class="mt-1 text-xs text-slate-400">Space to build together and share ideas.</p></div>
+        </div>
+      </section>
+
+      <section class="rounded-3xl bg-blue-600/20 border border-blue-400/20 p-6">
+        <h2 class="text-xl font-heading font-bold text-white">Classes Continue While We Build</h2>
+        <p class="mt-2 text-sm text-slate-300">Our current robotics and coding programs are open. Find an age group and book a trial at an existing club location.</p>
+        <a href="programs.html" class="inline-flex mt-4 text-sm font-bold text-amber-300 hover:underline">Browse current programs →</a>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="py-6 text-center text-xs text-slate-500 border-t border-white/10">
+    <p>&copy; 2026 RoboBricks Club Template. All rights reserved.</p>
+  </footer>
+
+  <div id="toast-container"></div>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
