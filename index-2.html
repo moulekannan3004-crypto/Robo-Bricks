@@ -486,8 +486,8 @@
     <div aria-hidden="true" class="absolute -top-32 -right-24 w-96 h-96 rounded-full bg-blue-600/20 blur-3xl pointer-events-none"></div>
     <div aria-hidden="true" class="absolute -bottom-40 left-1/4 w-96 h-96 rounded-full bg-amber-500/10 blur-3xl pointer-events-none"></div>
 
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-stretch">
-      <div class="max-w-xl flex flex-col justify-between h-full py-1">
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-10 lg:gap-16 items-center">
+      <div class="max-w-xl">
         <div>
           <span class="inline-flex items-center gap-2 rounded-full border border-blue-400/30 bg-blue-500/10 px-3 py-1.5 text-xs font-bold uppercase tracking-widest text-blue-200">
             <i data-lucide="messages-square" class="w-4 h-4"></i> A window into their week
@@ -502,7 +502,7 @@
           <span class="inline-flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-xs font-semibold text-slate-200"><i data-lucide="trophy" class="w-4 h-4 text-amber-300"></i> New milestones</span>
         </div>
 
-        <div>
+        <div class="pt-2">
           <a href="login.html" class="btn-brick btn-brick-yellow inline-flex px-6 py-3.5 rounded-2xl font-heading font-bold shadow-lg shadow-amber-500/15">
             <span>Open the Parent Portal</span><i data-lucide="arrow-right" class="w-5 h-5 ml-2"></i>
           </a>
@@ -510,7 +510,7 @@
         </div>
       </div>
 
-      <div class="relative mx-auto w-full max-w-xl h-full flex flex-col justify-center">
+      <div class="relative mx-auto w-full max-w-xl">
         <div aria-hidden="true" class="absolute -inset-2 rounded-[2rem] border border-blue-400/20"></div>
         <div class="relative rounded-3xl bg-white p-5 sm:p-7 text-slate-900 shadow-2xl shadow-black/30 ring-1 ring-white/20">
           <div class="flex items-center justify-between gap-3 border-b border-slate-100 pb-5">

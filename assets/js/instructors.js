@@ -125,13 +125,13 @@
         <div class="text-center space-y-1.5">
           <span class="inline-block text-[11px] font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/60 px-2.5 py-0.5 rounded-lg">${escapeHtml(mentor.categoryLabel)}</span>
           <h3 class="font-heading font-bold text-xl text-slate-900 dark:text-white">${escapeHtml(mentor.name)}</h3>
-          <span class="block text-xs font-semibold text-amber-600 dark:text-amber-400">${escapeHtml(mentor.role)}</span>
+          <span class="block text-xs font-semibold text-amber-600 dark:text-amber-400 lg:min-h-8">${escapeHtml(mentor.role)}</span>
         </div>
 
         <div class="my-4 pt-3 border-t border-slate-100 dark:border-slate-700/80 space-y-2 text-xs">
           <div class="flex items-start gap-2 text-slate-600 dark:text-slate-300">
             <i data-lucide="graduation-cap" class="w-4 h-4 text-blue-500 flex-shrink-0 mt-0.5"></i>
-            <span class="leading-tight">${escapeHtml(mentor.education)}</span>
+            <span class="leading-tight lg:min-h-8">${escapeHtml(mentor.education)}</span>
           </div>
           <div class="flex items-center gap-2 text-slate-600 dark:text-slate-300 font-medium">
             <i data-lucide="award" class="w-4 h-4 text-amber-500 flex-shrink-0"></i>
@@ -139,11 +139,11 @@
           </div>
         </div>
 
-        <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed mb-4">${escapeHtml(mentor.bio)}</p>
-        <div class="flex flex-wrap gap-1.5 mb-4">
+        <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed mb-4 lg:min-h-[6.125rem]">${escapeHtml(mentor.bio)}</p>
+        <div class="flex flex-wrap gap-1.5 mb-4 lg:min-h-10">
           ${mentor.specialties.map(skill => `<span class="text-[10px] font-bold text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-700/60 px-2 py-0.5 rounded-md">${escapeHtml(skill)}</span>`).join('')}
         </div>
-        <div class="p-3 rounded-2xl bg-amber-50 dark:bg-amber-950/30 border border-amber-200/60 dark:border-amber-800/40 text-[11px] text-amber-800 dark:text-amber-300 mb-5 flex items-start gap-2">
+        <div class="p-3 rounded-2xl bg-amber-50 dark:bg-amber-950/30 border border-amber-200/60 dark:border-amber-800/40 text-[11px] text-amber-800 dark:text-amber-300 mb-5 flex items-start gap-2 lg:min-h-[4.5rem]">
           <i data-lucide="sparkles" class="w-3.5 h-3.5 text-amber-500 flex-shrink-0 mt-0.5"></i>
           <div><strong class="font-bold">Fun Fact:</strong> ${escapeHtml(mentor.funFact)}</div>
         </div>
