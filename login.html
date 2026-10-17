@@ -73,7 +73,7 @@
 
       <section aria-labelledby="login-heading" x-show="mode === 'login'" x-transition class="mt-6">
         <h2 id="login-heading" class="sr-only">Sign in to the Parent Portal</h2>
-        <form onsubmit="event.preventDefault(); showToast('Sign-in stays on this page in the current demo.', 'info');" class="space-y-4">
+        <form onsubmit="handleParentLogin(event)" class="space-y-4">
           <div>
             <label for="parent-email" class="mb-1.5 block text-xs font-semibold text-slate-800 dark:text-slate-200">Parent Email Address</label>
             <input id="parent-email" type="email" autocomplete="email" required value="rachel.adams@example.com" class="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-sky-400 focus:ring-4 focus:ring-sky-100 dark:border-slate-700 dark:bg-slate-800 dark:text-white dark:focus:ring-sky-900/40">
@@ -82,7 +82,7 @@
           <div>
             <div class="mb-1.5 flex items-center justify-between gap-3">
               <label for="parent-password" class="text-xs font-semibold text-slate-800 dark:text-slate-200">Password</label>
-              <button type="button" onclick="showToast('For password help, call (800) 555-ROBO or ask your child\'s coach.', 'info');" class="text-xs font-medium text-sky-600 hover:text-sky-700 dark:text-sky-300">Forgot Password?</button>
+              <button type="button" onclick="requestPasswordReset()" class="text-xs font-medium text-sky-600 hover:text-sky-700 dark:text-sky-300">Forgot Password?</button>
             </div>
             <div class="relative">
               <input id="parent-password" :type="showPass ? 'text' : 'password'" autocomplete="current-password" required value="password123" class="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 pr-11 text-sm text-slate-900 outline-none transition focus:border-sky-400 focus:ring-4 focus:ring-sky-100 dark:border-slate-700 dark:bg-slate-800 dark:text-white dark:focus:ring-sky-900/40">
@@ -105,10 +105,10 @@
 
         <div class="my-5 flex items-center gap-3 text-xs text-slate-500 dark:text-slate-400"><span class="h-px flex-1 bg-slate-200 dark:bg-slate-700"></span><span>or continue with</span><span class="h-px flex-1 bg-slate-200 dark:bg-slate-700"></span></div>
         <div class="grid grid-cols-2 gap-2">
-          <button type="button" onclick="showToast('Google sign-in is not connected in this demo.', 'info');" class="inline-flex items-center justify-center gap-2 rounded-full border border-slate-200 bg-white py-2.5 text-sm font-semibold text-slate-900 transition hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-800 dark:text-white dark:hover:bg-slate-700">
+          <button type="button" onclick="handleSocialLogin('Google')" class="inline-flex items-center justify-center gap-2 rounded-full border border-slate-200 bg-white py-2.5 text-sm font-semibold text-slate-900 transition hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-800 dark:text-white dark:hover:bg-slate-700">
             <span class="font-extrabold text-red-500">G</span> Google
           </button>
-          <button type="button" onclick="showToast('Apple sign-in is not connected in this demo.', 'info');" class="inline-flex items-center justify-center gap-2 rounded-full border border-slate-200 bg-white py-2.5 text-sm font-semibold text-slate-900 transition hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-800 dark:text-white dark:hover:bg-slate-700">
+          <button type="button" onclick="handleSocialLogin('Apple')" class="inline-flex items-center justify-center gap-2 rounded-full border border-slate-200 bg-white py-2.5 text-sm font-semibold text-slate-900 transition hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-800 dark:text-white dark:hover:bg-slate-700">
             <i data-lucide="apple" class="h-4 w-4 fill-current"></i> Apple
           </button>
         </div>
@@ -123,7 +123,7 @@
           <h2 id="register-heading" class="font-heading text-xl font-bold text-slate-950 dark:text-white">Create a Parent Account</h2>
           <p class="mt-1 text-xs leading-5 text-slate-500 dark:text-slate-400">Set up your family portal to follow your child's robotics journey.</p>
         </div>
-        <form onsubmit="event.preventDefault(); showToast('Account setup is not connected in this demo. Please call (800) 555-ROBO for help.', 'info');" class="space-y-3.5">
+        <form onsubmit="handleParentRegister(event)" class="space-y-3.5">
           <div>
             <label for="register-name" class="mb-1 block text-xs font-semibold text-slate-800 dark:text-slate-200">Parent Full Name</label>
             <input id="register-name" type="text" autocomplete="name" required placeholder="Your name" class="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm outline-none focus:border-sky-400 focus:ring-4 focus:ring-sky-100 dark:border-slate-700 dark:bg-slate-800 dark:text-white dark:focus:ring-sky-900/40">

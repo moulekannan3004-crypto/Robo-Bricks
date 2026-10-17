@@ -348,8 +348,19 @@ h1, h2, h3, h4, .font-heading {
   text-align: right;
 }
 
+[dir="rtl"] .text-left {
+  text-align: start;
+}
+
 [dir="rtl"] .rtl-mirror {
   transform: scaleX(-1);
+}
+
+[dir="rtl"] aside.fixed {
+  left: auto;
+  right: 0;
+  border-right-width: 0;
+  border-left-width: 1px;
 }
 
 [dir="rtl"] .space-x-reverse > :not([hidden]) ~ :not([hidden]) {

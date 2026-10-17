@@ -9,7 +9,7 @@
       categoryLabel: 'SPIKE Prime & Sensors',
       education: 'Ph.D. Robotics, Carnegie Mellon University',
       fllRank: '3x National FLL Champion Coach',
-      image: 'https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=600&auto=format&fit=crop&q=80',
+      image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&auto=format&fit=crop&q=80',
       bio: 'Sarah leads our primary robotics curriculum development. Specializes in gyroscope balancing, ultrasonic autonomous navigation, and inspiring young girls in STEM.',
       specialties: ['SPIKE Prime Core', 'IMU Gyros', 'Algorithmic Loops', 'Capstones'],
       funFact: 'Built her first walking robot out of LEGO Technic at age 9!'
@@ -45,7 +45,7 @@
       categoryLabel: 'BattleBots & Tournaments',
       education: 'B.S. Mechanical Engineering, Georgia Tech',
       fllRank: 'BattleBots TV Crew Competitor',
-      image: 'https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?w=600&auto=format&fit=crop&q=80',
+      image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600&auto=format&fit=crop&q=80',
       bio: 'Marcus directs our Friday Night BattleBot Sumo leagues. Teaches high-torque gear compounds, shock absorption chassis armor, and tournament sportsmanship.',
       specialties: ['Torque Multiplication', 'Technic Chassis', 'Radio Combat', 'Sportsmanship'],
       funFact: 'Holds the club record for fastest autonomous maze escape (14.2s).'

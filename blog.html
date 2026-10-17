@@ -70,7 +70,7 @@
                  x-transition:leave="transition ease-in duration-100"
                  x-transition:leave-start="opacity-100 translate-y-0"
                  x-transition:leave-end="opacity-0 translate-y-1"
-                 class="absolute left-0 top-full pt-2 w-56 z-50">
+                 class="absolute start-0 top-full pt-2 w-56 z-50">
               <div class="rounded-2xl bg-white dark:bg-slate-800 shadow-2xl border border-slate-200/90 dark:border-slate-700 p-2">
                 <a href="index.html" class="flex items-center gap-2.5 px-3 py-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 text-sm transition">
                   <i data-lucide="bot" class="w-4 h-4 text-blue-500"></i>
@@ -303,8 +303,27 @@
   }">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
+      <!-- Blog Category Filter Tabs -->
+      <div class="flex flex-wrap items-center justify-center gap-2 mb-8">
+        <button @click="activeCategory = 'all'; page = 1" :class="activeCategory === 'all' ? 'bg-blue-600 text-white shadow-md shadow-blue-500/20' : 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:border-blue-400'" class="px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold transition">
+          All Articles
+        </button>
+        <button @click="activeCategory = 'parenting'; page = 1" :class="activeCategory === 'parenting' ? 'bg-blue-600 text-white shadow-md shadow-blue-500/20' : 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:border-blue-400'" class="px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold transition">
+          Parenting Tips
+        </button>
+        <button @click="activeCategory = 'coding'; page = 1" :class="activeCategory === 'coding' ? 'bg-blue-600 text-white shadow-md shadow-blue-500/20' : 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:border-blue-400'" class="px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold transition">
+          Coding Guides
+        </button>
+        <button @click="activeCategory = 'competitions'; page = 1" :class="activeCategory === 'competitions' ? 'bg-blue-600 text-white shadow-md shadow-blue-500/20' : 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:border-blue-400'" class="px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold transition">
+          Competitions
+        </button>
+        <button @click="activeCategory = 'robotics'; page = 1" :class="activeCategory === 'robotics' ? 'bg-blue-600 text-white shadow-md shadow-blue-500/20' : 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:border-blue-400'" class="px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold transition">
+          Robotics 101
+        </button>
+      </div>
+
       <!-- Articles Grid -->
-      <div class="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         <template x-for="post in visiblePosts" :key="post.id">
           <article class="bg-white dark:bg-slate-800 rounded-3xl border border-slate-200 dark:border-slate-700 overflow-hidden shadow-md hover:shadow-2xl transition duration-300 flex flex-col group">
             

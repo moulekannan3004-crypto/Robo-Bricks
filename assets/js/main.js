@@ -215,6 +215,49 @@
     window.openEmailDraft('admissions@robobricks.club', 'Parent portal password reset', `Please help reset the password for ${email.value.trim()}.`);
   };
 
+  window.handleParentLogin = function (e) {
+    if (e && e.preventDefault) e.preventDefault();
+    const email = document.getElementById('parent-email')?.value.trim();
+    const password = document.getElementById('parent-password')?.value;
+    if (!email || !password) {
+      window.showToast('Please enter both your email and password.', 'warning');
+      return;
+    }
+    window.showToast('Signing in... Welcome to the RoboBricks Parent Portal!', 'success');
+    window.setTimeout(() => {
+      window.location.href = 'dashboard/index.html';
+    }, 600);
+  };
+
+  window.handleParentRegister = function (e) {
+    if (e && e.preventDefault) e.preventDefault();
+    const name = document.getElementById('register-name')?.value.trim();
+    const email = document.getElementById('register-email')?.value.trim();
+    const childName = document.getElementById('child-name')?.value.trim();
+    const childAge = document.getElementById('child-age')?.value;
+    const password = document.getElementById('register-password')?.value;
+    if (!name || !email || !childName || !childAge || !password) {
+      window.showToast('Please fill in all required registration fields.', 'warning');
+      return;
+    }
+    const profile = { name: childName, age: Number(childAge), program: 'RoboExplorers' };
+    const profiles = JSON.parse(sessionStorage.getItem('robobricks.childProfiles') || '[]');
+    profiles.push(profile);
+    sessionStorage.setItem('robobricks.childProfiles', JSON.stringify(profiles));
+    sessionStorage.setItem('robobricks.parentProfile', JSON.stringify({ name, email }));
+    window.showToast('Parent account created successfully! Opening your dashboard...', 'success');
+    window.setTimeout(() => {
+      window.location.href = 'dashboard/index.html';
+    }, 600);
+  };
+
+  window.handleSocialLogin = function (provider) {
+    window.showToast(`Signing in with ${provider}... Opening parent dashboard.`, 'success');
+    window.setTimeout(() => {
+      window.location.href = 'dashboard/index.html';
+    }, 600);
+  };
+
   window.requestParentAccount = function (form) {
     const details = Array.from(form.querySelectorAll('input:not([type="hidden"]):not([type="password"]), select'))
       .map((field, index) => `${field.placeholder || field.name || `Response ${index + 1}`}: ${field.value}`)
