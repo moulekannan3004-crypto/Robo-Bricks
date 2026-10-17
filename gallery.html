@@ -200,9 +200,8 @@
     </div>
   </section>
 
-  <!-- Interactive Filterable Gallery -->
+  <!-- Gallery Grid Section -->
   <section class="py-16 bg-slate-50 dark:bg-slate-900" x-data="{
-    filter: 'all',
     items: [
       { id: 1, title: 'Autonomous Mars Obstacle Rover', category: 'builds', author: 'Maya (Age 10)', tag: 'Spike Prime', img: 'assets/gallery-mars-obstacle-rover.png' },
       { id: 2, title: 'Friday Night BattleBot Sumo Ring', category: 'arena', author: 'Tournament Arena #1', tag: 'Technic Sumo', img: 'assets/gallery-friday-night-battlebot-sumo.png' },
@@ -212,35 +211,13 @@
       { id: 6, title: 'Gyro Self-Balancing Robot', category: 'builds', author: 'Lucas (Age 13)', tag: 'Python & IMU', img: 'assets/gallery-gyro-self-balancing-robot.png' },
       { id: 7, title: 'Solar Powered Eco-Greenhouse', category: 'builds', author: 'Noah & Mia (Ages 6-7)', tag: 'Junior Inventors', img: 'assets/gallery-solar-powered-eco-greenhouse.jpg' },
       { id: 8, title: 'Parent Observation Lounge & Coffee', category: 'spaces', author: 'All Campus Hubs', tag: 'Live Screens', img: 'assets/gallery-parent-observation-lounge-coffee.png' }
-    ],
-    get filteredItems() {
-      return this.filter === 'all' ? this.items : this.items.filter(i => i.category === this.filter);
-    }
+    ]
   }">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
-      <!-- Filter Tabs -->
-      <div class="flex flex-wrap items-center justify-center gap-2 mb-10">
-        <button @click="filter = 'all'" :class="filter === 'all' ? 'bg-blue-600 text-white shadow-md shadow-blue-500/20' : 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:border-blue-400'" class="px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold transition">
-          All Moments
-        </button>
-        <button @click="filter = 'builds'" :class="filter === 'builds' ? 'bg-blue-600 text-white shadow-md shadow-blue-500/20' : 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:border-blue-400'" class="px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold transition">
-          Student Builds
-        </button>
-        <button @click="filter = 'arena'" :class="filter === 'arena' ? 'bg-blue-600 text-white shadow-md shadow-blue-500/20' : 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:border-blue-400'" class="px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold transition">
-          Battle Arena
-        </button>
-        <button @click="filter = 'competitions'" :class="filter === 'competitions' ? 'bg-blue-600 text-white shadow-md shadow-blue-500/20' : 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:border-blue-400'" class="px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold transition">
-          Competitions
-        </button>
-        <button @click="filter = 'spaces'" :class="filter === 'spaces' ? 'bg-blue-600 text-white shadow-md shadow-blue-500/20' : 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:border-blue-400'" class="px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold transition">
-          Learning Spaces
-        </button>
-      </div>
-
       <!-- Gallery Grid -->
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <template x-for="item in filteredItems" :key="item.id">
+        <template x-for="item in items" :key="item.id">
           <div class="group rounded-3xl overflow-hidden bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-md hover:shadow-2xl transition duration-300 flex flex-col">
             <div class="relative aspect-square overflow-hidden bg-slate-900">
               <img :src="item.img" :alt="item.title" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
