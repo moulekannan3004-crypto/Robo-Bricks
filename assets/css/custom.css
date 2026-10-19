@@ -315,24 +315,12 @@ h1, h2, h3, h4, .font-heading {
   align-self: stretch;
 }
 
-.content-media-layout--visual-wide {
-  --content-media-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
-}
-
-.content-media-layout--copy-wide {
-  --content-media-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
-}
-
-.content-media-layout--copy-balanced {
-  --content-media-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
-}
-
-.content-media-layout--visual-slight-wide {
-  --content-media-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
-}
-
+.content-media-layout--visual-wide,
+.content-media-layout--copy-wide,
+.content-media-layout--copy-balanced,
+.content-media-layout--visual-slight-wide,
 .content-media-layout--visual-balanced {
-  --content-media-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  --content-media-columns: minmax(0, 1fr) minmax(0, 1fr);
 }
 
 @media (min-width: 1024px) {

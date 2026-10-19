@@ -28,9 +28,11 @@ It combines a playful, child-friendly aesthetic (tactile 3D LEGO brick buttons, 
   5. **Gallery**
   6. **Blog**
   7. **Contact**
+  8. **Dashboard** (`dashboard/index.html`)
 - **Action Buttons**: Positioned directly on the top right:
-  - **Dashboard Button**: Direct access to the Parent / Admin Portal (`dashboard/index.html`) with Lucide dashboard icon.
-  - **Sign Up Button**: High-converting tactile 3D brick button (`.btn-brick-yellow` with sparkles icon) triggering the universal quick enrollment modal.
+  - **RTL Toggle**: Built-in one-click LTR/RTL layout direction toggle.
+  - **Theme Toggle**: Dark/Light mode switcher.
+  - **Login Button**: Direct access to login portal.
 
 ### 🌗 Dark / Light Mode Toggle
 - Full dark mode coverage across all public and dashboard pages.
