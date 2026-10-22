@@ -176,11 +176,10 @@
 
   <!-- Page Header -->
   <section class="py-14 sm:py-20 bg-[#0B1120] text-slate-100 border-b border-slate-800/80 relative overflow-hidden">
-    <!-- Solid dark navy background with subtle stud pattern -->
-    <div class="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-      <div class="absolute inset-0 bg-gradient-to-b from-[#0B1120]/90 via-[#0B1120]/75 to-[#0B1120]/95"></div>
-      <div class="absolute inset-0 bg-studs opacity-40"></div>
-    </div>
+    <!-- Hero Background Image Layer with Dark Overlay & Stud Pattern -->
+    <img src="assets/lab-parent-observation-lounge.jpg" alt="RoboBricks Academy campus welcome lounge and observation center" class="hero-bg-photo">
+    <div class="hero-bg-overlay"></div>
+    <div class="hero-stud-layer bg-studs"></div>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
       <div class="flex items-center justify-center gap-2 text-xs font-semibold text-slate-400 mb-3">
         <a href="index.html" class="hover:text-white transition">Home</a>
@@ -367,107 +366,122 @@
   </section>
 
     <!-- Footer -->
-  <footer class="bg-[#0B1120] text-slate-300 pt-16 pb-8 border-t border-slate-800/80 transition-colors">
+  <footer class="bg-[#0B1120] text-slate-300 pt-12 pb-8 border-t border-slate-800/80 transition-colors relative z-10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-8 pb-12">
+      
+      <!-- 4 Columns Grid: Balanced Units, Exact Heading Baselines -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1.3fr_0.8fr_1.7fr_1.2fr] gap-8 xl:gap-10 pb-8 items-start">
         
         <!-- Col 1: Brand & Socials -->
-        <div class="lg:col-span-3 space-y-4">
-          <a href="index.html" class="flex items-center gap-3 group flex-shrink-0">
-            <img src="assets/logo.svg" alt="RoboBricks Logo" class="w-11 h-11 rounded-2xl object-contain shadow-lg shadow-blue-500/25 group-hover:scale-105 transition-transform duration-200 flex-shrink-0">
-            <div>
-              <span class="font-heading text-xl font-bold tracking-tight text-white flex items-center gap-1 leading-none">
-                <span class="text-blue-600">Robo</span><span class="text-blue-600">Bricks</span>
-                <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+        <div>
+          <div class="h-9 flex items-center mb-4">
+            <a href="index.html" class="flex items-center gap-2.5 group flex-shrink-0" title="RoboBricks Home">
+              <img src="assets/logo.svg" alt="RoboBricks Logo" class="w-8 h-8 rounded-xl object-contain shadow-md shadow-blue-500/25 group-hover:scale-105 transition-transform flex-shrink-0">
+              <span class="font-heading text-lg font-bold tracking-tight text-white flex items-center gap-1 leading-none">
+                <span class="text-blue-500">Robo</span><span class="text-blue-500">Bricks</span>
+                <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
               </span>
-              <span class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mt-1 leading-none">Kids Robotics & LEGO Club</span>
-            </div>
-          </a>
+            </a>
+          </div>
           
           <p class="text-xs sm:text-sm text-slate-400 leading-relaxed max-w-sm">
-            Helping young minds build confidence through creative LEGO engineering, coding, and hands-on robotics.
+            Empowering young minds with executive confidence, creative LEGO engineering mastery & hands-on robotics skills.
           </p>
 
-          <div class="flex items-center gap-2.5 pt-2">
+          <div class="flex items-center gap-2.5 pt-4">
             <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="w-9 h-9 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-slate-700 hover:bg-slate-800 transition">
-              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd"/>
-              </svg>
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.566.683.748 1.15.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd"/></svg>
             </a>
             <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="w-9 h-9 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-slate-700 hover:bg-slate-800 transition">
-              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd"/>
-              </svg>
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd"/></svg>
             </a>
             <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="w-9 h-9 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-slate-700 hover:bg-slate-800 transition">
-              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
-              </svg>
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
             </a>
             <a href="https://x.com" target="_blank" rel="noopener noreferrer" aria-label="X / Twitter" class="w-9 h-9 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-slate-700 hover:bg-slate-800 transition">
-              <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-              </svg>
+              <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
             </a>
           </div>
         </div>
 
-        <!-- Col 2: Navigation -->
-        <div class="lg:col-span-2 space-y-3">
-          <h4 class="font-bold text-xs uppercase tracking-widest text-white mb-4">NAVIGATION</h4>
+        <!-- Col 2: Navigation Links -->
+        <div>
+          <div class="h-9 flex items-center mb-4">
+            <h4 class="font-bold text-xs uppercase tracking-widest text-white leading-none">NAVIGATION</h4>
+          </div>
           <ul class="space-y-2 text-xs sm:text-sm text-slate-400">
-            <li><a href="index.html" class="hover:text-blue-400 transition">Home</a></li>
-            <li><a href="about.html" class="hover:text-blue-400 transition">About Us</a></li>
-            <li><a href="programs.html" class="hover:text-blue-400 transition">Programs</a></li>
-            <li><a href="instructors.html" class="hover:text-blue-400 transition">Instructors</a></li>
-            <li><a href="pricing.html" class="hover:text-blue-400 transition">Pricing Tiers</a></li>
-            <li><a href="gallery.html" class="hover:text-blue-400 transition">Gallery & Builds</a></li>
-            <li><a href="blog.html" class="hover:text-blue-400 transition">Blog & Journal</a></li>
-            <li><a href="contact.html" class="hover:text-blue-400 transition">Contact Club</a></li>
+            <li><a href="index.html" class="hover:text-blue-400 transition inline-block">Home</a></li>
+            <li><a href="about.html" class="hover:text-blue-400 transition inline-block">About Us</a></li>
+            <li><a href="programs.html" class="hover:text-blue-400 transition inline-block">Programs</a></li>
+            <li><a href="instructors.html" class="hover:text-blue-400 transition inline-block">Instructors</a></li>
+            <li><a href="pricing.html" class="hover:text-blue-400 transition inline-block">Pricing Tiers</a></li>
+            <li><a href="gallery.html" class="hover:text-blue-400 transition inline-block">Gallery & Builds</a></li>
+            <li><a href="blog.html" class="hover:text-blue-400 transition inline-block">Blog & Journal</a></li>
+            <li><a href="contact.html" class="hover:text-blue-400 transition inline-block">Contact Club</a></li>
           </ul>
         </div>
 
-        <!-- Col 3: Club Standards -->
-        <div class="lg:col-span-4 space-y-3">
-          <h4 class="font-bold text-xs uppercase tracking-widest text-white mb-4">CAMP STANDARDS</h4>
-          <div class="grid grid-cols-2 gap-x-4 gap-y-3 text-xs sm:text-sm">
-            <div class="font-bold text-white">1:6 Coach Ratio</div>
-            <div class="text-slate-400">Certified STEM Mentors</div>
+        <!-- Col 3: Camp Standards (Interactive Working Links) -->
+        <div>
+          <div class="h-9 flex items-center mb-4">
+            <h4 class="font-bold text-xs uppercase tracking-widest text-white leading-none">CAMP STANDARDS</h4>
+          </div>
+          <div class="space-y-2.5 text-xs sm:text-sm">
+            <a href="instructors.html" class="grid grid-cols-[auto_1fr] gap-x-4 items-center group py-0.5" title="View Coach Standards & Certifications">
+              <span class="font-bold text-white group-hover:text-blue-400 transition whitespace-nowrap">1:6 Coach Ratio</span>
+              <span class="text-slate-400 group-hover:text-slate-200 transition whitespace-nowrap flex items-center gap-1">Certified STEM Mentors <span class="opacity-0 group-hover:opacity-100 transition-opacity">&rarr;</span></span>
+            </a>
 
-            <div class="font-bold text-white">Daily Build Time</div>
-            <div class="text-slate-400">Live Hands-On Practice</div>
+            <a href="programs.html" class="grid grid-cols-[auto_1fr] gap-x-4 items-center group py-0.5" title="View Hands-On Build Time">
+              <span class="font-bold text-white group-hover:text-blue-400 transition whitespace-nowrap">Daily Build Time</span>
+              <span class="text-slate-400 group-hover:text-slate-200 transition whitespace-nowrap flex items-center gap-1">Live Hands-On Practice <span class="opacity-0 group-hover:opacity-100 transition-opacity">&rarr;</span></span>
+            </a>
 
-            <div class="font-bold text-white">FLL League Prep</div>
-            <div class="text-slate-400">Gala Showcase Challenges</div>
+            <a href="programs.html" class="grid grid-cols-[auto_1fr] gap-x-4 items-center group py-0.5" title="View FLL Competition Prep">
+              <span class="font-bold text-white group-hover:text-blue-400 transition whitespace-nowrap">FLL League Prep</span>
+              <span class="text-slate-400 group-hover:text-slate-200 transition whitespace-nowrap flex items-center gap-1">Gala Showcase Challenges <span class="opacity-0 group-hover:opacity-100 transition-opacity">&rarr;</span></span>
+            </a>
 
-            <div class="font-bold text-white">Ages 5–16</div>
-            <div class="text-slate-400">Junior, Teen & Exec Tracks</div>
+            <a href="programs.html" class="grid grid-cols-[auto_1fr] gap-x-4 items-center group py-0.5" title="View Age Group Tracks">
+              <span class="font-bold text-white group-hover:text-blue-400 transition whitespace-nowrap">Ages 5–16</span>
+              <span class="text-slate-400 group-hover:text-slate-200 transition whitespace-nowrap flex items-center gap-1">Junior, Teen & Exec Tracks <span class="opacity-0 group-hover:opacity-100 transition-opacity">&rarr;</span></span>
+            </a>
 
-            <div class="font-bold text-white">5 Regional Hubs</div>
-            <div class="text-slate-400">Robotics & Coding Campuses</div>
+            <a href="contact.html" class="grid grid-cols-[auto_1fr] gap-x-4 items-center group py-0.5" title="View Regional Campuses">
+              <span class="font-bold text-white group-hover:text-blue-400 transition whitespace-nowrap">5 Regional Hubs</span>
+              <span class="text-slate-400 group-hover:text-slate-200 transition whitespace-nowrap flex items-center gap-1">Robotics & Coding Campuses <span class="opacity-0 group-hover:opacity-100 transition-opacity">&rarr;</span></span>
+            </a>
           </div>
         </div>
 
-        <!-- Col 4: Admissions & Contact -->
-        <div class="lg:col-span-3 space-y-3">
-          <h4 class="font-bold text-xs uppercase tracking-widest text-white mb-4">CAMP ADMISSIONS</h4>
+        <!-- Col 4: Admissions & Contact (All Interactive Links) -->
+        <div>
+          <div class="h-9 flex items-center mb-4">
+            <h4 class="font-bold text-xs uppercase tracking-widest text-white leading-none">CAMP ADMISSIONS</h4>
+          </div>
           <div class="space-y-2.5 text-xs sm:text-sm text-slate-400">
-            <div class="flex items-center gap-2.5">
-              <i data-lucide="mail" class="w-4 h-4 text-blue-400 flex-shrink-0"></i>
-              <a href="mailto:admissions@robobricks.club" class="hover:text-white transition">admissions@robobricks.club</a>
+            <div>
+              <a href="mailto:admissions@robobricks.club" class="hover:text-white transition flex items-center gap-2.5 group">
+                <i data-lucide="mail" class="w-4 h-4 text-blue-400 group-hover:text-blue-300 flex-shrink-0"></i>
+                <span>admissions@robobricks.club</span>
+              </a>
             </div>
-            <div class="flex items-center gap-2.5">
-              <i data-lucide="phone" class="w-4 h-4 text-blue-400 flex-shrink-0"></i>
-              <a href="tel:+18005557626" class="hover:text-white transition">+1 (800) 555-ROBO</a>
+            <div>
+              <a href="tel:+18005557626" class="hover:text-white transition flex items-center gap-2.5 group">
+                <i data-lucide="phone" class="w-4 h-4 text-blue-400 group-hover:text-blue-300 flex-shrink-0"></i>
+                <span>+1 (800) 555-ROBO</span>
+              </a>
             </div>
-            <div class="flex items-start gap-2.5">
-              <i data-lucide="map-pin" class="w-4 h-4 text-blue-400 flex-shrink-0 mt-0.5"></i>
-              <span>100 Innovation Way, Suite 400, Austin, TX 78701</span>
+            <div>
+              <a href="contact.html" class="hover:text-white transition flex items-start gap-2.5 group" title="View Campus Location">
+                <i data-lucide="map-pin" class="w-4 h-4 text-blue-400 group-hover:text-blue-300 flex-shrink-0 mt-0.5"></i>
+                <span>100 Innovation Way, Suite 400, Austin, TX 78701</span>
+              </a>
             </div>
           </div>
 
-          <div class="pt-2">
-            <button onclick="openEnrollModal('Connect Admissions Team')" class="w-full py-3 px-6 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold text-sm shadow-lg shadow-blue-600/30 transition-all hover:scale-[1.02] flex items-center justify-center gap-2">
+          <div class="pt-3">
+            <button onclick="if(window.openEnrollModal) window.openEnrollModal('Connect Admissions Team')" class="w-full py-3 px-6 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold text-sm shadow-lg shadow-blue-600/30 transition-all hover:scale-[1.02] flex items-center justify-center gap-2">
               <span>Connect Admissions Team</span>
             </button>
           </div>
@@ -476,7 +490,7 @@
       </div>
 
       <!-- Copyright Bar -->
-      <div class="mt-8 pt-8 border-t border-slate-800/80 text-center text-xs text-slate-500">
+      <div class="border-t border-slate-800/80 pt-6 text-center text-xs text-slate-500">
         <p>&copy; 2026 RoboBricks Youth Robotics Academy Ltd. All rights reserved.</p>
       </div>
     </div>

@@ -57,7 +57,7 @@
       categoryLabel: 'FLL League Prep',
       education: 'M.S. Systems Engineering, MIT',
       fllRank: 'FLL Outstanding Mentor Award',
-      image: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=600&auto=format&fit=crop&q=80',
+      image: 'https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?w=600&auto=format&fit=crop&q=80',
       bio: 'Priya mentors our competitive league cohorts. Guides kids through official board mission strategies, robot attachment mechanisms, and innovative research presentations.',
       specialties: ['FLL Strategy', 'Motorized Attachments', 'Team Dynamics', 'Innovation Projects'],
       funFact: 'Coached 4 teams to the FIRST World Championships.'
